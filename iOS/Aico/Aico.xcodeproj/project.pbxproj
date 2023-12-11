@@ -29,7 +29,6 @@
 		ED4F1F5B2ADFB5540094AB75 /* Blank.aicoproj in Resources */ = {isa = PBXBuildFile; fileRef = ED4F1F5A2ADFB5540094AB75 /* Blank.aicoproj */; };
 		ED5F23032AD174F100BFE800 /* StageGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F23022AD174F000BFE800 /* StageGraph.swift */; };
 		ED5F23052AD2E28B00BFE800 /* MainEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F23042AD2E28B00BFE800 /* MainEditorView.swift */; };
-		ED5F23072AD2E29800BFE800 /* NodeEditorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F23062AD2E29800BFE800 /* NodeEditorContainer.swift */; };
 		ED5F23092AD2EB7F00BFE800 /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F23082AD2EB7F00BFE800 /* ProjectView.swift */; };
 		ED5F230C2AD2EBB400BFE800 /* ProjectHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F230B2AD2EBB400BFE800 /* ProjectHostingController.swift */; };
 		ED5F230F2AD2F4B100BFE800 /* MainEditorHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F230E2AD2F4B100BFE800 /* MainEditorHostingController.swift */; };
@@ -85,7 +84,6 @@
 		ED4F1F5A2ADFB5540094AB75 /* Blank.aicoproj */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Blank.aicoproj; sourceTree = "<group>"; };
 		ED5F23022AD174F000BFE800 /* StageGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageGraph.swift; sourceTree = "<group>"; };
 		ED5F23042AD2E28B00BFE800 /* MainEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEditorView.swift; sourceTree = "<group>"; };
-		ED5F23062AD2E29800BFE800 /* NodeEditorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeEditorContainer.swift; sourceTree = "<group>"; };
 		ED5F23082AD2EB7F00BFE800 /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
 		ED5F230B2AD2EBB400BFE800 /* ProjectHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectHostingController.swift; sourceTree = "<group>"; };
 		ED5F230E2AD2F4B100BFE800 /* MainEditorHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEditorHostingController.swift; sourceTree = "<group>"; };
@@ -134,8 +132,8 @@
 		ED2CD2292B237FD700594DC6 /* RelationshipGraphEditor */ = {
 			isa = PBXGroup;
 			children = (
-				ED2CD22A2B23800700594DC6 /* RelationshipGraphEditorViewController.swift */,
 				ED2CD22C2B2385F500594DC6 /* RelationshipGraphEditorContainer.swift */,
+				ED2CD22A2B23800700594DC6 /* RelationshipGraphEditorViewController.swift */,
 			);
 			path = RelationshipGraphEditor;
 			sourceTree = "<group>";
@@ -206,7 +204,6 @@
 			isa = PBXGroup;
 			children = (
 				EDC7F2332AD11DA300714779 /* NodeEditorView.swift */,
-				ED5F23062AD2E29800BFE800 /* NodeEditorContainer.swift */,
 				ED2CD2292B237FD700594DC6 /* RelationshipGraphEditor */,
 				ED5F23212AD3A93B00BFE800 /* ProjectGraphEditor */,
 				ED5F23102AD2F9D200BFE800 /* StageGraphEditor */,
@@ -438,7 +435,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED2CD2222B23585E00594DC6 /* BaseInspector.swift in Sources */,
-				ED5F23072AD2E29800BFE800 /* NodeEditorContainer.swift in Sources */,
 				ED3976432AD71DAA0014AE03 /* Protocol.swift in Sources */,
 				ED39764B2AD79CFD0014AE03 /* BaseEditorViewController.swift in Sources */,
 				ED5F23052AD2E28B00BFE800 /* MainEditorView.swift in Sources */,

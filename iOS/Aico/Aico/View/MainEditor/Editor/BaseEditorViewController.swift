@@ -47,10 +47,7 @@ class BaseEditorViewController<T : Graph >: UIViewController, UIGestureRecognize
             
             return nil
         }
-        
-        set {
-            
-        }
+
     }
     
     //an editor view
@@ -62,10 +59,7 @@ class BaseEditorViewController<T : Graph >: UIViewController, UIGestureRecognize
     var nodeEditorState = NodeEditorState() {
         didSet {
             
-            guard shouldNotReport == false else {
-                shouldNotReport = false
-                return
-            }
+
             
             if oldValue.selectedNodeId != nodeEditorState.selectedNodeId {
                 if let oldId = oldValue.selectedNodeId {
@@ -74,10 +68,20 @@ class BaseEditorViewController<T : Graph >: UIViewController, UIGestureRecognize
                 
                 if let newId = nodeEditorState.selectedNodeId {
                     nodeViewRepo[newId]?.setSelected(true)
-                    if let node = graph?.node(with: newId) {
+                    if shouldNotReport == false, let node = graph?.node(with: newId) {
                         self.delegate?.editorViewDidSelectNode(node)
                     }
                 }
+            }
+            
+            
+            guard shouldNotReport == false else {
+                
+                editorView.setSelectedChannel(nodeEditorState.selectedChannelId)
+                editorView.redraw()
+                
+                shouldNotReport = false
+                return
             }
             
             if oldValue.selectedChannelId != nodeEditorState.selectedChannelId {

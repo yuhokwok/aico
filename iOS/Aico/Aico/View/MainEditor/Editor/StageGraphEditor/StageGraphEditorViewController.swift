@@ -17,63 +17,6 @@ class StageGraphEditorViewController: BaseEditorViewController<StageGraph> {
         super.viewDidLoad()
     }
     
-    
-    @IBAction func back(send : Any) {
-        self.performSegue(withIdentifier: "gobacktoStage", sender: nil)
-    }
-    
-//    @IBAction func addBlock(){
-//        let block = Block.new()
-//        graph?.nodes.append(block)
-//        self.addNodeView(block)
-//    }
-    
-    @IBAction func deleteChannel() {
-        guard let selectedChannelId = nodeEditorState.selectedChannelId else {
-            return
-        }
-        
-        if let channel = graph?.channel(with: selectedChannelId) {
-            editorView.removeCurve(channel.identifier)
-            graph?.deleteChannel(channel)
-            editorView.redraw()
-        }
-    }
-    
-    @IBAction func deleteNode() {
-        guard let selectNodeId = self.nodeEditorState.selectedNodeId else {
-            return
-        }
-        
-        for (identifier, nodeView) in nodeViewRepo {
-            if identifier == selectNodeId {
-                
-                if let node = graph?.node(with: selectNodeId) {
-                    
-                    guard node.isDeletable else {
-                        print("can't delete")
-                        return
-                    }
-                    
-                    //remove at node view curves
-                    editorView.removeDependedCurve(node.portIdentifiers)
-                    
-                    //remove dependencies
-                    graph?.deleteNode(node)
-                }
-
-                //remove blockview
-                nodeView.removeFromSuperview()
-                nodeViewRepo[identifier] = nil
-            }
-        }
-
-        self.nodeEditorState.selectedNodeId = nil
-
-        //redraw all node in the editor
-        self.editorView.redraw()
-    }
-
     /*
     // MARK: - Navigation
 

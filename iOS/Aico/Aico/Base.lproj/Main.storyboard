@@ -29,87 +29,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dE7-Yo-mgQ">
-                                <rect key="frame" x="22" y="702.33333333333337" width="0.0" height="0.0"/>
-                                <subviews>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lS5-17-ikL">
-                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="34.333333333333336"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Add Block"/>
-                                        <connections>
-                                            <action selector="addStage" destination="bwg-ao-E53" eventType="touchUpInside" id="kIJ-sb-tyK"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jA6-qd-xDt">
-                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="34.333333333333336"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Del Block"/>
-                                        <connections>
-                                            <action selector="deleteChannel" destination="bwg-ao-E53" eventType="touchUpInside" id="TkF-lV-NSI"/>
-                                            <action selector="deleteNode" destination="bwg-ao-E53" eventType="touchUpInside" id="C84-3u-TNI"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhJ-tQ-yPf">
-                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="34.333333333333336"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="arrow.uturn.backward" catalog="system"/>
-                                        <connections>
-                                            <action selector="undo" destination="bwg-ao-E53" eventType="touchUpInside" id="NHe-a7-dQr"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDY-8O-w9h">
-                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="34.333333333333336"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="arrow.uturn.forward" catalog="system"/>
-                                        <connections>
-                                            <action selector="redo" destination="bwg-ao-E53" eventType="touchUpInside" id="s7q-9p-lbL"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TRP-a4-aSp">
-                                <rect key="frame" x="22" y="714" width="267" height="34.333333333333371"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rNp-VV-q7m">
-                                        <rect key="frame" x="0.0" y="0.0" width="82.333333333333329" height="34.333333333333336"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Q. Save"/>
-                                        <connections>
-                                            <action selector="quickSave" destination="bwg-ao-E53" eventType="touchUpInside" id="Y1y-yN-ySC"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lti-tK-VhI">
-                                        <rect key="frame" x="92.333333333333343" y="0.0" width="82.333333333333343" height="34.333333333333336"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Q. Load"/>
-                                        <connections>
-                                            <action selector="quickLoad" destination="bwg-ao-E53" eventType="touchUpInside" id="DCe-SH-sev"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMF-6q-yg8">
-                                        <rect key="frame" x="184.66666666666666" y="0.0" width="82.333333333333343" height="34.333333333333336"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Clear"/>
-                                        <connections>
-                                            <action selector="clear" destination="bwg-ao-E53" eventType="touchUpInside" id="18q-EF-O7E"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dw7-XA-R6X"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="dw7-XA-R6X" firstAttribute="bottom" secondItem="TRP-a4-aSp" secondAttribute="bottom" constant="69.666666666666629" id="Smk-Hq-rT7"/>
-                            <constraint firstItem="dw7-XA-R6X" firstAttribute="bottom" secondItem="dE7-Yo-mgQ" secondAttribute="bottom" constant="115.66666666666663" id="W35-hl-k6n"/>
-                            <constraint firstItem="TRP-a4-aSp" firstAttribute="leading" secondItem="dw7-XA-R6X" secondAttribute="leading" constant="22" id="ws0-HT-Y3g"/>
-                            <constraint firstItem="dE7-Yo-mgQ" firstAttribute="leading" secondItem="dw7-XA-R6X" secondAttribute="leading" constant="22" id="yKU-cv-cf7"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bMN-TS-M0k"/>
                     <connections>
                         <outlet property="editorView" destination="AoG-AX-00g" id="qAJ-hN-Kid"/>
-                        <segue destination="fx4-gd-j6w" kind="show" identifier="editStageSegue" id="5bb-xG-eZG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C1Z-QX-kd5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -129,40 +55,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FX0-mY-mMV">
-                                <rect key="frame" x="53" y="85" width="57" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Test"/>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GVn-3Y-zG1">
-                                <rect key="frame" x="265" y="85" width="75" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <action selector="backWithSend:" destination="fx4-gd-j6w" eventType="touchUpInside" id="NnS-bU-Zvv"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBT-To-6WA">
-                                <rect key="frame" x="31" y="765" width="101" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Add Block"/>
-                                <connections>
-                                    <action selector="addBlock" destination="fx4-gd-j6w" eventType="touchUpInside" id="1S6-vT-9we"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Af-Wb-COg">
-                                <rect key="frame" x="265" y="765" width="96" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Del Block"/>
-                                <connections>
-                                    <action selector="deleteChannel" destination="fx4-gd-j6w" eventType="touchUpInside" id="hYU-lt-J01"/>
-                                    <action selector="deleteNode" destination="fx4-gd-j6w" eventType="touchUpInside" id="UBo-wS-GxJ"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="r4x-LP-cBg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -170,11 +62,9 @@
                     <navigationItem key="navigationItem" id="EFT-5G-Vin"/>
                     <connections>
                         <outlet property="editorView" destination="Xgc-9L-I0X" id="Uel-Al-3Zk"/>
-                        <segue destination="LtQ-rr-n9n" kind="unwind" identifier="gobacktoStage" unwindAction="gobackToStageWithSegue:" id="H0b-8X-MRh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10z-2a-Dys" sceneMemberID="firstResponder"/>
-                <exit id="LtQ-rr-n9n" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1571.7557251908397" y="-150"/>
         </scene>
@@ -223,8 +113,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.uturn.backward" catalog="system" width="128" height="113"/>
-        <image name="arrow.uturn.forward" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
