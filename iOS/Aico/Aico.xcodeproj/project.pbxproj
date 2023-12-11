@@ -48,6 +48,7 @@
 		ED733D962ACDDA7E00A2F3B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED733D952ACDDA7E00A2F3B9 /* Assets.xcassets */; };
 		ED733D992ACDDA7E00A2F3B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED733D972ACDDA7E00A2F3B9 /* LaunchScreen.storyboard */; };
 		ED733DA22ACDDA9D00A2F3B9 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED733DA12ACDDA9D00A2F3B9 /* Block.swift */; };
+		ED8C4FF22B2781A700C29823 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ED8C4FF12B2781A600C29823 /* README.md */; };
 		ED99C7502ADFCE090022A1AE /* BlockInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED99C74F2ADFCE090022A1AE /* BlockInspector.swift */; };
 		ED99C7522ADFD2A70022A1AE /* StageGraphInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED99C7512ADFD2A70022A1AE /* StageGraphInspector.swift */; };
 		ED99C7542AE012D30022A1AE /* AppFolderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED99C7532AE012D30022A1AE /* AppFolderManager.swift */; };
@@ -105,6 +106,7 @@
 		ED733D982ACDDA7E00A2F3B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED733D9A2ACDDA7E00A2F3B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED733DA12ACDDA9D00A2F3B9 /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
+		ED8C4FF12B2781A600C29823 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../../README.md; sourceTree = "<group>"; };
 		ED99C74F2ADFCE090022A1AE /* BlockInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockInspector.swift; sourceTree = "<group>"; };
 		ED99C7512ADFD2A70022A1AE /* StageGraphInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageGraphInspector.swift; sourceTree = "<group>"; };
 		ED99C7532AE012D30022A1AE /* AppFolderManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFolderManager.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				ED733D952ACDDA7E00A2F3B9 /* Assets.xcassets */,
 				ED733D972ACDDA7E00A2F3B9 /* LaunchScreen.storyboard */,
 				ED733D9A2ACDDA7E00A2F3B9 /* Info.plist */,
+				ED8C4FF12B2781A600C29823 /* README.md */,
 			);
 			path = Aico;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 			files = (
 				ED733D992ACDDA7E00A2F3B9 /* LaunchScreen.storyboard in Resources */,
 				ED733D962ACDDA7E00A2F3B9 /* Assets.xcassets in Resources */,
+				ED8C4FF22B2781A700C29823 /* README.md in Resources */,
 				ED733D942ACDDA7D00A2F3B9 /* Main.storyboard in Resources */,
 				ED4F1F5B2ADFB5540094AB75 /* Blank.aicoproj in Resources */,
 			);
