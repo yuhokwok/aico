@@ -7,21 +7,20 @@
 
 import SwiftUI
 import Observation
-
+import UIKit
 
 @MainActor
 struct MainEditorView: View {
     
-    @State var showInspector = true
-    
+    @State var isShowInspector = true
+    @State var isShowInspectorPhone = false
     
     @StateObject var documentHandler : DocumentHandler
     
     @State var isShowRuntime = false
     
     @State var size : CGSize = .zero
-    
-    
+        
     var editorState : EditorState {
         documentHandler.project.editorState
     }
@@ -45,7 +44,7 @@ struct MainEditorView: View {
         
         ZStack {
             //Main Editor
-            HStack {
+            HStack (spacing: 0){
                 
                 //Main Editor
                 GeometryReader(content: { geometry in
@@ -56,6 +55,8 @@ struct MainEditorView: View {
                             mainEditorState: $documentHandler.project.editorState,
                             documentHandler: documentHandler)
                         .coordinateSpace(name: "mainEditorContainer")
+                        
+                        .offset(x: 0, y: -yOffSet(height: geometry.size.height))
                         .onAppear {
                             self.size = geometry.size
                         }
@@ -64,17 +65,19 @@ struct MainEditorView: View {
                             print("size changed: \(value)")
                             self.size = value
                         }).zIndex(0)
+                            
                         
                             
                         if editorState.mode.contains(.relationship) {
                             ZStack (alignment: .topLeading){
                                 Text("Relationship")
-                                    .padding(25)
+                                    .padding(22)
                                     .font(.title)
                                 VStack {
-                                    
-                                    
+
                                     RelationshipGraphEditorContainer( mainEditorState: $documentHandler.project.editorState, documentHandler: documentHandler)
+                                        .offset(x: 0, y: -yOffSet(height: geometry.size.height))
+                                    
                                 }
                             }
                             .background(.regularMaterial)
@@ -83,10 +86,9 @@ struct MainEditorView: View {
                                 RoundedRectangle(cornerRadius: 30)
                                     .stroke(.gray.opacity(0.1), lineWidth: 1)
                             }
-                            .padding(60)
+                            .padding([.top], 74)
                             .shadow(color: .gray.opacity(0.2), radius: 10)
-                            .transition(.scale.combined(with: .opacity))
-                            .offset(y: 24)
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
                             .zIndex(1)
                             
                         }
@@ -94,7 +96,7 @@ struct MainEditorView: View {
                 })
                 
                 //Inspector
-                if (showInspector) {
+                if (isShowInspector && UIDevice.current.userInterfaceIdiom == .pad) {
                     //Inspector
                     if let id = editorState.selectedId, let entity = documentHandler.entity(for: id) {
                         //HStack {
@@ -146,6 +148,7 @@ struct MainEditorView: View {
                         .frame(width: 300)
                         .background(.gray.opacity(0.05))
                         .transition(.move(edge: .trailing))
+                        
                         //.clipShape(RoundedRectangle(cornerRadius: 20))
                         //.shadow(radius: 10)
                         //.padding()
@@ -156,7 +159,9 @@ struct MainEditorView: View {
                             .transition(.move(edge: .trailing))
                     }
                 }
+                
             }
+            
             
             
             //toolbar
@@ -183,14 +188,14 @@ struct MainEditorView: View {
                     }, label: {
                         if editorState.mode.contains(.stage) == false {
                             Image(systemName: "xmark")
-                                .frame(width: 48, height: 48)
+                                .frame(width: buttonSize, height: buttonSize)
                         } else {
                             Image(systemName: "chevron.backward")
-                                .frame(width: 48, height: 48)
+                                .frame(width: buttonSize, height: buttonSize)
                         }
                     })
                     .disabled(editorState.mode.contains(.relationship))
-                    .frame(width: 48, height: 48)
+                    .frame(width: buttonSize, height: buttonSize)
                     .background(.regularMaterial)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
                     .shadow(color: .gray.opacity(0.3), radius: 5)
@@ -200,34 +205,34 @@ struct MainEditorView: View {
                         documentHandler.undo()
                     }, label: {
                         Image(systemName: "arrow.uturn.backward")
-                            .frame(width: 48, height: 48)
+                            .frame(width: buttonSize, height: buttonSize)
                     })
-                    .frame(width: 48, height: 48)
+                    .frame(width: buttonSize, height: buttonSize)
                     .background(.regularMaterial)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
                     .shadow(color: .gray.opacity(0.3), radius: 5)
 
-                    
-                    Button(action: {
-                        documentHandler.redo()
-                    }, label: {
-                        Image(systemName: "arrow.uturn.forward")
-                            .frame(width: 48, height: 48)
-                    })
-                    .frame(width: 48, height: 48)
-                    .background(.regularMaterial)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                    .shadow(color: .gray.opacity(0.3), radius: 5)
-                    
+                    if UIDevice.current.userInterfaceIdiom == .pad {
+                        Button(action: {
+                            documentHandler.redo()
+                        }, label: {
+                            Image(systemName: "arrow.uturn.forward")
+                                .frame(width: buttonSize, height: buttonSize)
+                        })
+                        .frame(width: buttonSize, height: buttonSize)
+                        .background(.regularMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .shadow(color: .gray.opacity(0.3), radius: 5)
+                    }
                     
                     Button(action: {
                         isShowRuntime = true
                     }, label: {
                         Image(systemName: "play.fill")
-                            .frame(width: 48, height: 48)
+                            .frame(width: buttonSize, height: buttonSize)
                     })
                     .disabled(editorState.mode.contains(.relationship))
-                    .frame(width: 48, height: 48)
+                    .frame(width: buttonSize, height: buttonSize)
                     .background(.regularMaterial)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
                     .shadow(color: .gray.opacity(0.3), radius: 5)
@@ -249,7 +254,7 @@ struct MainEditorView: View {
                         }, label: {
                             Image(systemName: "figure.stand.line.dotted.figure.stand")
                         })
-                        .frame(width: 48, height: 48)
+                        .frame(width: buttonSize, height: buttonSize)
                         .background(.regularMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                         .shadow(color: .gray.opacity(0.3), radius: 5)
@@ -260,22 +265,27 @@ struct MainEditorView: View {
                             
                         }, label: {
                             Image(systemName: "plus")
-                                .frame(width: 48, height: 48)
+                                .frame(width: buttonSize, height: buttonSize)
                         })
-                        .frame(width: 48, height: 48)
+                        .frame(width: buttonSize, height: buttonSize)
                         .background(.regularMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                         .shadow(color: .gray.opacity(0.3), radius: 5)
                         
                         Button(action: {
                             withAnimation {
-                                showInspector.toggle()
+                                if UIDevice.current.userInterfaceIdiom == .pad {
+                                    isShowInspector.toggle()
+                                } else {
+                                    isShowInspectorPhone.toggle()
+                                }
+                                
                             }
                         }, label: {
-                            Image(systemName: "sidebar.right")
-                                .frame(width: 48, height: 48)
+                            Image(systemName: UIDevice.current.userInterfaceIdiom == .pad ? "sidebar.right" : "rectangle.portrait.bottomhalf.inset.filled" )
+                                .frame(width: buttonSize, height: buttonSize)
                         })
-                        .frame(width: 48, height: 48)
+                        .frame(width: buttonSize, height: buttonSize)
                         .background(.regularMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                         .shadow(color: .gray.opacity(0.3), radius: 5)
@@ -287,9 +297,71 @@ struct MainEditorView: View {
                 Spacer()
             }
             
+            
         }
+        
         .sheet(isPresented: $isShowRuntime, content: {
             Text("Executing Aico")
+        })
+        .sheet(isPresented: $isShowInspectorPhone, content: {
+            if let id = editorState.selectedId, let entity = documentHandler.entity(for: id) {
+                //HStack {
+                VStack {
+                    
+                    Spacer().frame(height: 20)
+                    
+                    if let entity = entity as? Block {
+                        BlockInspector(editorState: $documentHandler.project.editorState,
+                                       name: entity.name,
+                                       attribute: entity.attribute,
+                                       handler: documentHandler,
+                                       showDelete: !(entity.name == "stageInput" || entity.name == "stageOutput"))
+                        
+                    } else if entity is Channel {
+                        if let entity = entity as? Channel {
+                            ChannelInspector(editorState: $documentHandler.project.editorState, name: entity.name, attribute: entity.attribute, handler: documentHandler)
+                        }
+                    } else if let graph = entity as? StageGraph {
+                        if graph.name == "bigbang" {
+                            
+                            BigBangInspector(editorState: $documentHandler.project.editorState,
+                                             description: graph.description,
+                                             handler: documentHandler)
+                            
+                        } else {
+                            StageGraphInspector(editorState: $documentHandler.project.editorState,
+                                                name: graph.name,
+                                                attribute: graph.attribute,
+                                                handler: documentHandler,
+                                                showDelete: !documentHandler.project.editorState.mode.contains(.stage))
+                        }
+                        
+                    } else if entity is ProjectGraph{
+                        
+                        ProjectInspector(editorState: $documentHandler.project.editorState, selectedMode: .preset, description: "", handler: documentHandler)
+                        
+                    } else if entity is RelationshipGraph{
+                        RelationshipGraphInspector()
+                    } else if entity is PlayActor {
+                        if let entity = entity as? PlayActor {
+                            PlayActorInspector(editorState: $documentHandler.project.editorState, name: entity.name,
+                                               attribute: entity.attribute, personality: entity.personality,
+                                               handler: documentHandler)
+                        }
+                    }
+                }
+                .padding()
+                .background(.gray.opacity(0.05))
+                .transition(.move(edge: .trailing))
+                .presentationDetents([.fraction(0.5)])
+                .presentationBackgroundInteraction(.enabled(upThrough: .fraction(0.5)))
+                .presentationCornerRadius(30)
+                
+            } else {
+                Text("No Inspection")
+                    .frame(width: 300)
+                    .transition(.move(edge: .trailing))
+            }
         })
     }
     
@@ -320,6 +392,25 @@ struct MainEditorView: View {
         }
         
         
+    }
+    
+    @Environment(\.horizontalSizeClass) var horitzontalSizeClass
+    
+    var isTablet : Bool {
+        return UIDevice.current.userInterfaceIdiom == .pad
+    }
+    
+    var isPortrait : Bool {
+        return horitzontalSizeClass == .compact ? true : false
+    }
+    
+    func yOffSet (height : CGFloat) -> CGFloat {
+        return (isPortrait && isShowInspectorPhone) ? height / 5 : 0
+    }
+    
+    
+    var buttonSize : CGFloat {
+        return isTablet ? 48 : 40
     }
 }
 
