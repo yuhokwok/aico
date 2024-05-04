@@ -22,9 +22,7 @@ class DocumentHandler : ObservableObject {
     //the project
     @Published var project : Project
     
-    //temporary storege the latest project after changes
-    var stagedProject : Project? = nil
-    
+
     //var projectManager : ProjectManager
     init(document : AicoProject?) {
         self.document = document
@@ -318,7 +316,6 @@ extension DocumentHandler {
         undoManager.setActionName(undoAction)
         self.project = project
         //self.stagedProject = project
-        print("stage scene uuid: \(self.stagedProject?.editorState.selectedStageId ?? "no scene")")
     }
     
     

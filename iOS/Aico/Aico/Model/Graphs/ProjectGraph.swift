@@ -10,6 +10,10 @@ import UIKit
 
 
 struct ProjectGraph : Graph, Codable {
+    var id: String {
+        return identifier
+    }
+    
     
     var identifier : String
     var nodes: [StageGraph]
@@ -35,10 +39,12 @@ struct ProjectGraph : Graph, Codable {
         
         //just start channels
         var startNode = StageGraph.new(for: editor)
-        startNode.name = "bigbang"
+        //startNode.name = "bigbang"
+        startNode.name = "First Stage"
+        startNode.description = "The very first action"
         startNode.inChannels.removeAll()
         startNode.outChannels.removeAll()
-        startNode.outChannels.append(Port(kind: .outChannel, name: "bigbang"))
+        //startNode.outChannels.append(Port(kind: .outChannel, name: "bigbang"))
         
         let nodeSize = startNode.size
         let centerX : CGFloat = -editor.bounds.width / 2 + nodeSize.width / 2 + 15 //30 is margin

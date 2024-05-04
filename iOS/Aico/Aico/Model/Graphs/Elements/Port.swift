@@ -9,6 +9,11 @@ import Foundation
 
 
 struct Port : Codable, HasIdentifier {
+    
+    var id: String {
+        return identifier
+    }
+    
     var kind : Kind
     var identifier : String = UUID().uuidString
     var name : String

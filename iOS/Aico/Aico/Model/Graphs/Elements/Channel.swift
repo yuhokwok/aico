@@ -8,6 +8,11 @@
 import Foundation
 
 struct Channel : Codable, HasIdentifier, HasAttribute, HasProperty {
+    
+    var id: String {
+        return identifier
+    }
+    
     var identifier : String
 
     var name : String = ""

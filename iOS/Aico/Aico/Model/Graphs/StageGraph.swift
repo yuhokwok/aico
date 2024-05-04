@@ -18,6 +18,9 @@ struct StageGraph : Node, Graph, HasPort, Codable, Equatable {
     
     typealias T = Block
 
+    var id: String {
+        return identifier
+    }
     
     //Node protocol
     var identifier : String
@@ -179,7 +182,7 @@ struct StageGraph : Node, Graph, HasPort, Codable, Equatable {
         let node = StageGraph(identifier: identifier,
                                name : "Stage",
                                center: CGPoint(x: 0, y: 0),
-                               size: CGSize(width: 150, height: 100),
+                               size: CGSize(width: 206, height: 217),
                                attribute: Attribute.new,
                               description: "", 
                                inChannels: [listenPort],
@@ -215,7 +218,7 @@ struct StageGraph : Node, Graph, HasPort, Codable, Equatable {
         let node = StageGraph(identifier: identifier,
                                name : "Stage",
                                center: CGPoint(x: 0, y: 0),
-                               size: CGSize(width: 150, height: 100),
+                               size: CGSize(width: 206, height: 217),
                                attribute: Attribute.new,
                               description: "",
                                inChannels: [listenPort],

@@ -13,8 +13,10 @@ class MainEditorHostingController: UIHostingController<MainEditorView>, MainEdit
     
     var documentHandler : DocumentHandler?
     
-    func mainEditorDidRequestClosingDocument() {
-        self.dismiss(animated: true)
+    nonisolated func mainEditorDidRequestClosingDocument() {
+        DispatchQueue.main.async {
+            self.dismiss(animated: true)   
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

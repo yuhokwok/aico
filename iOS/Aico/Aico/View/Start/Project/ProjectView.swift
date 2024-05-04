@@ -18,7 +18,6 @@ class ProjectHostingCoorindator {
 struct ProjectView: View {
     
     @State var fileURLs : [URL] = []
-    
     var coordinator = ProjectHostingCoorindator()
     
     var body: some View {

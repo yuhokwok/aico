@@ -25,7 +25,7 @@ protocol Node: HasIdentifier, HasAttribute, HasProperty {
     var center : CGPoint { get set }
     var size : CGSize { get set }
     var frame : CGRect { get set }
-
+    
     var inChannels : [Port] { get set }
     var outChannels : [Port] { get set }
     var comChannels : [Port] { get set }
@@ -62,8 +62,9 @@ protocol HasNode {
     func portFromNodes(with identifier : String) -> Port?
 }
 
-protocol HasIdentifier {
+protocol HasIdentifier{
     var identifier : String { get set }
+
 }
 
 protocol HasAttribute {

@@ -27,6 +27,7 @@ struct MainEditorContainer : UIViewControllerRepresentable, IsEditorViewControll
             
             vc.documentHandler = documentHandler
             vc.mainEditorDelegate = context.coordinator
+            vc.view.backgroundColor = .clear
             //coordinator?.delegate = context.coordinator
         
             if let projectGraphVC = vc.topViewController as? ProjectGraphEditorViewController {

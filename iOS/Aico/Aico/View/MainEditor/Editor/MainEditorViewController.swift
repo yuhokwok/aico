@@ -11,7 +11,7 @@ protocol MainEditorViewControllerDelegate : EditorViewControllerDelegate {
     
 }
 
-@MainActor
+//@MainActor
 class MainEditorViewController: UINavigationController, EditorViewControllerDelegate  {
 
     

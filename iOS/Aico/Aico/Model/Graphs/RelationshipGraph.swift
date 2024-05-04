@@ -15,6 +15,10 @@ struct RelationshipGraph : Graph, Codable, Equatable  {
     
     typealias T = PlayActor
     
+    var id: String {
+        return identifier
+    }
+    
     var identifier : String
     //the people exist in the project
 

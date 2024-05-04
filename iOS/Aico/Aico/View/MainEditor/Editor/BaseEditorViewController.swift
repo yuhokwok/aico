@@ -162,6 +162,8 @@ class BaseEditorViewController<T : Graph >: UIViewController, UIGestureRecognize
             self.editorView.center = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
         }
         
+        editorView.backgroundColor = .clear
+        
         //prepare gesture recognizer
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(BaseEditorViewController.editorGesture(gesture:)))
         panGesture.delegate = self
@@ -514,7 +516,7 @@ class BaseEditorViewController<T : Graph >: UIViewController, UIGestureRecognize
                 self.nodeEditorState.draggedPort = nil
             } else
             {
-                //update for any node movement
+                //update for Node movement
                 if var node = graph?.node(with: nodeView.identifier) {
                     //update the frame
                     node.set(frame: nodeView.frame, from: self.editorView)

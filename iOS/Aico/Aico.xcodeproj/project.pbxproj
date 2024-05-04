@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		ED16D7E72B25A9BB001E52D1 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D7E62B25A9BB001E52D1 /* Property.swift */; };
+		ED175E0B2BE40BFF00B887DE /* StartHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED175E0A2BE40BFF00B887DE /* StartHostingController.swift */; };
+		ED175E0F2BE5FA5000B887DE /* Replicate in Frameworks */ = {isa = PBXBuildFile; productRef = ED175E0E2BE5FA5000B887DE /* Replicate */; };
+		ED175E122BE6119B00B887DE /* DropViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED175E112BE6119B00B887DE /* DropViewDelegate.swift */; };
+		ED175E142BE618CE00B887DE /* StorylineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED175E132BE618CE00B887DE /* StorylineCell.swift */; };
+		ED175E162BE61D1400B887DE /* StorylineEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED175E152BE61D1300B887DE /* StorylineEditorView.swift */; };
 		ED2CD2222B23585E00594DC6 /* BaseInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2212B23585E00594DC6 /* BaseInspector.swift */; };
 		ED2CD2262B235AF700594DC6 /* ChannelInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2252B235AF700594DC6 /* ChannelInspector.swift */; };
 		ED2CD2282B235CF300594DC6 /* ProjectInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2272B235CF300594DC6 /* ProjectInspector.swift */; };
@@ -16,6 +21,8 @@
 		ED2CD2322B2407AC00594DC6 /* RelationshipGraphInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2312B2407AC00594DC6 /* RelationshipGraphInspector.swift */; };
 		ED2CD2352B244AA000594DC6 /* ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2342B244AA000594DC6 /* ToolBar.swift */; };
 		ED2CD2372B244FEC00594DC6 /* InspectorElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2362B244FEC00594DC6 /* InspectorElement.swift */; };
+		ED33981C2B69340800758EB5 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED33981B2B69340800758EB5 /* APIService.swift */; };
+		ED33981E2B69546200758EB5 /* ExecuteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED33981D2B69546200758EB5 /* ExecuteView.swift */; };
 		ED3976412AD712560014AE03 /* Port.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3976402AD712560014AE03 /* Port.swift */; };
 		ED3976432AD71DAA0014AE03 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3976422AD71DAA0014AE03 /* Protocol.swift */; };
 		ED3976472AD79B0B0014AE03 /* NodeEditorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3976462AD79B0B0014AE03 /* NodeEditorState.swift */; };
@@ -27,6 +34,9 @@
 		ED4A43642B1CD42400C30731 /* EditorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4A43632B1CD42400C30731 /* EditorState.swift */; };
 		ED4F1F592ADFB4700094AB75 /* AicoProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4F1F582ADFB4700094AB75 /* AicoProject.swift */; };
 		ED4F1F5B2ADFB5540094AB75 /* Blank.aicoproj in Resources */ = {isa = PBXBuildFile; fileRef = ED4F1F5A2ADFB5540094AB75 /* Blank.aicoproj */; };
+		ED533F142B288E3100DB4D79 /* GenerativeAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED533F132B288E3000DB4D79 /* GenerativeAI-Info.plist */; };
+		ED533F162B288E7500DB4D79 /* AIExpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED533F152B288E7500DB4D79 /* AIExpView.swift */; };
+		ED5769442B28337A0012BE26 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = ED5769432B28337A0012BE26 /* GoogleGenerativeAI */; };
 		ED5F23032AD174F100BFE800 /* StageGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F23022AD174F000BFE800 /* StageGraph.swift */; };
 		ED5F23052AD2E28B00BFE800 /* MainEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F23042AD2E28B00BFE800 /* MainEditorView.swift */; };
 		ED5F23092AD2EB7F00BFE800 /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F23082AD2EB7F00BFE800 /* ProjectView.swift */; };
@@ -59,11 +69,19 @@
 		EDC7F2322AD1113D00714779 /* CGRect+Addon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7F2312AD1113D00714779 /* CGRect+Addon.swift */; };
 		EDC7F2342AD11DA300714779 /* NodeEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7F2332AD11DA300714779 /* NodeEditorView.swift */; };
 		EDCC7D302AD5C6840023A7E0 /* ProjectGraphEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCC7D2F2AD5C6840023A7E0 /* ProjectGraphEditorViewController.swift */; };
+		EDD6576A2BE161F500D85E93 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD657692BE161F500D85E93 /* Item.swift */; };
+		EDD6576C2BE1620D00D85E93 /* DraggableHorizontalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD6576B2BE1620D00D85E93 /* DraggableHorizontalList.swift */; };
+		EDD657702BE23B1100D85E93 /* HListEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD6576F2BE23B1100D85E93 /* HListEx.swift */; };
+		EDD657962BE279E600D85E93 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD657952BE279E600D85E93 /* StartView.swift */; };
 		EDEFC60F2B1AEB8E00FFB483 /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = EDEFC60E2B1AEB8E00FFB483 /* WrappingHStack */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		ED16D7E62B25A9BB001E52D1 /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
+		ED175E0A2BE40BFF00B887DE /* StartHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartHostingController.swift; sourceTree = "<group>"; };
+		ED175E112BE6119B00B887DE /* DropViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropViewDelegate.swift; sourceTree = "<group>"; };
+		ED175E132BE618CE00B887DE /* StorylineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorylineCell.swift; sourceTree = "<group>"; };
+		ED175E152BE61D1300B887DE /* StorylineEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorylineEditorView.swift; sourceTree = "<group>"; };
 		ED2CD2212B23585E00594DC6 /* BaseInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInspector.swift; sourceTree = "<group>"; };
 		ED2CD2252B235AF700594DC6 /* ChannelInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelInspector.swift; sourceTree = "<group>"; };
 		ED2CD2272B235CF300594DC6 /* ProjectInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInspector.swift; sourceTree = "<group>"; };
@@ -72,6 +90,8 @@
 		ED2CD2312B2407AC00594DC6 /* RelationshipGraphInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationshipGraphInspector.swift; sourceTree = "<group>"; };
 		ED2CD2342B244AA000594DC6 /* ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBar.swift; sourceTree = "<group>"; };
 		ED2CD2362B244FEC00594DC6 /* InspectorElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorElement.swift; sourceTree = "<group>"; };
+		ED33981B2B69340800758EB5 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		ED33981D2B69546200758EB5 /* ExecuteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteView.swift; sourceTree = "<group>"; };
 		ED3976402AD712560014AE03 /* Port.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Port.swift; sourceTree = "<group>"; };
 		ED3976422AD71DAA0014AE03 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		ED3976462AD79B0B0014AE03 /* NodeEditorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeEditorState.swift; sourceTree = "<group>"; };
@@ -83,6 +103,8 @@
 		ED4A43632B1CD42400C30731 /* EditorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorState.swift; sourceTree = "<group>"; };
 		ED4F1F582ADFB4700094AB75 /* AicoProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AicoProject.swift; sourceTree = "<group>"; };
 		ED4F1F5A2ADFB5540094AB75 /* Blank.aicoproj */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Blank.aicoproj; sourceTree = "<group>"; };
+		ED533F132B288E3000DB4D79 /* GenerativeAI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GenerativeAI-Info.plist"; sourceTree = "<group>"; };
+		ED533F152B288E7500DB4D79 /* AIExpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIExpView.swift; sourceTree = "<group>"; };
 		ED5F23022AD174F000BFE800 /* StageGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageGraph.swift; sourceTree = "<group>"; };
 		ED5F23042AD2E28B00BFE800 /* MainEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEditorView.swift; sourceTree = "<group>"; };
 		ED5F23082AD2EB7F00BFE800 /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
@@ -117,6 +139,10 @@
 		EDC7F2312AD1113D00714779 /* CGRect+Addon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Addon.swift"; sourceTree = "<group>"; };
 		EDC7F2332AD11DA300714779 /* NodeEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeEditorView.swift; sourceTree = "<group>"; };
 		EDCC7D2F2AD5C6840023A7E0 /* ProjectGraphEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectGraphEditorViewController.swift; sourceTree = "<group>"; };
+		EDD657692BE161F500D85E93 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		EDD6576B2BE1620D00D85E93 /* DraggableHorizontalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableHorizontalList.swift; sourceTree = "<group>"; };
+		EDD6576F2BE23B1100D85E93 /* HListEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HListEx.swift; sourceTree = "<group>"; };
+		EDD657952BE279E600D85E93 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,12 +151,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDEFC60F2B1AEB8E00FFB483 /* WrappingHStack in Frameworks */,
+				ED5769442B28337A0012BE26 /* GoogleGenerativeAI in Frameworks */,
+				ED175E0F2BE5FA5000B887DE /* Replicate in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED175E092BE40BCE00B887DE /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				ED533F152B288E7500DB4D79 /* AIExpView.swift */,
+				ED5F230A2AD2EB8800BFE800 /* Project */,
+				EDD657952BE279E600D85E93 /* StartView.swift */,
+				ED175E0A2BE40BFF00B887DE /* StartHostingController.swift */,
+			);
+			path = Start;
+			sourceTree = "<group>";
+		};
+		ED175E102BE60BBA00B887DE /* StorylineEditor */ = {
+			isa = PBXGroup;
+			children = (
+				ED175E112BE6119B00B887DE /* DropViewDelegate.swift */,
+				ED175E132BE618CE00B887DE /* StorylineCell.swift */,
+				ED175E152BE61D1300B887DE /* StorylineEditorView.swift */,
+			);
+			path = StorylineEditor;
+			sourceTree = "<group>";
+		};
 		ED2CD2292B237FD700594DC6 /* RelationshipGraphEditor */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,8 +311,10 @@
 				ED5F231D2AD3A7A800BFE800 /* MainEditorContainer.swift */,
 				ED2CD2332B244A8F00594DC6 /* ToolBar */,
 				ED5F23042AD2E28B00BFE800 /* MainEditorView.swift */,
+				ED175E102BE60BBA00B887DE /* StorylineEditor */,
 				ED5F230E2AD2F4B100BFE800 /* MainEditorHostingController.swift */,
 				ED39764D2AD81C920014AE03 /* MainEditorCoorindtor.swift */,
+				ED33981D2B69546200758EB5 /* ExecuteView.swift */,
 			);
 			path = MainEditor;
 			sourceTree = "<group>";
@@ -303,6 +354,8 @@
 		ED733D8B2ACDDA7D00A2F3B9 /* Aico */ = {
 			isa = PBXGroup;
 			children = (
+				EDD657682BE161E800D85E93 /* Storyline */,
+				ED33981B2B69340800758EB5 /* APIService.swift */,
 				EDC7F22E2AD07F4C00714779 /* Extension */,
 				ED733DA02ACDDA8500A2F3B9 /* Model */,
 				EDC7F2292ACF145800714779 /* View */,
@@ -314,6 +367,7 @@
 				ED733D972ACDDA7E00A2F3B9 /* LaunchScreen.storyboard */,
 				ED733D9A2ACDDA7E00A2F3B9 /* Info.plist */,
 				ED8C4FF12B2781A600C29823 /* README.md */,
+				ED533F132B288E3000DB4D79 /* GenerativeAI-Info.plist */,
 			);
 			path = Aico;
 			sourceTree = "<group>";
@@ -345,7 +399,7 @@
 			isa = PBXGroup;
 			children = (
 				ED5F230D2AD2F48100BFE800 /* MainEditor */,
-				ED5F230A2AD2EB8800BFE800 /* Project */,
+				ED175E092BE40BCE00B887DE /* Start */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -357,6 +411,16 @@
 				EDC7F2312AD1113D00714779 /* CGRect+Addon.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		EDD657682BE161E800D85E93 /* Storyline */ = {
+			isa = PBXGroup;
+			children = (
+				EDD657692BE161F500D85E93 /* Item.swift */,
+				EDD6576B2BE1620D00D85E93 /* DraggableHorizontalList.swift */,
+				EDD6576F2BE23B1100D85E93 /* HListEx.swift */,
+			);
+			path = Storyline;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,6 +441,8 @@
 			name = Aico;
 			packageProductDependencies = (
 				EDEFC60E2B1AEB8E00FFB483 /* WrappingHStack */,
+				ED5769432B28337A0012BE26 /* GoogleGenerativeAI */,
+				ED175E0E2BE5FA5000B887DE /* Replicate */,
 			);
 			productName = Aico;
 			productReference = ED733D892ACDDA7D00A2F3B9 /* Aico.app */;
@@ -408,6 +474,8 @@
 			mainGroup = ED733D802ACDDA7D00A2F3B9;
 			packageReferences = (
 				EDEFC60D2B1AEB8E00FFB483 /* XCRemoteSwiftPackageReference "WrappingHStack" */,
+				ED5769422B28337A0012BE26 /* XCRemoteSwiftPackageReference "generative-ai-swift" */,
+				ED175E0D2BE5FA5000B887DE /* XCRemoteSwiftPackageReference "replicate-swift" */,
 			);
 			productRefGroup = ED733D8A2ACDDA7D00A2F3B9 /* Products */;
 			projectDirPath = "";
@@ -425,6 +493,7 @@
 			files = (
 				ED733D992ACDDA7E00A2F3B9 /* LaunchScreen.storyboard in Resources */,
 				ED733D962ACDDA7E00A2F3B9 /* Assets.xcassets in Resources */,
+				ED533F142B288E3100DB4D79 /* GenerativeAI-Info.plist in Resources */,
 				ED8C4FF22B2781A700C29823 /* README.md in Resources */,
 				ED733D942ACDDA7D00A2F3B9 /* Main.storyboard in Resources */,
 				ED4F1F5B2ADFB5540094AB75 /* Blank.aicoproj in Resources */,
@@ -439,9 +508,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED2CD2222B23585E00594DC6 /* BaseInspector.swift in Sources */,
+				EDD657962BE279E600D85E93 /* StartView.swift in Sources */,
 				ED3976432AD71DAA0014AE03 /* Protocol.swift in Sources */,
 				ED39764B2AD79CFD0014AE03 /* BaseEditorViewController.swift in Sources */,
 				ED5F23052AD2E28B00BFE800 /* MainEditorView.swift in Sources */,
+				ED175E0B2BE40BFF00B887DE /* StartHostingController.swift in Sources */,
 				ED2CD2352B244AA000594DC6 /* ToolBar.swift in Sources */,
 				ED5F23182AD30F0B00BFE800 /* Channel.swift in Sources */,
 				ED99C7562AE03FBC0022A1AE /* DocumentHandler.swift in Sources */,
@@ -449,16 +520,23 @@
 				EDC7F22B2ACF146700714779 /* NodeView.swift in Sources */,
 				ED733DA22ACDDA9D00A2F3B9 /* Block.swift in Sources */,
 				ED670B3D2ADBF0BD00DE1AA5 /* JSON.swift in Sources */,
+				EDD6576C2BE1620D00D85E93 /* DraggableHorizontalList.swift in Sources */,
 				EDC7F2342AD11DA300714779 /* NodeEditorView.swift in Sources */,
+				ED533F162B288E7500DB4D79 /* AIExpView.swift in Sources */,
 				ED5F23162AD30C3F00BFE800 /* ProjectGraph.swift in Sources */,
 				ED4A43642B1CD42400C30731 /* EditorState.swift in Sources */,
+				ED175E142BE618CE00B887DE /* StorylineCell.swift in Sources */,
 				ED3976492AD79C2E0014AE03 /* PortView.swift in Sources */,
 				ED3976472AD79B0B0014AE03 /* NodeEditorState.swift in Sources */,
 				ED4A435F2B1B9C1800C30731 /* PlayActorInspector.swift in Sources */,
+				ED175E162BE61D1400B887DE /* StorylineEditorView.swift in Sources */,
 				ED5F23142AD30BB400BFE800 /* RelationshipGraph.swift in Sources */,
+				EDD6576A2BE161F500D85E93 /* Item.swift in Sources */,
+				ED175E122BE6119B00B887DE /* DropViewDelegate.swift in Sources */,
 				ED3976412AD712560014AE03 /* Port.swift in Sources */,
 				ED2CD2372B244FEC00594DC6 /* InspectorElement.swift in Sources */,
 				ED2CD22B2B23800700594DC6 /* RelationshipGraphEditorViewController.swift in Sources */,
+				ED33981C2B69340800758EB5 /* APIService.swift in Sources */,
 				ED5F23032AD174F100BFE800 /* StageGraph.swift in Sources */,
 				ED733D8D2ACDDA7D00A2F3B9 /* AppDelegate.swift in Sources */,
 				EDCC7D302AD5C6840023A7E0 /* ProjectGraphEditorViewController.swift in Sources */,
@@ -478,12 +556,14 @@
 				ED5F231E2AD3A7A800BFE800 /* MainEditorContainer.swift in Sources */,
 				ED5F23092AD2EB7F00BFE800 /* ProjectView.swift in Sources */,
 				ED99C7522ADFD2A70022A1AE /* StageGraphInspector.swift in Sources */,
+				ED33981E2B69546200758EB5 /* ExecuteView.swift in Sources */,
 				ED5F231C2AD312C000BFE800 /* Attribute.swift in Sources */,
 				ED5F23122AD2FACE00BFE800 /* Project.swift in Sources */,
 				ED2CD22D2B2385F500594DC6 /* RelationshipGraphEditorContainer.swift in Sources */,
 				ED5F231A2AD30F5100BFE800 /* PlayActor.swift in Sources */,
 				ED4A43612B1C682100C30731 /* BigBangInspector.swift in Sources */,
 				ED4F1F592ADFB4700094AB75 /* AicoProject.swift in Sources */,
+				EDD657702BE23B1100D85E93 /* HListEx.swift in Sources */,
 				ED2CD2282B235CF300594DC6 /* ProjectInspector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -711,6 +791,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		ED175E0D2BE5FA5000B887DE /* XCRemoteSwiftPackageReference "replicate-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/replicate/replicate-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.21.0;
+			};
+		};
+		ED5769422B28337A0012BE26 /* XCRemoteSwiftPackageReference "generative-ai-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/generative-ai-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
 		EDEFC60D2B1AEB8E00FFB483 /* XCRemoteSwiftPackageReference "WrappingHStack" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ksemianov/WrappingHStack";
@@ -722,6 +818,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		ED175E0E2BE5FA5000B887DE /* Replicate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED175E0D2BE5FA5000B887DE /* XCRemoteSwiftPackageReference "replicate-swift" */;
+			productName = Replicate;
+		};
+		ED5769432B28337A0012BE26 /* GoogleGenerativeAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED5769422B28337A0012BE26 /* XCRemoteSwiftPackageReference "generative-ai-swift" */;
+			productName = GoogleGenerativeAI;
+		};
 		EDEFC60E2B1AEB8E00FFB483 /* WrappingHStack */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EDEFC60D2B1AEB8E00FFB483 /* XCRemoteSwiftPackageReference "WrappingHStack" */;

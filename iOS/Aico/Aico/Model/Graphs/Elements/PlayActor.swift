@@ -10,6 +10,9 @@ import UIKit
 
 struct PlayActor : Node, HasPort, Codable {
 
+    var id: String {
+        return identifier
+    }
     
     var identifier : String = UUID().uuidString
     var name : String
@@ -114,7 +117,7 @@ struct PlayActor : Node, HasPort, Codable {
                         name: "Worker",
                         config: RoleConfig(),
                         center: CGPoint(x: 0, y: 0),
-                        size: CGSize(width: 150, height: 100),
+                        size: CGSize(width: 206, height: 217),
                         attribute: Attribute.new,
                         personality: Attribute.new, 
                         inChannels: [],

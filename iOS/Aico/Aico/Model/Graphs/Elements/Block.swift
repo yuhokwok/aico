@@ -10,6 +10,10 @@ import UIKit
 
 struct Block : Node, HasPort, Codable  {
 
+    var id: String {
+        return identifier
+    }
+    
     var identifier : String = UUID().uuidString
     var name : String
     //geometry
@@ -76,7 +80,7 @@ struct Block : Node, HasPort, Codable  {
 //        let role = Role(name: "PM", config: RoleConfig(), attribute: Attribute.new)
         var block = Block(name: "Worker",
                           center: CGPoint(x: 0, y: 0),
-                          size: CGSize(width: 150, height: 150),
+                          size: CGSize(width: 206, height: 217),
                           roleIdentifier: "",
                           attribute: Attribute.new,
                           inChannels: [],
