@@ -10,7 +10,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 import MobileCoreServices
 //
-struct DropViewDelegate: DropDelegate {
+struct DropStageGraphCellDelegate: DropDelegate {
     
     let destinationItem: StageGraph
     @Binding var nodes: [StageGraph]
@@ -28,9 +28,11 @@ struct DropViewDelegate: DropDelegate {
     func dropEntered(info: DropInfo) {
         // Swap Items
         if let draggedItem {
-            let fromIndex = nodes.firstIndex(of: draggedItem)
+            //print("\(draggedItem.identifier)")
+            let fromIndex = nodes.firstIndex(where: { $0.id == draggedItem.id}) //nodes.firstIndex(of: draggedItem)
+            //print("\(fromIndex)")
             if let fromIndex {
-                let toIndex = nodes.firstIndex(of: destinationItem)
+                let toIndex = nodes.firstIndex(where: { $0.id == destinationItem.id}) //nodes.firstIndex(of: destinationItem)
                 if let toIndex, fromIndex != toIndex {
                     withAnimation {
                         self.nodes.move(fromOffsets: IndexSet(integer: fromIndex), toOffset: (toIndex > fromIndex ? (toIndex + 1) : toIndex))

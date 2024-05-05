@@ -26,8 +26,9 @@ struct StorylineCell: View {
             HStack {
                 VStack (alignment: .leading) {
                     Text("\(title)")
+                        .lineLimit(2)
                         .foregroundStyle(color)
-                        .font(.system(size: 16))
+                        .font(.system(size: 14))
                         .bold()
                         .opacity(selected ? 1.0 : 0.5)
                     
@@ -36,7 +37,7 @@ struct StorylineCell: View {
                     Text("\(subtitle)")
                         .lineLimit(3)
                         .foregroundStyle(color)
-                        .font(.system(size: 12))
+                        .font(.system(size: 10))
                         .bold()
                         .opacity(selected ? 1.0 : 0.5)
                     Spacer()

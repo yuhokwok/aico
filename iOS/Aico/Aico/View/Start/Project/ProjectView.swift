@@ -8,7 +8,7 @@
 import SwiftUI
 
 protocol ProjectHostingDelegate {
-    func projectHostingDidRequestPresentDocument(with url: URL)
+    func projectHostingDidRequestPresentDocument(with url: URL, precreate : GeneratedProject?)
 }
 
 class ProjectHostingCoorindator {
@@ -45,7 +45,7 @@ struct ProjectView: View {
                     
                     Button(action: {
                         print("\(i) selected")
-                        coordinator.delegate?.projectHostingDidRequestPresentDocument(with: fileURLs[i])
+                        coordinator.delegate?.projectHostingDidRequestPresentDocument(with: fileURLs[i], precreate : nil)
                         
                     }, label: {
                         HStack {

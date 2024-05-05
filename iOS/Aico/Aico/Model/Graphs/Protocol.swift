@@ -26,6 +26,8 @@ protocol Node: HasIdentifier, HasAttribute, HasProperty {
     var size : CGSize { get set }
     var frame : CGRect { get set }
     
+    var thumbnailPath : String? { get set }
+    
     var inChannels : [Port] { get set }
     var outChannels : [Port] { get set }
     var comChannels : [Port] { get set }

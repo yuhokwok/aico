@@ -17,6 +17,8 @@ struct StartView: View {
     
     @State var prompt : String = ""
     
+    @StateObject var client = GenerativeClient()
+    
     var body: some View {
         ZStack {
             
@@ -36,6 +38,9 @@ struct StartView: View {
                 }
                 
                 HStack {
+                    
+                    
+                    
                     TextField(text: $prompt, label: {
                         Text("Enter Your Idea")
                     })
@@ -47,9 +52,23 @@ struct StartView: View {
                             .stroke(.gray.opacity(0.4), lineWidth: 1)
                             .frame(width: 290, height: 56)
                     }
+                    .overlay {
+                        if client.loading {
+                            HStack {
+                                Spacer()
+                                ProgressView().progressViewStyle(.circular)
+                                    .padding(.trailing, 25)
+                            }
+                        }
+                    }
                     .padding(.leading, 20)
+                    .onSubmit {
+                        generate(prompt: prompt)
+                    }
                     
-                    Button(action: {}, label: {
+                    Button(action: {
+                        generate(prompt: prompt)
+                    }, label: {
                         Image(systemName: "arrow.right")
                             .font(.system(size: 40))
                     })
@@ -90,8 +109,14 @@ struct StartView: View {
                     })
                     
                     
+                    Button(action: {
+                        self.prompt = ""
+                        randomGenerate()
+                    }, label : {
+                        
+                        Text("I' am feeling lucky")
+                    })
                     
-                    Text("I' am feeling lucky")
                     
                     Button(action: {
                         createNewBlankProject()
@@ -116,7 +141,7 @@ struct StartView: View {
                                 HStack {
                                     Button(action: {
                                         print("\(i) selected")
-                                        coordinator.delegate?.projectHostingDidRequestPresentDocument(with: fileURLs[i])
+                                        coordinator.delegate?.projectHostingDidRequestPresentDocument(with: fileURLs[i], precreate: nil)
                                         
                                     }, label: {
                                         HStack {
@@ -167,12 +192,38 @@ struct StartView: View {
         })
     }
     
-    func generate() {
+    func generate(prompt : String) {
+
+        guard client.loading == false else {
+            return
+        }
         
+        print("start generation")
+        if prompt.isEmpty == false {
+            client.genProject(prompt: prompt, completion: {
+                result in
+                
+                print("\(result)")
+                //prompt = result
+                
+                guard let data = result.data(using: .utf8) else {
+                    return
+                }
+                
+                guard let generatedProject = try? JSONDecoder().decode(GeneratedProject.self,
+                                                                       from: data ) else {
+                    return
+                }
+                
+                self.createNewBlankProject(generatedProject)
+                print("generatedProject: \(generatedProject)")
+                
+            })
+        }
     }
     
     func randomGenerate() {
-        
+        self.generate(prompt: "隨便教我做點甚麼")
     }
     
     
@@ -191,7 +242,7 @@ struct StartView: View {
         return url.lastPathComponent.replacingOccurrences(of: ".aicoproj", with: "")
     }
     
-    func createNewBlankProject() {
+    func createNewBlankProject( _ gp : GeneratedProject? = nil) {
         let url  = Bundle.main.url(forResource: "Blank", withExtension: "aicoproj")
         let docFolder = AppFolderManager.projectsFolder()
         
@@ -202,7 +253,8 @@ struct StartView: View {
         
         var templateFileName = url.lastPathComponent
         if templateFileName == "Blank.aicoproj" {
-            templateFileName = "My Project.aicoproj"
+            let name = gp?.projectName ?? "My Project"
+            templateFileName = "\(name).aicoproj"
         }
         
         var docUrl = docFolder.appendingPathComponent(templateFileName, isDirectory: false)
@@ -231,8 +283,18 @@ struct StartView: View {
             }
             
             if showMyPlots == false {
-                coordinator.delegate?.projectHostingDidRequestPresentDocument(with: docUrl)
+                coordinator.delegate?.projectHostingDidRequestPresentDocument(with: docUrl, precreate: gp)
+                return
             }
+            
+            if gp != nil {
+                coordinator.delegate?.projectHostingDidRequestPresentDocument(with: docUrl, precreate: gp)
+                return
+            }
+//            
+//            if showMyPlots == false && gp == nil  {
+//                coordinator.delegate?.projectHostingDidRequestPresentDocument(with: docUrl, precreate: gp)
+//            }
             
         } catch {
             print("\(error.localizedDescription)")

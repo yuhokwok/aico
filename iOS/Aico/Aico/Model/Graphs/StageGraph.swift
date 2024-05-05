@@ -10,7 +10,8 @@ import UIKit
 
 
 
-struct StageGraph : Node, Graph, HasPort, Codable, Equatable {
+struct StageGraph : Identifiable, Node, Graph, HasPort, Codable, Equatable {
+    
     static func == (lhs: StageGraph, rhs: StageGraph) -> Bool {
         return lhs.identifier != rhs.identifier
     }
@@ -39,6 +40,8 @@ struct StageGraph : Node, Graph, HasPort, Codable, Equatable {
                           height: size.height)
         }
     }
+    
+    var thumbnailPath: String?
     
     var attribute: Attribute
     var description : String

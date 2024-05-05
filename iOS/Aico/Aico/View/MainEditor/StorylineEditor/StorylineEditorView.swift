@@ -41,30 +41,31 @@ struct StorylineEditorView: View {
                         
                         HStack (spacing: 50) {
                             Spacer().frame(width: 100)
-                            ForEach(nodes, id:\.identifier) {
+                            ForEach(nodes) {
                                 stage in
                                 
                                 
-                                StorylineCell(title: stage.name, subtitle: stage.description, selected: documentHandler.project.editorState.selectedId == stage.identifier)
-                                    .onDrag({
-                                        self.draggedStage = stage
-                                        return NSItemProvider()
-                                    })
-                                    .onDrop(of: [.text],
-                                            delegate: DropViewDelegate(destinationItem: stage,
-                                                                       nodes: $nodes,
-                                                                       draggedItem: $draggedStage)
-                                    )
+                                StorylineCell(title: stage.name,
+                                              subtitle: stage.description,
+                                              selected: documentHandler.project.editorState.selectedId == stage.identifier)
+                                .onDrag({
+                                    self.draggedStage = stage
+                                    return NSItemProvider()
+                                })
+                                .onDrop(of: [.text],
+                                        delegate: DropStageGraphCellDelegate(destinationItem: stage,
+                                                                             nodes: $nodes,
+                                                                             draggedItem: $draggedStage)
+                                )
+                                .onTapGesture(count: 2){
+                                    print("dbl tap")
+                                    documentHandler.project.editorState.selectedStageId = stage.identifier
+                                    documentHandler.project.editorState.mode.insert(.stage)
                                     
-                                    .onTapGesture(count: 2){
-                                        print("dbl tap")
-                                        documentHandler.project.editorState.selectedStageId = stage.identifier
-                                        documentHandler.project.editorState.mode = .stage
-                                        
-                                    }
-                                    .onTapGesture {
-                                        documentHandler.project.editorState.selectedId = stage.identifier
-                                    }
+                                }
+                                .onTapGesture {
+                                    documentHandler.project.editorState.selectedId = stage.identifier
+                                }
                                 
                             }
                         }
@@ -78,21 +79,72 @@ struct StorylineEditorView: View {
             VStack {
                 Spacer()
                 HStack {
-                    Button(action: {
-                        addAction?()
-                    }, label: {
-                        Text("Create Scene")
-                    })
-                    Text("hihi")
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                     
-                    Spacer()
+                    HStack (alignment: .top) {
+                        Button (action: {
+                            addAction?()
+                        }, label: {
+                            HStack {
+                                HStack {
+                                    Spacer()
+                                    VStack (alignment: .center) {
+                                        
+                                        Spacer()
+                                        
+                                        Text("Create Scene")
+                                            .font(.system(size: 18))
+                                            .bold()
+
+                                    }
+                                    Spacer()
+                                }
+                            }
+                            .frame(width: 160, height: 106)
+                            .overlay {
+                                Image("addScene")
+                                    .frame(width: 72, height: 72)
+                                    .background {
+                                        Circle()
+                                            .fill(.blue)
+                                            .stroke(.white, lineWidth: 1)
+                                            .shadow(color: .blue, radius: 5)
+                                    }
+                            }
+                            .background {
+                                RoundedRectangle(cornerRadius: 18)
+                                    .fill(.white)
+                                    .stroke(.white, lineWidth: 1)
+                            }
+                            .padding(5)
+                            .background {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .fill(.white)
+                                    .shadow(radius: 10)
+                                    .opacity(0.5)
+                            }
+                        })
+                        
+
+                        Text("hihi")
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .opacity(0.0)
+                        
+                        Spacer()
+                    }
+                    .padding(20)
                 }
                 .background(.white.opacity(0.4))
                 .frame(height: 237)
                 .clipShape(RoundedRectangle(cornerRadius: 18))
+                .overlay {
+                    RoundedRectangle(cornerRadius: 18)
+                        .fill(.clear)
+                        .stroke(.white, lineWidth: 1)
+                }
                 .padding()
             }
+            
+            
         }
         .background(.clear)
         .clipShape(RoundedRectangle(cornerRadius: 28))
@@ -130,7 +182,6 @@ struct StorylineEditorView: View {
             
             Image("Bitmap", bundle: .main)
                 .resizable()
-            //.scaledToFill()
                 .opacity(0.5)
             
             

@@ -37,7 +37,7 @@ class ProjectHostingController: UIHostingController<ProjectView>, ProjectHosting
     }
     
 
-    func projectHostingDidRequestPresentDocument(with url: URL) {
+    func projectHostingDidRequestPresentDocument(with url: URL, precreate : GeneratedProject?) {
         
         let doc = AicoProject(fileURL: url)
         //open the document

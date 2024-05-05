@@ -34,6 +34,8 @@ struct PlayActor : Node, HasPort, Codable {
         }
     }
     
+    var thumbnailPath: String?
+    
     //role
     var attribute: Attribute
     var personality : Attribute

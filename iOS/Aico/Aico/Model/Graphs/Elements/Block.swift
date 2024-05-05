@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 struct Block : Node, HasPort, Codable  {
+    
 
     var id: String {
         return identifier
@@ -32,6 +33,8 @@ struct Block : Node, HasPort, Codable  {
         }
     }
 
+    var thumbnailPath: String?
+  
     //role
     var roleIdentifier : String
     var attribute: Attribute
@@ -107,13 +110,13 @@ struct Block : Node, HasPort, Codable  {
             let listenPort = Port(kind: .inChannel,  name: "listen")
             let referencePort = Port(kind: .inChannel,  name: "reference")
             block.inChannels.append(listenPort)
-            block.inChannels.append(referencePort)
+            //block.inChannels.append(referencePort)
             
             let tellPort = Port(kind: .outChannel, name: "tell")
             block.outChannels.append(tellPort)
             
-            let comPort = Port(kind: .comChannel, name: "com")
-            block.comChannels.append(comPort)
+            //let comPort = Port(kind: .comChannel, name: "com")
+            //block.comChannels.append(comPort)
         }
         
 
@@ -127,4 +130,14 @@ struct Block : Node, HasPort, Codable  {
 struct RelationshipAttribute : Codable {
     //direction?
     var identifier : String = UUID().uuidString
+}
+
+
+enum ColorSet : String, Codable {
+    case orange = "oranage"
+    case green = "green"
+    case blue = "blue"
+    case purple = "purple"
+    case red = "red"
+    case gray = "gray"
 }

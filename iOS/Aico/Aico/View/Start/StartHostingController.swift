@@ -37,7 +37,7 @@ class StartHostingController: UIHostingController<StartView>, ProjectHostingDele
     }
     
 
-    func projectHostingDidRequestPresentDocument(with url: URL) {
+    func projectHostingDidRequestPresentDocument(with url: URL, precreate : GeneratedProject?) {
         
         let doc = AicoProject(fileURL: url)
         //open the document
@@ -47,6 +47,21 @@ class StartHostingController: UIHostingController<StartView>, ProjectHostingDele
             if isReady {
                 let handler = DocumentHandler(document: doc)
                 
+                //load pre-filled project
+                if let precreate {
+                    handler.project.name = precreate.projectName
+                    handler.project.projectGraph.nodes = []
+                    for step in precreate.steps {
+                        let stage = StageGraph(identifier: UUID().uuidString,
+                                               name: step.stepName,
+                                               center: .zero,
+                                               size: .zero,
+                                               attribute: Attribute(id: UUID().uuidString, contents: []),
+                                               description: step.description,
+                                               inChannels: [], outChannels: [], comChannels: [], nodes: [], channels: [])
+                        handler.project.projectGraph.nodes.append(stage)
+                    }
+                }
                 
                 let hostVC = MainEditorHostingController(rootView: MainEditorView(documentHandler: handler))
                 

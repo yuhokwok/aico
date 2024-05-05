@@ -147,16 +147,16 @@ struct StageGraphInspector: View, BaseInspector {
                 if showDelete {
                     HStack {
                         
-                        Button(action: {}, label: {
-                            HStack {
-                                Spacer()
-                                Image(systemName: "doc.on.doc")
-                                Spacer()
-                            }
-                            
-                        })
-                        .buttonStyle(.bordered)
-                        
+//                        Button(action: {}, label: {
+//                            HStack {
+//                                Spacer()
+//                                Image(systemName: "doc.on.doc")
+//                                Spacer()
+//                            }
+//                            
+//                        })
+//                        .buttonStyle(.bordered)
+//                        
                         Button(action: {
                             self.delete()
                         }, label: {

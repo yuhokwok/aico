@@ -72,9 +72,9 @@ struct MainEditorView: View {
                                     )
                                     .background(.white.opacity(0.3))
                                     .clipShape(RoundedRectangle(cornerRadius: 28))
-                                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                                    .transition(.scale.combined(with: .opacity))
                                 
-                            } else if editorState.mode.contains(.project) {
+                            } else if editorState.mode.contains(.project) &&  !editorState.mode.contains(.stage) {
                                 //MARK: - Stroyline Editor
                                 
                                 GeometryReader {
@@ -87,8 +87,6 @@ struct MainEditorView: View {
                                                                 self.addNode()
                                                         })
                                 }
-                                
-                                
                                 
                                 
                             } else {
@@ -119,7 +117,7 @@ struct MainEditorView: View {
                                         )
                                         .opacity(0.4)
                                 }
-                                .transition(.move(edge: .top).combined(with: .opacity))
+                                .transition(.scale.combined(with: .opacity))
                                 
                             }
                             
@@ -201,8 +199,7 @@ struct MainEditorView: View {
                                             .font(.system(size: 22, weight: .semibold))
                                             .foregroundColor(.blue)
                                         Text("Actors")
-                                        
-                                        
+                                          
                                         Spacer()
                                         
                                         Button(action: {
@@ -228,6 +225,9 @@ struct MainEditorView: View {
                                                      y: 0
                                             )
                                     }
+//                                    .onTapGesture {
+//                                        documentHandler.project.editorState.mode.insert(.relationship)
+//                                    }
                                 }
                                 
                                 
@@ -320,7 +320,7 @@ struct MainEditorView: View {
                                         
                                         Spacer().frame(height: 120)
                                         VStack {
-                                            ExecuteView()
+                                            ExecuteView(runtime: Runtime(project: documentHandler.project))
                                         }
                                         
                                         .background {
@@ -382,9 +382,12 @@ struct MainEditorView: View {
                                 })
                             } else {
                                 //back to project graph
-                                documentHandler.project.editorState.selectedId = documentHandler.project.editorState.selectedStageId
-                                documentHandler.project.editorState.selectedStageId = nil
-                                documentHandler.project.editorState.mode.remove(.stage)
+                                
+                                withAnimation {
+                                    documentHandler.project.editorState.selectedId = documentHandler.project.editorState.selectedStageId
+                                    documentHandler.project.editorState.selectedStageId = nil
+                                    documentHandler.project.editorState.mode.remove(.stage)
+                                }
                             }
                             
                         }, label: {

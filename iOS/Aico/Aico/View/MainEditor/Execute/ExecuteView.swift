@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ExecuteView: View {
+    
+    @StateObject var runtime : Runtime
+    
     @State var isLoading : Bool = false
     @State var topic : String = "討論今日去邊玩"
     @State var allString = "Roy: 我哋今日去邊度玩好？好悶啊。"
@@ -18,31 +21,29 @@ struct ExecuteView: View {
             .textFieldStyle(.roundedBorder)
             .padding()
         
-        Button(action: {
-            self.talkToRoy(queryString)
-        }, label: {
-            Text("Ken Say")
-        })
         
-        Button(action: {
-            
-                self.talkToKen(queryString)
-
-        }, label: {
-            Text("Roy Say")
-        })
-        
-        if isLoading {
+        if runtime.isExecuting {
             ProgressView()
                 .progressViewStyle(.circular)
         }
         
         ScrollView {
-            Text(allString)
-                .lineLimit(nil)
-                .multilineTextAlignment(.leading)
-                .font(.system(size: 12))
-                .padding()
+            
+            VStack (alignment: .leading) {
+                ForEach(runtime.records) {
+                    record in
+                    
+                    ExecuteRecordCell(record: record)
+                }
+            }
+            
+        }
+        .onAppear {
+            print("yoyoyo")
+            //runtime.records.append(Record(speaker: "yo", date: Date(), content: "yoyoyo"))
+            
+            runtime.execute()
+            
         }
     }
     
@@ -95,5 +96,5 @@ struct ExecuteView: View {
 }
 
 #Preview {
-    ExecuteView()
+    ExecuteView(runtime: Runtime(project: Project.new()))
 }

@@ -10,9 +10,10 @@
 		ED16D7E72B25A9BB001E52D1 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D7E62B25A9BB001E52D1 /* Property.swift */; };
 		ED175E0B2BE40BFF00B887DE /* StartHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED175E0A2BE40BFF00B887DE /* StartHostingController.swift */; };
 		ED175E0F2BE5FA5000B887DE /* Replicate in Frameworks */ = {isa = PBXBuildFile; productRef = ED175E0E2BE5FA5000B887DE /* Replicate */; };
-		ED175E122BE6119B00B887DE /* DropViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED175E112BE6119B00B887DE /* DropViewDelegate.swift */; };
+		ED175E122BE6119B00B887DE /* DropStageGraphCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED175E112BE6119B00B887DE /* DropStageGraphCellDelegate.swift */; };
 		ED175E142BE618CE00B887DE /* StorylineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED175E132BE618CE00B887DE /* StorylineCell.swift */; };
 		ED175E162BE61D1400B887DE /* StorylineEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED175E152BE61D1300B887DE /* StorylineEditorView.swift */; };
+		ED175E222BE6AA1300B887DE /* ReplicateClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED175E212BE6AA1300B887DE /* ReplicateClient.swift */; };
 		ED2CD2222B23585E00594DC6 /* BaseInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2212B23585E00594DC6 /* BaseInspector.swift */; };
 		ED2CD2262B235AF700594DC6 /* ChannelInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2252B235AF700594DC6 /* ChannelInspector.swift */; };
 		ED2CD2282B235CF300594DC6 /* ProjectInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2272B235CF300594DC6 /* ProjectInspector.swift */; };
@@ -37,6 +38,9 @@
 		ED533F142B288E3100DB4D79 /* GenerativeAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED533F132B288E3000DB4D79 /* GenerativeAI-Info.plist */; };
 		ED533F162B288E7500DB4D79 /* AIExpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED533F152B288E7500DB4D79 /* AIExpView.swift */; };
 		ED5769442B28337A0012BE26 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = ED5769432B28337A0012BE26 /* GoogleGenerativeAI */; };
+		ED576A2D2BE78E0800411092 /* ChatSonicClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED576A2C2BE78E0800411092 /* ChatSonicClient.swift */; };
+		ED576A2F2BE7905900411092 /* Runtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED576A2E2BE7905900411092 /* Runtime.swift */; };
+		ED576A322BE7A65D00411092 /* ExecuteRecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED576A312BE7A65D00411092 /* ExecuteRecordCell.swift */; };
 		ED5F23032AD174F100BFE800 /* StageGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F23022AD174F000BFE800 /* StageGraph.swift */; };
 		ED5F23052AD2E28B00BFE800 /* MainEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F23042AD2E28B00BFE800 /* MainEditorView.swift */; };
 		ED5F23092AD2EB7F00BFE800 /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F23082AD2EB7F00BFE800 /* ProjectView.swift */; };
@@ -79,9 +83,10 @@
 /* Begin PBXFileReference section */
 		ED16D7E62B25A9BB001E52D1 /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
 		ED175E0A2BE40BFF00B887DE /* StartHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartHostingController.swift; sourceTree = "<group>"; };
-		ED175E112BE6119B00B887DE /* DropViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropViewDelegate.swift; sourceTree = "<group>"; };
+		ED175E112BE6119B00B887DE /* DropStageGraphCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropStageGraphCellDelegate.swift; sourceTree = "<group>"; };
 		ED175E132BE618CE00B887DE /* StorylineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorylineCell.swift; sourceTree = "<group>"; };
 		ED175E152BE61D1300B887DE /* StorylineEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorylineEditorView.swift; sourceTree = "<group>"; };
+		ED175E212BE6AA1300B887DE /* ReplicateClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplicateClient.swift; sourceTree = "<group>"; };
 		ED2CD2212B23585E00594DC6 /* BaseInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInspector.swift; sourceTree = "<group>"; };
 		ED2CD2252B235AF700594DC6 /* ChannelInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelInspector.swift; sourceTree = "<group>"; };
 		ED2CD2272B235CF300594DC6 /* ProjectInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInspector.swift; sourceTree = "<group>"; };
@@ -105,6 +110,9 @@
 		ED4F1F5A2ADFB5540094AB75 /* Blank.aicoproj */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Blank.aicoproj; sourceTree = "<group>"; };
 		ED533F132B288E3000DB4D79 /* GenerativeAI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GenerativeAI-Info.plist"; sourceTree = "<group>"; };
 		ED533F152B288E7500DB4D79 /* AIExpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIExpView.swift; sourceTree = "<group>"; };
+		ED576A2C2BE78E0800411092 /* ChatSonicClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSonicClient.swift; sourceTree = "<group>"; };
+		ED576A2E2BE7905900411092 /* Runtime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Runtime.swift; sourceTree = "<group>"; };
+		ED576A312BE7A65D00411092 /* ExecuteRecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteRecordCell.swift; sourceTree = "<group>"; };
 		ED5F23022AD174F000BFE800 /* StageGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageGraph.swift; sourceTree = "<group>"; };
 		ED5F23042AD2E28B00BFE800 /* MainEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEditorView.swift; sourceTree = "<group>"; };
 		ED5F23082AD2EB7F00BFE800 /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
@@ -173,11 +181,45 @@
 		ED175E102BE60BBA00B887DE /* StorylineEditor */ = {
 			isa = PBXGroup;
 			children = (
-				ED175E112BE6119B00B887DE /* DropViewDelegate.swift */,
+				ED175E112BE6119B00B887DE /* DropStageGraphCellDelegate.swift */,
 				ED175E132BE618CE00B887DE /* StorylineCell.swift */,
 				ED175E152BE61D1300B887DE /* StorylineEditorView.swift */,
 			);
 			path = StorylineEditor;
+			sourceTree = "<group>";
+		};
+		ED175E1D2BE6A9BF00B887DE /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				ED175E202BE6A9D400B887DE /* ChatGPT */,
+				ED175E1F2BE6A9CF00B887DE /* Gemini */,
+				ED175E1E2BE6A9C800B887DE /* Replicate */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		ED175E1E2BE6A9C800B887DE /* Replicate */ = {
+			isa = PBXGroup;
+			children = (
+				ED175E212BE6AA1300B887DE /* ReplicateClient.swift */,
+			);
+			path = Replicate;
+			sourceTree = "<group>";
+		};
+		ED175E1F2BE6A9CF00B887DE /* Gemini */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Gemini;
+			sourceTree = "<group>";
+		};
+		ED175E202BE6A9D400B887DE /* ChatGPT */ = {
+			isa = PBXGroup;
+			children = (
+				ED33981B2B69340800758EB5 /* APIService.swift */,
+				ED576A2C2BE78E0800411092 /* ChatSonicClient.swift */,
+			);
+			path = ChatGPT;
 			sourceTree = "<group>";
 		};
 		ED2CD2292B237FD700594DC6 /* RelationshipGraphEditor */ = {
@@ -289,6 +331,15 @@
 			path = Document;
 			sourceTree = "<group>";
 		};
+		ED576A302BE7A63D00411092 /* Execute */ = {
+			isa = PBXGroup;
+			children = (
+				ED576A312BE7A65D00411092 /* ExecuteRecordCell.swift */,
+				ED33981D2B69546200758EB5 /* ExecuteView.swift */,
+			);
+			path = Execute;
+			sourceTree = "<group>";
+		};
 		ED5F230A2AD2EB8800BFE800 /* Project */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				ED2CD2362B244FEC00594DC6 /* InspectorElement.swift */,
+				ED576A302BE7A63D00411092 /* Execute */,
 				ED99C74E2ADFCCDC0022A1AE /* Inspector */,
 				ED3976462AD79B0B0014AE03 /* NodeEditorState.swift */,
 				ED3976482AD79C2E0014AE03 /* PortView.swift */,
@@ -314,7 +366,6 @@
 				ED175E102BE60BBA00B887DE /* StorylineEditor */,
 				ED5F230E2AD2F4B100BFE800 /* MainEditorHostingController.swift */,
 				ED39764D2AD81C920014AE03 /* MainEditorCoorindtor.swift */,
-				ED33981D2B69546200758EB5 /* ExecuteView.swift */,
 			);
 			path = MainEditor;
 			sourceTree = "<group>";
@@ -355,7 +406,6 @@
 			isa = PBXGroup;
 			children = (
 				EDD657682BE161E800D85E93 /* Storyline */,
-				ED33981B2B69340800758EB5 /* APIService.swift */,
 				EDC7F22E2AD07F4C00714779 /* Extension */,
 				ED733DA02ACDDA8500A2F3B9 /* Model */,
 				EDC7F2292ACF145800714779 /* View */,
@@ -375,6 +425,8 @@
 		ED733DA02ACDDA8500A2F3B9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				ED576A2E2BE7905900411092 /* Runtime.swift */,
+				ED175E1D2BE6A9BF00B887DE /* Client */,
 				ED4F1F572ADFB10B0094AB75 /* Document */,
 				ED39764F2AD82E6E0014AE03 /* Runtime */,
 				ED3976442AD798D80014AE03 /* Graphs */,
@@ -507,6 +559,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED576A322BE7A65D00411092 /* ExecuteRecordCell.swift in Sources */,
 				ED2CD2222B23585E00594DC6 /* BaseInspector.swift in Sources */,
 				EDD657962BE279E600D85E93 /* StartView.swift in Sources */,
 				ED3976432AD71DAA0014AE03 /* Protocol.swift in Sources */,
@@ -521,18 +574,21 @@
 				ED733DA22ACDDA9D00A2F3B9 /* Block.swift in Sources */,
 				ED670B3D2ADBF0BD00DE1AA5 /* JSON.swift in Sources */,
 				EDD6576C2BE1620D00D85E93 /* DraggableHorizontalList.swift in Sources */,
+				ED576A2F2BE7905900411092 /* Runtime.swift in Sources */,
 				EDC7F2342AD11DA300714779 /* NodeEditorView.swift in Sources */,
+				ED576A2D2BE78E0800411092 /* ChatSonicClient.swift in Sources */,
 				ED533F162B288E7500DB4D79 /* AIExpView.swift in Sources */,
 				ED5F23162AD30C3F00BFE800 /* ProjectGraph.swift in Sources */,
 				ED4A43642B1CD42400C30731 /* EditorState.swift in Sources */,
 				ED175E142BE618CE00B887DE /* StorylineCell.swift in Sources */,
 				ED3976492AD79C2E0014AE03 /* PortView.swift in Sources */,
+				ED175E222BE6AA1300B887DE /* ReplicateClient.swift in Sources */,
 				ED3976472AD79B0B0014AE03 /* NodeEditorState.swift in Sources */,
 				ED4A435F2B1B9C1800C30731 /* PlayActorInspector.swift in Sources */,
 				ED175E162BE61D1400B887DE /* StorylineEditorView.swift in Sources */,
 				ED5F23142AD30BB400BFE800 /* RelationshipGraph.swift in Sources */,
 				EDD6576A2BE161F500D85E93 /* Item.swift in Sources */,
-				ED175E122BE6119B00B887DE /* DropViewDelegate.swift in Sources */,
+				ED175E122BE6119B00B887DE /* DropStageGraphCellDelegate.swift in Sources */,
 				ED3976412AD712560014AE03 /* Port.swift in Sources */,
 				ED2CD2372B244FEC00594DC6 /* InspectorElement.swift in Sources */,
 				ED2CD22B2B23800700594DC6 /* RelationshipGraphEditorViewController.swift in Sources */,
