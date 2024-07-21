@@ -22,9 +22,9 @@ class AppFolderManager {
         }
     }
     
-    static func requestProjectsFolderListing(completion : @escaping ([URL])->Void){
+    static func requestProjectsFolderListing(uid : String = "", completion : @escaping ([URL])->Void){
         workQueue.async {
-            guard let docFolder = AppFolderManager.projectsFolder() else {
+            guard let docFolder = AppFolderManager.projectsFolder(uid: uid) else {
                 completion([])
                 return
             }
@@ -68,7 +68,7 @@ class AppFolderManager {
     }
     
     /// The method returns a URL to the app's documents folder, where it stores all captures.
-    static func projectsFolder() -> URL? {
+    static func projectsFolder(uid : String = "") -> URL? {
         guard let documentsFolder =
                 try? FileManager.default.url(for: .documentDirectory,
                                              in: .userDomainMask,
@@ -76,7 +76,12 @@ class AppFolderManager {
             return nil
         }
         
-        return documentsFolder.appendingPathComponent("projects/", isDirectory: true)
+        if uid == "" {
+            return documentsFolder.appendingPathComponent("projects/", isDirectory: true)
+        } else {
+            return documentsFolder.appendingPathComponent("\(uid)/projects/", isDirectory: true)
+        }
+        
     }
 
 

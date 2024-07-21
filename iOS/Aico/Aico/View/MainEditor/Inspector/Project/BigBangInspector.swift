@@ -2,7 +2,7 @@
 //  BigBangInspector.swift
 //  Aico
 //
-//  Created by Yu Ho Kwok on 18/10/2023.
+//  Created by itst on 18/10/2023.
 //
 
 import SwiftUI

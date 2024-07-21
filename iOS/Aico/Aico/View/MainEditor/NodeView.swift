@@ -2,7 +2,7 @@
 //  BlockView.swift
 //  Aico
 //
-//  Created by Yu Ho Kwok on 5/10/2023.
+//  Created by itst on 5/10/2023.
 //
 
 import UIKit
@@ -15,6 +15,7 @@ class NodeView : UIView {
     var contentView : UIView?
     var nameLabel : UILabel?
     var detailLabel : UILabel?
+    var thumbnailView : UIImageView?
     
     var hightlightView : UIView?
     
@@ -103,12 +104,38 @@ class NodeView : UIView {
             self.nameLabel?.text = ""
         }
         
+        if let block = node as? Block {
+            self.detailLabel?.text = block.role
+        }
+        
+        if let block = node as? Block, let url = URL(string: block.thumbnail ?? "") {
+            Task(priority: .userInitiated){
+                guard let data = try? Data(contentsOf: url) else {
+                    DispatchQueue.main.async {
+                        self.thumbnailView?.image = UIImage(named: "actress")
+                    }
+                    return
+                }
+                let image = UIImage(data: data)
+                DispatchQueue.main.async {
+                    self.thumbnailView?.image = image
+                }
+            }
+        } else{
+            self.thumbnailView?.image = UIImage(named: "actress")
+        }
+        
         self.frame = frame
     }
     
     static func build(for node : Node, for editor : NodeEditorView) -> NodeView {
         
-        var color = UIColor.purple
+        
+        var color : UIColor = .purple
+        if let block = node as? Block {
+            color = getColor(c: block.color)
+        }
+        //UIColor.purple
         
         //convert the node coord to editor coord
         let frame = node.frame(in: editor)
@@ -177,14 +204,36 @@ class NodeView : UIView {
         let thumbnailX = 15.0 / 2
         let thumbnailY = 15.0 / 2
         let thumbnailView = UIImageView(frame: CGRect(x: thumbnailX, y: thumbnailY, width: 81, height: 81))
-        thumbnailView.image = UIImage(named: "actress")
+        
+        if let block = node as? Block, let url = URL(string: block.thumbnail ?? "") {
+            Task(priority: .userInitiated){
+                guard let data = try? Data(contentsOf: url) else {
+                    DispatchQueue.main.async {
+                        thumbnailView.image = UIImage(named: "actress")
+                    }
+                    return
+                }
+                let image = UIImage(data: data)
+                DispatchQueue.main.async {
+                    thumbnailView.image = image
+                }
+            }
+        } else{
+            thumbnailView.image = UIImage(named: "actress")
+        }
+        
+        
         thumbnailView.layer.cornerRadius = 40.5
         thumbnailView.layer.borderWidth = 0.5
         thumbnailView.layer.borderColor = UIColor.lightGray.cgColor
         thumbnailView.backgroundColor = .white
         thumbnailView.contentMode = .scaleAspectFit
         thumbnailView.clipsToBounds = true
+        
+        blockView.thumbnailView = thumbnailView
         thumbnailContainerView.addSubview(thumbnailView)
+
+        
         
 
         let labelX = contentView.bounds.width / 2 - 150 / 2
@@ -195,7 +244,7 @@ class NodeView : UIView {
         label.font = .systemFont(ofSize: 17, weight: .semibold)
         if node.name.count > 0 {
             //label.text = "\(node.name)"
-            label.text = "小姐姐"
+            label.text = "\(node.name)"
         } else {
             label.text = ""
         }
@@ -210,7 +259,14 @@ class NodeView : UIView {
         detailLabel.textAlignment = .center
         detailLabel.font = .systemFont(ofSize: 13, weight: .semibold)
         if node.name.count > 0 {
-            detailLabel.text = "女主角"
+            
+            if let block = node as? Block {
+                detailLabel.text = "\(block.role)"
+            } else {
+                detailLabel.text = "\(node.identifier)"
+            }
+            
+            
         } else {
             detailLabel.text = ""
         }
@@ -272,8 +328,22 @@ class NodeView : UIView {
         return blockView
     }
 
+    
 }
 
+
+func getColor(c : String ) -> UIColor {
+    switch c {
+    case "red": return .red
+    case "green": return .green
+    case "orange": return .orange
+    case "purple": return .purple
+    case "blue": return .blue
+    case "gray": return .gray
+    default:
+        return .yellow
+    }
+}
 
 class GraphView : UIView {
     

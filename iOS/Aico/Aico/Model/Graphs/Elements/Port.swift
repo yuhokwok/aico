@@ -2,13 +2,13 @@
 //  Port.swift
 //  Aico
 //
-//  Created by Yu Ho Kwok on 12/10/2023.
+//  Created by itst on 12/10/2023.
 //
 
 import Foundation
 
 
-struct Port : Codable, HasIdentifier {
+struct Port : Codable, HasIdentifier, Hashable {
     
     var id: String {
         return identifier

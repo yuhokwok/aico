@@ -2,7 +2,7 @@
 //  Stage.swift
 //  Aico
 //
-//  Created by Yu Ho Kwok on 7/10/2023.
+//  Created by itst on 7/10/2023.
 //
 
 import Foundation
@@ -26,6 +26,7 @@ struct StageGraph : Identifiable, Node, Graph, HasPort, Codable, Equatable {
     //Node protocol
     var identifier : String
     var name : String
+
     var center: CGPoint
     var size: CGSize
     var frame: CGRect {
@@ -168,30 +169,32 @@ struct StageGraph : Identifiable, Node, Graph, HasPort, Codable, Equatable {
         let listenPort = Port(kind: .inChannel,  name: "listen")
         let tellPort = Port(kind: .outChannel, name: "tell")
         
+        let defaultActor = Block.new(.normal, for: editor.bounds)
+        
         //two default  block, stage Input and stage Output
-        var stageInput = Block.new(.stageInput, for: editor.bounds)
-        var nodeSize = stageInput.size
-        var centerX : CGFloat = -editor.bounds.width / 2 + nodeSize.width / 2 + 15 //30 is margin
-        var centerY : CGFloat = 0
-        stageInput.center = CGPoint(x: centerX, y: centerY)
-        
-        
-        var stageOutput = Block.new(.stageOutput, for: editor.bounds)
-        nodeSize = stageOutput.size
-        centerX = editor.bounds.width / 2 - nodeSize.width / 2 - 15 //30 is margin
-        centerY = 0
-        stageOutput.center = CGPoint(x: centerX, y: centerY)
+//        var stageInput = Block.new(.stageInput, for: editor.bounds)
+//        var nodeSize = stageInput.size
+//        var centerX : CGFloat = -editor.bounds.width / 2 + nodeSize.width / 2 + 15 //30 is margin
+//        var centerY : CGFloat = 0
+//        stageInput.center = CGPoint(x: centerX, y: centerY)
+//        
+//        
+//        var stageOutput = Block.new(.stageOutput, for: editor.bounds)
+//        nodeSize = stageOutput.size
+//        centerX = editor.bounds.width / 2 - nodeSize.width / 2 - 15 //30 is margin
+//        centerY = 0
+//        stageOutput.center = CGPoint(x: centerX, y: centerY)
         
         let node = StageGraph(identifier: identifier,
                                name : "Stage",
                                center: CGPoint(x: 0, y: 0),
                                size: CGSize(width: 206, height: 217),
                                attribute: Attribute.new,
-                              description: "", 
+                               description: "",
                                inChannels: [listenPort],
                                outChannels: [tellPort],
                                comChannels: [],
-                               nodes: [stageInput, stageOutput],
+                               nodes: [defaultActor],
                                channels: [])
 
         return node
@@ -203,6 +206,10 @@ struct StageGraph : Identifiable, Node, Graph, HasPort, Codable, Equatable {
         
         let listenPort = Port(kind: .inChannel,  name: "listen")
         let tellPort = Port(kind: .outChannel, name: "tell")
+        
+        
+        let defaultActor = Block.new(.normal, for: bounds)
+        
         
         //two default  block, stage Input and stage Output
         var stageInput = Block.new(.stageInput, for: bounds)
@@ -227,7 +234,7 @@ struct StageGraph : Identifiable, Node, Graph, HasPort, Codable, Equatable {
                                inChannels: [listenPort],
                                outChannels: [tellPort],
                                comChannels: [],
-                               nodes: [stageInput, stageOutput],
+                               nodes: [defaultActor],
                                channels: [])
 
         return node

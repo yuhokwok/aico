@@ -2,7 +2,7 @@
 //  RoleInspector.swift
 //  Aico
 //
-//  Created by Yu Ho Kwok on 18/10/2023.
+//  Created by itst on 18/10/2023.
 //
 
 import SwiftUI
@@ -14,8 +14,11 @@ import UIKit
 
 struct PlayActorInspector: View, BaseInspector {
     
-    @FocusState private var focusState : Int?
+    @State var url : String? = nil
     
+    @StateObject var client = GenerativeClient()
+    
+    @FocusState private var focusState : Int?
     @Binding var editorState : EditorState
     
     //@Binding var stage : StageGraph
@@ -36,7 +39,80 @@ struct PlayActorInspector: View, BaseInspector {
     var body: some View {
         ScrollView {
             VStack (alignment: .leading ) {
-                InspectorTitle("Playactor")
+                
+                //InspectorTitle("Playactor")
+                
+                VStack {
+                    HStack {
+                        Spacer()
+                        
+                        if let url = url {
+                            
+                            AsyncImage(url: URL(string: url), content: {
+                                image in
+                                image                                .resizable()
+                                    .frame(width:81, height: 81)
+                                    .clipShape(Circle())
+                                    .overlay {
+                                        Circle()
+                                            .fill(.clear)
+                                            .stroke(.white, lineWidth: 5)
+                                        
+                                    }
+                                    .shadow(radius: 5)
+                                    .padding(10)
+                            }, placeholder: {
+                                Image("actress")
+                                    .resizable()
+                                    .frame(width:81, height: 81)
+                                    .clipShape(Circle())
+                                    .overlay {
+                                        Circle()
+                                            .fill(.clear)
+                                            .stroke(.white, lineWidth: 5)
+                                        
+                                    }
+                                    .shadow(radius: 5)
+                                    .padding(10)
+                            })
+
+                        } else {
+                            Image("actress")
+                                .resizable()
+                                .frame(width:81, height: 81)
+                                .clipShape(Circle())
+                                .overlay {
+                                    Circle()
+                                        .fill(.clear)
+                                        .stroke(.white, lineWidth: 5)
+                                    
+                                }
+                                .shadow(radius: 5)
+                                .padding(10)
+                        }
+
+                        Spacer()
+                        
+                    }
+                    Button(action: {
+                        client.genThumbnail(prompt: "a thumbnail", completion: {
+                            url in
+                            if url != "error" && url.isEmpty == false {
+                                self.url = url
+                            }
+                            
+                        })
+                    }, label: {
+                        Text("Generate")
+                            .font(.footnote)
+                    })
+                    .buttonStyle(.bordered)
+                    .tint(.black)
+                    
+                    if client.loading {
+                        ProgressView().progressViewStyle(.circular)
+                    }
+                }
                 
                 InspectorSectionTitle("Name")
                 
@@ -217,28 +293,28 @@ struct PlayActorInspector: View, BaseInspector {
                 }).buttonStyle(.borderedProminent)
                 
                 
-                HStack {
-                    
-                    Button(action: {}, label: {
-                        HStack {
-                            Spacer()
-                            Image(systemName: "doc.on.doc")
-                            Spacer()
-                        }
-                        
-                    })
-                    .buttonStyle(.bordered)
-                    
-                    Button(action: {
-                        delete()
-                    }, label: {
-                        Spacer()
-                        Image(systemName: "trash")
-                        Spacer()
-                    })
-                    .buttonStyle(.bordered)
-                    
-                }
+//                HStack {
+//                    
+//                    Button(action: {}, label: {
+//                        HStack {
+//                            Spacer()
+//                            Image(systemName: "doc.on.doc")
+//                            Spacer()
+//                        }
+//                        
+//                    })
+//                    .buttonStyle(.bordered)
+//                    
+//                    Button(action: {
+//                        delete()
+//                    }, label: {
+//                        Spacer()
+//                        Image(systemName: "trash")
+//                        Spacer()
+//                    })
+//                    .buttonStyle(.bordered)
+//                    
+//                }
                 
                 Text("\(identifier)")
                     .font(.system(size: 6))

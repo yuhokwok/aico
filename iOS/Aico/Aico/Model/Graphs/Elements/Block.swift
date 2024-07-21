@@ -2,11 +2,13 @@
 //  Block.swift
 //  Aico
 //
-//  Created by Yu Ho Kwok on 5/10/2023.
+//  Created by itst on 5/10/2023.
 //
 
 import Foundation
 import UIKit
+
+var colors = ["orange", "red", "blue", "green", "purple", "gray"]
 
 struct Block : Node, HasPort, Codable  {
     
@@ -17,6 +19,12 @@ struct Block : Node, HasPort, Codable  {
     
     var identifier : String = UUID().uuidString
     var name : String
+    var role : String = ""
+    var color : String = colors[Int.random(in: 0...999) % 6]
+    
+    
+    var thumbnail : String?
+    
     //geometry
     var center: CGPoint
     var size: CGSize
@@ -34,9 +42,9 @@ struct Block : Node, HasPort, Codable  {
     }
 
     var thumbnailPath: String?
-  
+
     //role
-    var roleIdentifier : String
+    //var roleIdentifier : String
     var attribute: Attribute
 
     var property: Property = Property.new
@@ -84,7 +92,7 @@ struct Block : Node, HasPort, Codable  {
         var block = Block(name: "Worker",
                           center: CGPoint(x: 0, y: 0),
                           size: CGSize(width: 206, height: 217),
-                          roleIdentifier: "",
+                          //roleIdentifier: "default",
                           attribute: Attribute.new,
                           inChannels: [],
                           outChannels: [],
@@ -141,3 +149,6 @@ enum ColorSet : String, Codable {
     case red = "red"
     case gray = "gray"
 }
+
+
+

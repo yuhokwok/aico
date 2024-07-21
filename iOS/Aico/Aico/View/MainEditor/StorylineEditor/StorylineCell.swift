@@ -2,7 +2,7 @@
 //  StorylineCell.swift
 //  Aico
 //
-//  Created by Yu Ho Kwok on 5/4/24.
+//  Created by itst on 5/4/24.
 //
 
 import SwiftUI
@@ -30,7 +30,6 @@ struct StorylineCell: View {
                         .foregroundStyle(color)
                         .font(.system(size: 14))
                         .bold()
-                        .opacity(selected ? 1.0 : 0.5)
                     
                     Spacer().frame(height: 14)
                     
@@ -39,7 +38,7 @@ struct StorylineCell: View {
                         .foregroundStyle(color)
                         .font(.system(size: 10))
                         .bold()
-                        .opacity(selected ? 1.0 : 0.5)
+                    
                     Spacer()
                 }
                 .padding()
@@ -49,10 +48,18 @@ struct StorylineCell: View {
         .transition(.scale)
         .frame(width: 160, height: 106)
         .background {
-            RoundedRectangle(cornerRadius: 18)
-                .fill(.white)
-                .stroke(linearGradient.opacity(selected ? 1.0 : 0.5), lineWidth: 1)
-                .shadow(color: Color("StorylineColor1", bundle:. main).opacity(0.4), radius: 4)
+            
+            if selected {
+                RoundedRectangle(cornerRadius: 18)
+                    .fill(.white)
+                    .stroke(linearGradient.opacity(selected ? 1.0 : 0.5), lineWidth: 1)
+                    .shadow(color: Color("StorylineColor1", bundle:. main).opacity(0.4), radius: 4)
+            } else {
+                RoundedRectangle(cornerRadius: 18)
+                    .fill(.white)
+                    .stroke(linearGradient.opacity(selected ? 1.0 : 0.5), lineWidth: 1)
+                    //.shadow(color: Color("StorylineColor1", bundle:. main).opacity(0.4), radius: 4)
+            }
                 
         }
         .padding(5)

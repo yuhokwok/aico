@@ -2,7 +2,7 @@
 //  Role.swift
 //  Aico
 //
-//  Created by Yu Ho Kwok on 9/10/2023.
+//  Created by itst on 9/10/2023.
 //
 
 import Foundation
@@ -16,6 +16,7 @@ struct PlayActor : Node, HasPort, Codable {
     
     var identifier : String = UUID().uuidString
     var name : String
+    var role : String
     var config : RoleConfig
     
     //geometry
@@ -96,6 +97,41 @@ struct PlayActor : Node, HasPort, Codable {
         
     }
     
+    static func defaultActor(for bounds : CGRect) -> PlayActor {
+        let identifier = "default"
+        
+        let relationshipPort = Port(kind: .comChannel,  name: "relationship")
+       
+        //two default  block, stage Input and stage Output
+        var stageInput = Block.new(.stageInput, for: bounds)
+        var nodeSize = stageInput.size
+        var centerX : CGFloat = -bounds.width / 2 + nodeSize.width / 2 + 15 //30 is margin
+        var centerY : CGFloat = 0
+        stageInput.center = CGPoint(x: centerX, y: centerY)
+        
+        
+        var stageOutput = Block.new(.stageOutput, for: bounds)
+        nodeSize = stageOutput.size
+        centerX = bounds.width / 2 - nodeSize.width / 2 - 15 //30 is margin
+        centerY = 0
+        stageOutput.center = CGPoint(x: centerX, y: centerY)
+        
+        let node = PlayActor(identifier: identifier,
+                        name: "Worker",
+                        role: "Code for Web",
+                        config: RoleConfig(),
+                        center: CGPoint(x: 0, y: 0),
+                        size: CGSize(width: 206, height: 217),
+                        attribute: Attribute.new,
+                        personality: Attribute.new,
+                        inChannels: [],
+                        outChannels: [],
+                        comChannels: [relationshipPort])
+    
+        return node
+    }
+
+    
     static func new(for bounds : CGRect) -> PlayActor {
         let identifier = UUID().uuidString
         
@@ -117,6 +153,7 @@ struct PlayActor : Node, HasPort, Codable {
         
         let node = PlayActor(identifier: identifier, 
                         name: "Worker",
+                        role: "Code for Web", 
                         config: RoleConfig(),
                         center: CGPoint(x: 0, y: 0),
                         size: CGSize(width: 206, height: 217),

@@ -14,6 +14,8 @@
 		ED175E142BE618CE00B887DE /* StorylineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED175E132BE618CE00B887DE /* StorylineCell.swift */; };
 		ED175E162BE61D1400B887DE /* StorylineEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED175E152BE61D1300B887DE /* StorylineEditorView.swift */; };
 		ED175E222BE6AA1300B887DE /* ReplicateClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED175E212BE6AA1300B887DE /* ReplicateClient.swift */; };
+		ED1C73272BED089200EA9325 /* APIClient2.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1C73262BED089200EA9325 /* APIClient2.swift */; };
+		ED20F44B2C288C400032D7CB /* Transformers in Frameworks */ = {isa = PBXBuildFile; productRef = ED20F44A2C288C400032D7CB /* Transformers */; };
 		ED2CD2222B23585E00594DC6 /* BaseInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2212B23585E00594DC6 /* BaseInspector.swift */; };
 		ED2CD2262B235AF700594DC6 /* ChannelInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2252B235AF700594DC6 /* ChannelInspector.swift */; };
 		ED2CD2282B235CF300594DC6 /* ProjectInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2272B235CF300594DC6 /* ProjectInspector.swift */; };
@@ -35,12 +37,16 @@
 		ED4A43642B1CD42400C30731 /* EditorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4A43632B1CD42400C30731 /* EditorState.swift */; };
 		ED4F1F592ADFB4700094AB75 /* AicoProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4F1F582ADFB4700094AB75 /* AicoProject.swift */; };
 		ED4F1F5B2ADFB5540094AB75 /* Blank.aicoproj in Resources */ = {isa = PBXBuildFile; fileRef = ED4F1F5A2ADFB5540094AB75 /* Blank.aicoproj */; };
-		ED533F142B288E3100DB4D79 /* GenerativeAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED533F132B288E3000DB4D79 /* GenerativeAI-Info.plist */; };
+		ED511B062C4D30850047D264 /* AnimatedMeshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED511B052C4D30850047D264 /* AnimatedMeshView.swift */; };
 		ED533F162B288E7500DB4D79 /* AIExpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED533F152B288E7500DB4D79 /* AIExpView.swift */; };
 		ED5769442B28337A0012BE26 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = ED5769432B28337A0012BE26 /* GoogleGenerativeAI */; };
 		ED576A2D2BE78E0800411092 /* ChatSonicClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED576A2C2BE78E0800411092 /* ChatSonicClient.swift */; };
 		ED576A2F2BE7905900411092 /* Runtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED576A2E2BE7905900411092 /* Runtime.swift */; };
 		ED576A322BE7A65D00411092 /* ExecuteRecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED576A312BE7A65D00411092 /* ExecuteRecordCell.swift */; };
+		ED576A382BE9340A00411092 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = ED576A372BE9340A00411092 /* FirebaseAuth */; };
+		ED576A3A2BE9341000411092 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = ED576A392BE9341000411092 /* FirebaseFirestore */; };
+		ED576A3C2BE9350B00411092 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED576A3B2BE9350B00411092 /* GoogleService-Info.plist */; };
+		ED576A3E2BE9CA2000411092 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED576A3D2BE9CA2000411092 /* ActivityView.swift */; };
 		ED5F23032AD174F100BFE800 /* StageGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F23022AD174F000BFE800 /* StageGraph.swift */; };
 		ED5F23052AD2E28B00BFE800 /* MainEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F23042AD2E28B00BFE800 /* MainEditorView.swift */; };
 		ED5F23092AD2EB7F00BFE800 /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F23082AD2EB7F00BFE800 /* ProjectView.swift */; };
@@ -87,6 +93,7 @@
 		ED175E132BE618CE00B887DE /* StorylineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorylineCell.swift; sourceTree = "<group>"; };
 		ED175E152BE61D1300B887DE /* StorylineEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorylineEditorView.swift; sourceTree = "<group>"; };
 		ED175E212BE6AA1300B887DE /* ReplicateClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplicateClient.swift; sourceTree = "<group>"; };
+		ED1C73262BED089200EA9325 /* APIClient2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient2.swift; sourceTree = "<group>"; };
 		ED2CD2212B23585E00594DC6 /* BaseInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInspector.swift; sourceTree = "<group>"; };
 		ED2CD2252B235AF700594DC6 /* ChannelInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelInspector.swift; sourceTree = "<group>"; };
 		ED2CD2272B235CF300594DC6 /* ProjectInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInspector.swift; sourceTree = "<group>"; };
@@ -108,11 +115,13 @@
 		ED4A43632B1CD42400C30731 /* EditorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorState.swift; sourceTree = "<group>"; };
 		ED4F1F582ADFB4700094AB75 /* AicoProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AicoProject.swift; sourceTree = "<group>"; };
 		ED4F1F5A2ADFB5540094AB75 /* Blank.aicoproj */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Blank.aicoproj; sourceTree = "<group>"; };
-		ED533F132B288E3000DB4D79 /* GenerativeAI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GenerativeAI-Info.plist"; sourceTree = "<group>"; };
+		ED511B052C4D30850047D264 /* AnimatedMeshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedMeshView.swift; sourceTree = "<group>"; };
 		ED533F152B288E7500DB4D79 /* AIExpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIExpView.swift; sourceTree = "<group>"; };
 		ED576A2C2BE78E0800411092 /* ChatSonicClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSonicClient.swift; sourceTree = "<group>"; };
 		ED576A2E2BE7905900411092 /* Runtime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Runtime.swift; sourceTree = "<group>"; };
 		ED576A312BE7A65D00411092 /* ExecuteRecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteRecordCell.swift; sourceTree = "<group>"; };
+		ED576A3B2BE9350B00411092 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ED576A3D2BE9CA2000411092 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		ED5F23022AD174F000BFE800 /* StageGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageGraph.swift; sourceTree = "<group>"; };
 		ED5F23042AD2E28B00BFE800 /* MainEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEditorView.swift; sourceTree = "<group>"; };
 		ED5F23082AD2EB7F00BFE800 /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
@@ -158,9 +167,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED20F44B2C288C400032D7CB /* Transformers in Frameworks */,
 				EDEFC60F2B1AEB8E00FFB483 /* WrappingHStack in Frameworks */,
 				ED5769442B28337A0012BE26 /* GoogleGenerativeAI in Frameworks */,
 				ED175E0F2BE5FA5000B887DE /* Replicate in Frameworks */,
+				ED576A3A2BE9341000411092 /* FirebaseFirestore in Frameworks */,
+				ED576A382BE9340A00411092 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +186,7 @@
 				ED5F230A2AD2EB8800BFE800 /* Project */,
 				EDD657952BE279E600D85E93 /* StartView.swift */,
 				ED175E0A2BE40BFF00B887DE /* StartHostingController.swift */,
+				ED511B052C4D30850047D264 /* AnimatedMeshView.swift */,
 			);
 			path = Start;
 			sourceTree = "<group>";
@@ -340,6 +353,13 @@
 			path = Execute;
 			sourceTree = "<group>";
 		};
+		ED576A362BE9340A00411092 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		ED5F230A2AD2EB8800BFE800 /* Project */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,6 +411,7 @@
 			children = (
 				ED733D8B2ACDDA7D00A2F3B9 /* Aico */,
 				ED733D8A2ACDDA7D00A2F3B9 /* Products */,
+				ED576A362BE9340A00411092 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -405,6 +426,8 @@
 		ED733D8B2ACDDA7D00A2F3B9 /* Aico */ = {
 			isa = PBXGroup;
 			children = (
+				ED1C73262BED089200EA9325 /* APIClient2.swift */,
+				ED576A3D2BE9CA2000411092 /* ActivityView.swift */,
 				EDD657682BE161E800D85E93 /* Storyline */,
 				EDC7F22E2AD07F4C00714779 /* Extension */,
 				ED733DA02ACDDA8500A2F3B9 /* Model */,
@@ -417,7 +440,7 @@
 				ED733D972ACDDA7E00A2F3B9 /* LaunchScreen.storyboard */,
 				ED733D9A2ACDDA7E00A2F3B9 /* Info.plist */,
 				ED8C4FF12B2781A600C29823 /* README.md */,
-				ED533F132B288E3000DB4D79 /* GenerativeAI-Info.plist */,
+				ED576A3B2BE9350B00411092 /* GoogleService-Info.plist */,
 			);
 			path = Aico;
 			sourceTree = "<group>";
@@ -495,6 +518,9 @@
 				EDEFC60E2B1AEB8E00FFB483 /* WrappingHStack */,
 				ED5769432B28337A0012BE26 /* GoogleGenerativeAI */,
 				ED175E0E2BE5FA5000B887DE /* Replicate */,
+				ED576A372BE9340A00411092 /* FirebaseAuth */,
+				ED576A392BE9341000411092 /* FirebaseFirestore */,
+				ED20F44A2C288C400032D7CB /* Transformers */,
 			);
 			productName = Aico;
 			productReference = ED733D892ACDDA7D00A2F3B9 /* Aico.app */;
@@ -528,6 +554,8 @@
 				EDEFC60D2B1AEB8E00FFB483 /* XCRemoteSwiftPackageReference "WrappingHStack" */,
 				ED5769422B28337A0012BE26 /* XCRemoteSwiftPackageReference "generative-ai-swift" */,
 				ED175E0D2BE5FA5000B887DE /* XCRemoteSwiftPackageReference "replicate-swift" */,
+				ED576A352BE9321500411092 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				ED20F4492C288C400032D7CB /* XCRemoteSwiftPackageReference "swift-transformers" */,
 			);
 			productRefGroup = ED733D8A2ACDDA7D00A2F3B9 /* Products */;
 			projectDirPath = "";
@@ -545,10 +573,10 @@
 			files = (
 				ED733D992ACDDA7E00A2F3B9 /* LaunchScreen.storyboard in Resources */,
 				ED733D962ACDDA7E00A2F3B9 /* Assets.xcassets in Resources */,
-				ED533F142B288E3100DB4D79 /* GenerativeAI-Info.plist in Resources */,
 				ED8C4FF22B2781A700C29823 /* README.md in Resources */,
 				ED733D942ACDDA7D00A2F3B9 /* Main.storyboard in Resources */,
 				ED4F1F5B2ADFB5540094AB75 /* Blank.aicoproj in Resources */,
+				ED576A3C2BE9350B00411092 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,8 +619,10 @@
 				ED175E122BE6119B00B887DE /* DropStageGraphCellDelegate.swift in Sources */,
 				ED3976412AD712560014AE03 /* Port.swift in Sources */,
 				ED2CD2372B244FEC00594DC6 /* InspectorElement.swift in Sources */,
+				ED576A3E2BE9CA2000411092 /* ActivityView.swift in Sources */,
 				ED2CD22B2B23800700594DC6 /* RelationshipGraphEditorViewController.swift in Sources */,
 				ED33981C2B69340800758EB5 /* APIService.swift in Sources */,
+				ED1C73272BED089200EA9325 /* APIClient2.swift in Sources */,
 				ED5F23032AD174F100BFE800 /* StageGraph.swift in Sources */,
 				ED733D8D2ACDDA7D00A2F3B9 /* AppDelegate.swift in Sources */,
 				EDCC7D302AD5C6840023A7E0 /* ProjectGraphEditorViewController.swift in Sources */,
@@ -607,6 +637,7 @@
 				EDC7F22D2ACF317E00714779 /* StageGraphEditorViewController.swift in Sources */,
 				ED39764E2AD81C920014AE03 /* MainEditorCoorindtor.swift in Sources */,
 				ED5F23202AD3A7CF00BFE800 /* MainEditorViewController.swift in Sources */,
+				ED511B062C4D30850047D264 /* AnimatedMeshView.swift in Sources */,
 				ED2CD2322B2407AC00594DC6 /* RelationshipGraphInspector.swift in Sources */,
 				ED5F230C2AD2EBB400BFE800 /* ProjectHostingController.swift in Sources */,
 				ED5F231E2AD3A7A800BFE800 /* MainEditorContainer.swift in Sources */,
@@ -698,7 +729,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -755,7 +786,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -781,6 +812,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -810,6 +842,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -855,12 +888,28 @@
 				minimumVersion = 0.21.0;
 			};
 		};
+		ED20F4492C288C400032D7CB /* XCRemoteSwiftPackageReference "swift-transformers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/huggingface/swift-transformers";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.8;
+			};
+		};
 		ED5769422B28337A0012BE26 /* XCRemoteSwiftPackageReference "generative-ai-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/generative-ai-swift";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.3.0;
+			};
+		};
+		ED576A352BE9321500411092 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.25.0;
 			};
 		};
 		EDEFC60D2B1AEB8E00FFB483 /* XCRemoteSwiftPackageReference "WrappingHStack" */ = {
@@ -879,10 +928,25 @@
 			package = ED175E0D2BE5FA5000B887DE /* XCRemoteSwiftPackageReference "replicate-swift" */;
 			productName = Replicate;
 		};
+		ED20F44A2C288C400032D7CB /* Transformers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED20F4492C288C400032D7CB /* XCRemoteSwiftPackageReference "swift-transformers" */;
+			productName = Transformers;
+		};
 		ED5769432B28337A0012BE26 /* GoogleGenerativeAI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = ED5769422B28337A0012BE26 /* XCRemoteSwiftPackageReference "generative-ai-swift" */;
 			productName = GoogleGenerativeAI;
+		};
+		ED576A372BE9340A00411092 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED576A352BE9321500411092 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		ED576A392BE9341000411092 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED576A352BE9321500411092 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 		EDEFC60E2B1AEB8E00FFB483 /* WrappingHStack */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -2,7 +2,7 @@
 //  StageGraphInspector.swift
 //  Aico
 //
-//  Created by Yu Ho Kwok on 18/10/2023.
+//  Created by itst on 18/10/2023.
 //
 
 import SwiftUI
@@ -21,6 +21,7 @@ struct StageGraphInspector: View, BaseInspector {
     
     @State var identifier : String = ""
     @State var name : String
+    @State var description : String = ""
     @State var attrStr : String = ""
     @State var attribute : Attribute
     
@@ -55,7 +56,17 @@ struct StageGraphInspector: View, BaseInspector {
                             Image(systemName: "checkmark")
                         }
                     }
+                    
+                    
+                    InspectorSectionTitle("Description")
+                    ZStack {
+                        Text(description)
+                        TextEditor(text: $description)
+                        
+                    }
                 }
+                
+                
                 
                 VStack(alignment: .leading) {
                     InspectorSectionTitle("Instructions")
@@ -182,6 +193,7 @@ struct StageGraphInspector: View, BaseInspector {
                 if let id = editorState.selectedId, let stageGraph = handler.graph(for: id) as? StageGraph {
                     self.identifier = stageGraph.identifier
                     self.name = stageGraph.name
+                    self.description = stageGraph.description
                     self.attribute = stageGraph.attribute
                 }
             })

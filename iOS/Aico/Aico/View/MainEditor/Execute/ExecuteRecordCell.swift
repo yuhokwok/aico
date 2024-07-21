@@ -2,41 +2,70 @@
 //  ExecuteRecordCell.swift
 //  Aico
 //
-//  Created by Yu Ho Kwok on 5/5/24.
+//  Created by itst on 5/5/24.
 //
 
 import SwiftUI
 
 struct ExecuteRecordCell: View {
     var record : Record
+    var formatter = DateFormatter()
     var body: some View {
         HStack {
             VStack (alignment: .leading) {
                 VStack {
                     HStack {
+                        Text("\(record.speaker)")
+                            .bold()
+                            .foregroundStyle(.white)
+                        Spacer()
+                    }
+                    
+                    Spacer().frame(height: 5)
+                    
+                    HStack {
                         Text("\(record.content)")
+                            .font(.system(size: 12))
                             .foregroundStyle(.white)
                             .multilineTextAlignment(.leading)
-                            .lineLimit(5)
+                            .lineLimit(20)
                         
                         Spacer()
                     }
-                    Text("\n\(record.date)")
-                        .foregroundStyle(.white)
-                        .font(.footnote)
+                    
+                    HStack {
+                        Spacer()
+                        Text("\n\(getDateString(date: record.date))")
+                            .foregroundStyle(.white)
+                            .font(.footnote)
+                    }
                 }
                 .padding()
-                .frame(maxWidth: 250)
+                .frame(maxWidth: 280)
                 .background {
-                    RoundedRectangle(cornerRadius: 15)
-                        .fill(.green)
+                    if record.type == "system"
+                    {
+                        RoundedRectangle(cornerRadius: 15)
+                            .fill(.gray.opacity(0.3))
+                    } else {
+                        RoundedRectangle(cornerRadius: 15)
+                            .fill(.green.opacity(1.0))
+                    }
                 }
-                Text("\(record.speaker)")
+                
             }
             
             Spacer()
         }
+        
         .padding()
+    }
+    
+    func getDateString(date : Date) -> String {
+        var formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .medium
+        return formatter.string(from: date)
     }
 }
 

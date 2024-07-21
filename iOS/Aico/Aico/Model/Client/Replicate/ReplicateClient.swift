@@ -2,7 +2,7 @@
 //  Replicate.swift
 //  Aico
 //
-//  Created by Yu Ho Kwok on 5/5/24.
+//  Created by itst on 5/5/24.
 //
 
 import Foundation
@@ -23,6 +23,47 @@ class GenerativeClient : ObservableObject {
     
     @Published var loading = false
     var prediction: ReplicateClient.Llama2.Prediction? = nil
+    
+    
+    func execute(for stage : StageGraph, last : String) async -> String {
+        
+        let allrole = stage.nodes.count > 0 ? stage.nodes.reduce("", { "\($0), \($1.name) the \($1.role)"}) : "作者, 編輯"
+        
+        let finalPrompt = last.isEmpty ? "你要完成工作: \(stage.name), 內容如下: \(stage.description)，，請模擬以下角色對話:\(allrole)的對話，隨機選一個身份發言，完成時請輸出\"[完成]\"。請每個回應都限制於 100 字內。請只以 {\"speaker:\" : \"角色名\",  \"content\" : \"對話內容\" } 格式 json 輸出，不要其他內容" : "你要完成工作: \(stage.name), 內容如下: \(stage.description)，請模擬以下角色對話:\(allrole)的對話，隨機選一個身份發言，完成時請輸出\"[完成]\"。請每個回應都限制於 100 字內。上一句對白是: \(last)，請只以 {\"speaker:\" : \"角色名\",  \"content\" : \"對話內容\" } 格式 json 輸出，不要其他內容"
+        
+        print("\(finalPrompt)")
+        
+        DispatchQueue.main.async {
+            //completion?(json)
+            self.loading = true
+        }
+        do {
+            var prediction = try await ReplicateClient.Llama2.predict(with: ReplicateClient.shared,
+                                                                      input: .init(prompt: finalPrompt))
+            
+            self.prediction = prediction
+            
+            try await prediction.wait(with: ReplicateClient.shared)
+            
+            if let output = prediction.output {
+                let json = output.reduce("", { return "\($0)\($1)"})
+                DispatchQueue.main.async {
+                    //completion?(json)
+                    self.loading = false
+                }
+                return json
+            } else{
+                DispatchQueue.main.async {
+                    //completion?("error")
+                    self.loading = false
+                }
+                return ""
+            }
+        } catch {
+            self.loading = false
+            return ""
+        }
+    }
     
     func genProject(prompt:  String, completion : ((String) -> (Void))?) {
         loading = true
@@ -49,6 +90,30 @@ class GenerativeClient : ObservableObject {
                 }
             }
             
+        }
+    }
+    
+    func genThumbnail(prompt: String, completion : ((String) -> (Void))?) {
+        loading = true
+        Task {
+            let finalPrompt = "a single person, close up, japanese anime style, role: \(prompt)"
+            
+            var prediction = try await ReplicateClient.StableDiffusion.predict(with: ReplicateClient.shared, input: .init(prompt: finalPrompt))
+            
+            try await prediction.wait(with: ReplicateClient.shared)
+            
+            if let output = prediction.output?.first {
+                let url = output.absoluteString
+                DispatchQueue.main.async {
+                    completion?(url)
+                    self.loading = false
+                }
+            } else{
+                DispatchQueue.main.async {
+                    completion?("error")
+                    self.loading = false
+                }
+            }
         }
     }
 }
@@ -80,7 +145,7 @@ struct ReplicateClient {
         struct Input: Codable {
             let prompt: String
             var min_tokens : Int = 0
-            var max_tokens : Int = 512
+            var max_tokens : Int = 1024
             var top_p = 0.9
             var temperature = 0.6
             var presence_penalty = 1.15

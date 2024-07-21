@@ -2,19 +2,23 @@
 //  ProjectGraph.swift
 //  Aico
 //
-//  Created by Yu Ho Kwok on 9/10/2023.
+//  Created by itst on 9/10/2023.
 //
 
 import Foundation
 import UIKit
 
 
-struct ProjectGraph : Graph, Codable {
+struct ProjectGraph : Graph, Codable, Identifiable {
+    
+    static func == (lhs: ProjectGraph, rhs: ProjectGraph) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     var id: String {
         return identifier
     }
-    
-    
+
     var identifier : String
     var nodes: [StageGraph]
     
@@ -27,13 +31,18 @@ struct ProjectGraph : Graph, Codable {
 
     var mode : Mode = .preset
     
+    //the roles contain in this project
+    var playActors : [PlayActor] = []
+    
+    var playActorIdentifiers : [String] {
+        return playActors.map { $0.id }
+    }
+    
     enum Mode : String, Codable {
         case preset = "static"
         case dynamic = "dynamic"
     }
     
-    
-
     static func new(for editor : UIView) -> ProjectGraph {
         let identifier = UUID().uuidString
         
@@ -48,14 +57,16 @@ struct ProjectGraph : Graph, Codable {
         
         let nodeSize = startNode.size
         let centerX : CGFloat = -editor.bounds.width / 2 + nodeSize.width / 2 + 15 //30 is margin
-        let centerY : CGFloat = 0
+        let centerY : CGFloat = 0 
         startNode.center = CGPoint(x: centerX, y: centerY)
         
         
-        let graph = ProjectGraph(identifier: identifier,
+        var graph = ProjectGraph(identifier: identifier,
                                  nodes: [startNode],
                                  attribute: Attribute.new, 
                                  channels: [])
+        let defaultPlayer = PlayActor.defaultActor(for: editor.bounds)
+        graph.playActors.append(defaultPlayer)
         return graph
     }
     

@@ -2,7 +2,7 @@
 //  ProjectInspector.swift
 //  Aico
 //
-//  Created by Yu Ho Kwok on 12/8/23.
+//  Created by itst on 12/8/23.
 //
 
 import SwiftUI
@@ -24,32 +24,32 @@ struct ProjectInspector: View {
                 
                 InspectorTitle("Project")
                 
-                InspectorSectionTitle("AI 模式")
-                
-                Picker(selection: $selectedMode, content: {
-                    
-                    Text("Preset").tag(ProjectGraph.Mode.preset)
-                    Text("Dynamic").tag(ProjectGraph.Mode.dynamic)
-                    
-                }, label: {
-                    Text("Mode")
-                })
-                .pickerStyle(.segmented)
-                .onChange(of: selectedMode, {
-                    commitChange()
-                })
-                
-                
-                if (selectedMode == .preset) {
-                    
-                    InspectorSectionFooter("預設模式，AI 運作 時只會按預先設定好的 Graph 運作去計算結果，比較安全的做法。")
-                        .frame(height: 80)
-                } else {
-                    
-                    InspectorSectionFooter("動態模式，AI 運作 時會按需要加入新的工作設定，或者加入新的人物及關係，可能會有意想不到的效果。")
-                        .frame(height: 80)
-                    
-                }
+//                InspectorSectionTitle("AI 模式")
+//                
+//                Picker(selection: $selectedMode, content: {
+//                    
+//                    Text("Preset").tag(ProjectGraph.Mode.preset)
+//                    Text("Dynamic").tag(ProjectGraph.Mode.dynamic)
+//                    
+//                }, label: {
+//                    Text("Mode")
+//                })
+//                .pickerStyle(.segmented)
+//                .onChange(of: selectedMode, {
+//                    commitChange()
+//                })
+//                
+//                
+//                if (selectedMode == .preset) {
+//                    
+//                    InspectorSectionFooter("預設模式，AI 運作 時只會按預先設定好的 Graph 運作去計算結果，比較安全的做法。")
+//                        .frame(height: 80)
+//                } else {
+//                    
+//                    InspectorSectionFooter("動態模式，AI 運作 時會按需要加入新的工作設定，或者加入新的人物及關係，可能會有意想不到的效果。")
+//                        .frame(height: 80)
+//                    
+//                }
                 
                 InspectorSectionTitle("Project Desciption")
                 

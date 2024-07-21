@@ -2,12 +2,13 @@
 //  MainEditorView.swift
 //  Aico
 //
-//  Created by Yu Ho Kwok on 8/10/2023.
+//  Created by itst on 8/10/2023.
 //
 
 import SwiftUI
 import Observation
 import UIKit
+import FirebaseAuth
 
 @MainActor
 struct MainEditorView: View {
@@ -22,6 +23,7 @@ struct MainEditorView: View {
     @State var size : CGSize = .zero
     
     @State var shouldExpand = false
+    
 
     var editorState : EditorState {
         documentHandler.project.editorState
@@ -413,30 +415,30 @@ struct MainEditorView: View {
                         HStack (spacing: 15) {
                             
                             
-                            Button(action: {
-                                documentHandler.undo()
-                            }, label: {
-                                Image(systemName: "arrow.uturn.backward")
-                                    .frame(width: buttonSize, height: buttonSize)
-                            })
-                            .frame(width: buttonSize, height: buttonSize)
-                            .background(.regularMaterial)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .shadow(color: .gray.opacity(0.3), radius: 5)
-                            
-                            if UIDevice.current.userInterfaceIdiom == .pad {
-                                Button(action: {
-                                    documentHandler.redo()
-                                }, label: {
-                                    Image(systemName: "arrow.uturn.forward")
-                                        .frame(width: buttonSize, height: buttonSize)
-                                })
-                                .frame(width: buttonSize, height: buttonSize)
-                                .background(.regularMaterial)
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
-                                .shadow(color: .gray.opacity(0.3), radius: 5)
-                            }
-                            
+//                            Button(action: {
+//                                documentHandler.undo()
+//                            }, label: {
+//                                Image(systemName: "arrow.uturn.backward")
+//                                    .frame(width: buttonSize, height: buttonSize)
+//                            })
+//                            .frame(width: buttonSize, height: buttonSize)
+//                            .background(.regularMaterial)
+//                            .clipShape(RoundedRectangle(cornerRadius: 12))
+//                            .shadow(color: .gray.opacity(0.3), radius: 5)
+//                            
+//                            if UIDevice.current.userInterfaceIdiom == .pad {
+//                                Button(action: {
+//                                    documentHandler.redo()
+//                                }, label: {
+//                                    Image(systemName: "arrow.uturn.forward")
+//                                        .frame(width: buttonSize, height: buttonSize)
+//                                })
+//                                .frame(width: buttonSize, height: buttonSize)
+//                                .background(.regularMaterial)
+//                                .clipShape(RoundedRectangle(cornerRadius: 12))
+//                                .shadow(color: .gray.opacity(0.3), radius: 5)
+//                            }
+//                            
                             Button(action: {
                                 withAnimation {
                                     isShowRuntime.toggle()
@@ -451,25 +453,25 @@ struct MainEditorView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                             .shadow(color: .gray.opacity(0.3), radius: 5)
                             
-                            
-                            Button(action: {
-                                withAnimation(.bouncy) {
-                                    
-                                    if editorState.mode.contains(.relationship) {
-                                        self.documentHandler.project.editorState.mode.remove(.relationship)
-                                    } else {
-                                        self.documentHandler.project.editorState.mode.insert(.relationship)
-                                    }
-                                }
-                            }, label: {
-                                Image(systemName: "figure.stand.line.dotted.figure.stand")
-                            })
-                            .frame(width: buttonSize, height: buttonSize)
-                            .background(.regularMaterial)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .shadow(color: .gray.opacity(0.3), radius: 5)
-                            
-                            
+//                            
+//                            Button(action: {
+//                                withAnimation(.bouncy) {
+//                                    
+//                                    if editorState.mode.contains(.relationship) {
+//                                        self.documentHandler.project.editorState.mode.remove(.relationship)
+//                                    } else {
+//                                        self.documentHandler.project.editorState.mode.insert(.relationship)
+//                                    }
+//                                }
+//                            }, label: {
+//                                Image(systemName: "figure.stand.line.dotted.figure.stand")
+//                            })
+//                            .frame(width: buttonSize, height: buttonSize)
+//                            .background(.regularMaterial)
+//                            .clipShape(RoundedRectangle(cornerRadius: 12))
+//                            .shadow(color: .gray.opacity(0.3), radius: 5)
+//                            
+//                            
                             Button(action: {
                                 withAnimation {
                                     if UIDevice.current.userInterfaceIdiom == .pad {

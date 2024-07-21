@@ -2,12 +2,15 @@
 //  ExecuteView.swift
 //  Aico
 //
-//  Created by Yu Ho Kwok on 1/30/24.
+//  Created by itst on 1/30/24.
 //
 
 import SwiftUI
 
 struct ExecuteView: View {
+    
+    @State private var showShareSheet = false
+    @State private var jsonData: String = ""
     
     @StateObject var runtime : Runtime
     
@@ -15,12 +18,56 @@ struct ExecuteView: View {
     @State var topic : String = "討論今日去邊玩"
     @State var allString = "Roy: 我哋今日去邊度玩好？好悶啊。"
     @State var queryString : String = "我哋今日去邊度玩好？好悶啊。"
+    @State var saveMessage : String = ""
     var body: some View {
         
-        TextField(text: $queryString, label: { Text("yoyoyo") })
-            .textFieldStyle(.roundedBorder)
-            .padding()
+        HStack {
+            Text("Execute")
+                .font(.system(size: 24))
+                .bold()
+            Spacer()
+        }
+        .padding()
         
+        Text("Press Play to execute the Application")
+            .font(.system(size: 12))
+        
+        HStack {
+            Button(action: {
+                saveMessage = ""
+                runtime.execute()
+            }, label: {
+                HStack {
+                    Spacer()
+                    Image(systemName: "play.fill")
+                    Spacer()
+                }
+                
+            })
+            .buttonStyle(.bordered)
+            
+            Button(action: {
+                save()
+                saveMessage = "Message Saved"
+            }, label: {
+                HStack {
+                    Image(systemName: "square.and.arrow.down.fill")
+                }
+                
+            })
+            .buttonStyle(.bordered)
+            
+            Button(action: {
+                export()
+            }, label: {
+                HStack {
+                    Image(systemName: "square.and.arrow.up")
+                }
+                
+            })
+            .buttonStyle(.bordered)
+        }
+        .padding(.horizontal, 20)
         
         if runtime.isExecuting {
             ProgressView()
@@ -39,12 +86,34 @@ struct ExecuteView: View {
             
         }
         .onAppear {
-            print("yoyoyo")
-            //runtime.records.append(Record(speaker: "yo", date: Date(), content: "yoyoyo"))
-            
-            runtime.execute()
-            
+            let pjData = UserDefaults.standard.string(forKey: runtime.project.identifier)
+            if let data = pjData?.data(using: .utf8) {
+                if let records = try? JSONDecoder().decode([Record].self, from: data) {
+                    runtime.records = records
+                }
+            }
         }
+        .onDisappear {
+            print("cancel runtime")
+            runtime.cancel()
+        }
+        .sheet(isPresented: $showShareSheet) {
+            ActivityView(activityItems: [jsonData])
+        }
+    }
+    
+    func export() {
+        guard let data = try? JSONEncoder().encode(runtime.records) else { return }
+        guard let string = String(data: data, encoding: .utf8) else { return }
+        self.jsonData = string
+        showShareSheet = true
+    }
+    
+    func save() {
+        guard let data = try? JSONEncoder().encode(runtime.records) else { return }
+        guard let string = String(data: data, encoding: .utf8) else { return }
+        UserDefaults.standard.set(string, forKey: runtime.project.identifier)
+        UserDefaults.standard.synchronize()
     }
     
     func talkToKen(_ msg : String) {
@@ -97,4 +166,5 @@ struct ExecuteView: View {
 
 #Preview {
     ExecuteView(runtime: Runtime(project: Project.new()))
+        .frame(width: 250)
 }
