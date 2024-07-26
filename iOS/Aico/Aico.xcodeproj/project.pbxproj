@@ -38,13 +38,13 @@
 		ED4F1F592ADFB4700094AB75 /* AicoProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4F1F582ADFB4700094AB75 /* AicoProject.swift */; };
 		ED4F1F5B2ADFB5540094AB75 /* Blank.aicoproj in Resources */ = {isa = PBXBuildFile; fileRef = ED4F1F5A2ADFB5540094AB75 /* Blank.aicoproj */; };
 		ED511B062C4D30850047D264 /* AnimatedMeshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED511B052C4D30850047D264 /* AnimatedMeshView.swift */; };
+		ED511B082C4D63840047D264 /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED511B072C4D63840047D264 /* BlockView.swift */; };
+		ED511B0A2C4D66760047D264 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED511B092C4D66760047D264 /* Color+Hex.swift */; };
 		ED533F162B288E7500DB4D79 /* AIExpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED533F152B288E7500DB4D79 /* AIExpView.swift */; };
 		ED5769442B28337A0012BE26 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = ED5769432B28337A0012BE26 /* GoogleGenerativeAI */; };
 		ED576A2D2BE78E0800411092 /* ChatSonicClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED576A2C2BE78E0800411092 /* ChatSonicClient.swift */; };
 		ED576A2F2BE7905900411092 /* Runtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED576A2E2BE7905900411092 /* Runtime.swift */; };
 		ED576A322BE7A65D00411092 /* ExecuteRecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED576A312BE7A65D00411092 /* ExecuteRecordCell.swift */; };
-		ED576A382BE9340A00411092 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = ED576A372BE9340A00411092 /* FirebaseAuth */; };
-		ED576A3A2BE9341000411092 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = ED576A392BE9341000411092 /* FirebaseFirestore */; };
 		ED576A3C2BE9350B00411092 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED576A3B2BE9350B00411092 /* GoogleService-Info.plist */; };
 		ED576A3E2BE9CA2000411092 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED576A3D2BE9CA2000411092 /* ActivityView.swift */; };
 		ED5F23032AD174F100BFE800 /* StageGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F23022AD174F000BFE800 /* StageGraph.swift */; };
@@ -73,6 +73,7 @@
 		ED99C7522ADFD2A70022A1AE /* StageGraphInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED99C7512ADFD2A70022A1AE /* StageGraphInspector.swift */; };
 		ED99C7542AE012D30022A1AE /* AppFolderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED99C7532AE012D30022A1AE /* AppFolderManager.swift */; };
 		ED99C7562AE03FBC0022A1AE /* DocumentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED99C7552AE03FBC0022A1AE /* DocumentHandler.swift */; };
+		EDA28E512C4D7A0D001E4F8B /* DottedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA28E502C4D7A0D001E4F8B /* DottedView.swift */; };
 		EDC7F22B2ACF146700714779 /* NodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7F22A2ACF146700714779 /* NodeView.swift */; };
 		EDC7F22D2ACF317E00714779 /* StageGraphEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7F22C2ACF317E00714779 /* StageGraphEditorViewController.swift */; };
 		EDC7F2302AD07F5B00714779 /* CGPoint+Addon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7F22F2AD07F5B00714779 /* CGPoint+Addon.swift */; };
@@ -116,6 +117,8 @@
 		ED4F1F582ADFB4700094AB75 /* AicoProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AicoProject.swift; sourceTree = "<group>"; };
 		ED4F1F5A2ADFB5540094AB75 /* Blank.aicoproj */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Blank.aicoproj; sourceTree = "<group>"; };
 		ED511B052C4D30850047D264 /* AnimatedMeshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedMeshView.swift; sourceTree = "<group>"; };
+		ED511B072C4D63840047D264 /* BlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
+		ED511B092C4D66760047D264 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		ED533F152B288E7500DB4D79 /* AIExpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIExpView.swift; sourceTree = "<group>"; };
 		ED576A2C2BE78E0800411092 /* ChatSonicClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSonicClient.swift; sourceTree = "<group>"; };
 		ED576A2E2BE7905900411092 /* Runtime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Runtime.swift; sourceTree = "<group>"; };
@@ -150,6 +153,7 @@
 		ED99C7512ADFD2A70022A1AE /* StageGraphInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageGraphInspector.swift; sourceTree = "<group>"; };
 		ED99C7532AE012D30022A1AE /* AppFolderManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFolderManager.swift; sourceTree = "<group>"; };
 		ED99C7552AE03FBC0022A1AE /* DocumentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentHandler.swift; sourceTree = "<group>"; };
+		EDA28E502C4D7A0D001E4F8B /* DottedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DottedView.swift; sourceTree = "<group>"; };
 		EDC7F22A2ACF146700714779 /* NodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeView.swift; sourceTree = "<group>"; };
 		EDC7F22C2ACF317E00714779 /* StageGraphEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageGraphEditorViewController.swift; sourceTree = "<group>"; };
 		EDC7F22F2AD07F5B00714779 /* CGPoint+Addon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Addon.swift"; sourceTree = "<group>"; };
@@ -171,8 +175,6 @@
 				EDEFC60F2B1AEB8E00FFB483 /* WrappingHStack in Frameworks */,
 				ED5769442B28337A0012BE26 /* GoogleGenerativeAI in Frameworks */,
 				ED175E0F2BE5FA5000B887DE /* Replicate in Frameworks */,
-				ED576A3A2BE9341000411092 /* FirebaseFirestore in Frameworks */,
-				ED576A382BE9340A00411092 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +388,7 @@
 				ED175E102BE60BBA00B887DE /* StorylineEditor */,
 				ED5F230E2AD2F4B100BFE800 /* MainEditorHostingController.swift */,
 				ED39764D2AD81C920014AE03 /* MainEditorCoorindtor.swift */,
+				ED511B072C4D63840047D264 /* BlockView.swift */,
 			);
 			path = MainEditor;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 		ED733D8B2ACDDA7D00A2F3B9 /* Aico */ = {
 			isa = PBXGroup;
 			children = (
+				ED511B092C4D66760047D264 /* Color+Hex.swift */,
 				ED1C73262BED089200EA9325 /* APIClient2.swift */,
 				ED576A3D2BE9CA2000411092 /* ActivityView.swift */,
 				EDD657682BE161E800D85E93 /* Storyline */,
@@ -441,6 +445,7 @@
 				ED733D9A2ACDDA7E00A2F3B9 /* Info.plist */,
 				ED8C4FF12B2781A600C29823 /* README.md */,
 				ED576A3B2BE9350B00411092 /* GoogleService-Info.plist */,
+				EDA28E502C4D7A0D001E4F8B /* DottedView.swift */,
 			);
 			path = Aico;
 			sourceTree = "<group>";
@@ -518,8 +523,6 @@
 				EDEFC60E2B1AEB8E00FFB483 /* WrappingHStack */,
 				ED5769432B28337A0012BE26 /* GoogleGenerativeAI */,
 				ED175E0E2BE5FA5000B887DE /* Replicate */,
-				ED576A372BE9340A00411092 /* FirebaseAuth */,
-				ED576A392BE9341000411092 /* FirebaseFirestore */,
 				ED20F44A2C288C400032D7CB /* Transformers */,
 			);
 			productName = Aico;
@@ -554,7 +557,6 @@
 				EDEFC60D2B1AEB8E00FFB483 /* XCRemoteSwiftPackageReference "WrappingHStack" */,
 				ED5769422B28337A0012BE26 /* XCRemoteSwiftPackageReference "generative-ai-swift" */,
 				ED175E0D2BE5FA5000B887DE /* XCRemoteSwiftPackageReference "replicate-swift" */,
-				ED576A352BE9321500411092 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				ED20F4492C288C400032D7CB /* XCRemoteSwiftPackageReference "swift-transformers" */,
 			);
 			productRefGroup = ED733D8A2ACDDA7D00A2F3B9 /* Products */;
@@ -590,6 +592,7 @@
 				ED576A322BE7A65D00411092 /* ExecuteRecordCell.swift in Sources */,
 				ED2CD2222B23585E00594DC6 /* BaseInspector.swift in Sources */,
 				EDD657962BE279E600D85E93 /* StartView.swift in Sources */,
+				ED511B0A2C4D66760047D264 /* Color+Hex.swift in Sources */,
 				ED3976432AD71DAA0014AE03 /* Protocol.swift in Sources */,
 				ED39764B2AD79CFD0014AE03 /* BaseEditorViewController.swift in Sources */,
 				ED5F23052AD2E28B00BFE800 /* MainEditorView.swift in Sources */,
@@ -633,6 +636,7 @@
 				ED99C7502ADFCE090022A1AE /* BlockInspector.swift in Sources */,
 				ED16D7E72B25A9BB001E52D1 /* Property.swift in Sources */,
 				ED2CD2262B235AF700594DC6 /* ChannelInspector.swift in Sources */,
+				ED511B082C4D63840047D264 /* BlockView.swift in Sources */,
 				EDC7F2322AD1113D00714779 /* CGRect+Addon.swift in Sources */,
 				EDC7F22D2ACF317E00714779 /* StageGraphEditorViewController.swift in Sources */,
 				ED39764E2AD81C920014AE03 /* MainEditorCoorindtor.swift in Sources */,
@@ -651,6 +655,7 @@
 				ED4A43612B1C682100C30731 /* BigBangInspector.swift in Sources */,
 				ED4F1F592ADFB4700094AB75 /* AicoProject.swift in Sources */,
 				EDD657702BE23B1100D85E93 /* HListEx.swift in Sources */,
+				EDA28E512C4D7A0D001E4F8B /* DottedView.swift in Sources */,
 				ED2CD2282B235CF300594DC6 /* ProjectInspector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -904,14 +909,6 @@
 				minimumVersion = 0.3.0;
 			};
 		};
-		ED576A352BE9321500411092 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.25.0;
-			};
-		};
 		EDEFC60D2B1AEB8E00FFB483 /* XCRemoteSwiftPackageReference "WrappingHStack" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ksemianov/WrappingHStack";
@@ -937,16 +934,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = ED5769422B28337A0012BE26 /* XCRemoteSwiftPackageReference "generative-ai-swift" */;
 			productName = GoogleGenerativeAI;
-		};
-		ED576A372BE9340A00411092 /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = ED576A352BE9321500411092 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
-		};
-		ED576A392BE9341000411092 /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = ED576A352BE9321500411092 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
 		};
 		EDEFC60E2B1AEB8E00FFB483 /* WrappingHStack */ = {
 			isa = XCSwiftPackageProductDependency;

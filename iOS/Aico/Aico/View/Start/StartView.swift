@@ -6,39 +6,20 @@
 //
 
 import SwiftUI
-import FirebaseAuth
+
 struct StartView: View {
     
     @State var showMyPlots = false
     
     @State var fileURLs : [URL] = []
     var coordinator = ProjectHostingCoorindator()
-    
-    
-    @State var isLoggedin = false
-    
+        
     @State var prompt : String = ""
     
     @StateObject var client = GenerativeClient()
-    
-    @State private var email: String = "Test@test.com"
-    @State private var password: String = "a123456"
-    
-    @State private var regEmail: String = ""
-    @State private var regPassword: String = ""
-    
-    @State private var loginError: String = ""
-    @State private var isPasswordVisible: Bool = false
-    @State private var isLoggedIn: Bool = false
-    
-    @State private var isShowRegister : Bool = false
-    
-    @State private var registerError  : String = ""
-    
+
     @State var uid : String = ""
-    
-    @State private var showRegisterOK = false
-    
+
     var body: some View {
         ZStack {
             
@@ -47,198 +28,61 @@ struct StartView: View {
             //.scaledToFill()
             
             AnimatedMeshView()
+                .scaleEffect(x: 1.2, y: 1.2)
             
             VStack {
                 
                 
                 HStack {
                     Image("logo")
-                    Text("Aico")
-                        .bold()
-                        .font(.system(size: 48))
-                        .foregroundStyle(.white)
                 }
                 
                 HStack {
                     
-                    if isShowRegister {
-                        
-                        
-                        VStack {
-                            Text("Register").bold()
-                            TextField(text: $regEmail, label: {
-                                Text("Email")
-                            })
-                            .padding()
-                            .padding(.horizontal, 20)
-                            .background {
-                                RoundedRectangle(cornerRadius: 8)
-                                    .fill(.white)
-                                    .stroke(.gray.opacity(0.4), lineWidth: 1)
-                                    .frame(width: 290, height: 56)
-                            }
-                            .overlay {
-                                if client.loading {
-                                    HStack {
-                                        Spacer()
-                                        ProgressView().progressViewStyle(.circular)
-                                            .padding(.trailing, 25)
-                                    }
-                                }
-                            }
-                            .padding(.leading, 20)
-                            
-                            SecureField(text: $regPassword, label: {
-                                Text("Password")
-                            })
-                            .padding()
-                            .padding(.horizontal, 20)
-                            .background {
-                                RoundedRectangle(cornerRadius: 8)
-                                    .fill(.white)
-                                    .stroke(.gray.opacity(0.4), lineWidth: 1)
-                                    .frame(width: 290, height: 56)
-                            }
-                            .padding(.leading, 20)
-
-                            Text("\(registerError)").font(.footnote).bold().padding(5)
-                        }
-                        
-                        Button(action: {
-                            register()
-                        }, label: {
-                            Image(systemName: "arrow.right")
-                                .font(.system(size: 40))
-                        })
-                        .tint(.white)
-                        .frame(width: 72, height: 72)
-                        .background(.blue)
-                        .clipShape(Circle())
-                        .shadow(color: .blue, radius: 10)
-                        .overlay {
-                            Circle().fill(.clear).stroke(.white, lineWidth: 2)
-                        }
-                        .padding()
-                        
-                    } else if isLoggedin {
-                        
-                        
-                        TextField(text: $prompt, label: {
-                            Text("Enter Your Idea")
-                        })
-                        .padding()
-                        .padding(.horizontal, 20)
-                        .background {
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(.white)
-                                .stroke(.gray.opacity(0.4), lineWidth: 1)
-                                .frame(width: 290, height: 56)
-                        }
-                        .overlay {
-                            if client.loading {
-                                HStack {
-                                    Spacer()
-                                    ProgressView().progressViewStyle(.circular)
-                                        .padding(.trailing, 25)
-                                }
-                            }
-                        }
-                        .padding(.leading, 20)
-                        .onSubmit {
-                            generate(prompt: prompt)
-                        }
-                        
-                        Button(action: {
-                            generate(prompt: prompt)
-                        }, label: {
-                            Image(systemName: "arrow.right")
-                                .font(.system(size: 40))
-                        })
-                        .tint(.white)
-                        .frame(width: 72, height: 72)
-                        .background(.blue)
-                        .clipShape(Circle())
-                        .shadow(color: .blue, radius: 10)
-                        .overlay {
-                            Circle().fill(.clear).stroke(.white, lineWidth: 2)
-                        }
-                        .padding()
-                    } else {
-                        
-                        
-                        VStack {
-                            Text("Sign in").bold()
-                            TextField(text: $email, label: {
-                                Text("Email")
-                            })
-                            .padding()
-                            .padding(.horizontal, 20)
-                            .background {
-                                RoundedRectangle(cornerRadius: 8)
-                                    .fill(.white)
-                                    .stroke(.gray.opacity(0.4), lineWidth: 1)
-                                    .frame(width: 290, height: 56)
-                            }
-                            .overlay {
-                                if client.loading {
-                                    HStack {
-                                        Spacer()
-                                        ProgressView().progressViewStyle(.circular)
-                                            .padding(.trailing, 25)
-                                    }
-                                }
-                            }
-                            .padding(.leading, 20)
-                            .onSubmit {
-                                generate(prompt: prompt)
-                            }
-                            
-                            SecureField(text: $password, label: {
-                                Text("Password")
-                            })
-                            .padding()
-                            .padding(.horizontal, 20)
-                            .background {
-                                RoundedRectangle(cornerRadius: 8)
-                                    .fill(.white)
-                                    .stroke(.gray.opacity(0.4), lineWidth: 1)
-                                    .frame(width: 290, height: 56)
-                            }
-                            .overlay {
-                                if client.loading {
-                                    HStack {
-                                        Spacer()
-                                        ProgressView().progressViewStyle(.circular)
-                                            .padding(.trailing, 25)
-                                    }
-                                }
-                            }
-                            .padding(.leading, 20)
-                            .onSubmit {
-                                generate(prompt: prompt)
-                            }
-                            Text("\(loginError)").font(.footnote).bold().padding(5)
-                        }
-                        
-                        Button(action: {
-                            login()
-                        }, label: {
-                            Image(systemName: "arrow.right")
-                                .font(.system(size: 40))
-                        })
-                        .tint(.white)
-                        .frame(width: 72, height: 72)
-                        .background(.blue)
-                        .clipShape(Circle())
-                        .shadow(color: .blue, radius: 10)
-                        .overlay {
-                            Circle().fill(.clear).stroke(.white, lineWidth: 2)
-                        }
-                        .padding()
+                    TextField(text: $prompt, label: {
+                        Text("Enter Your Idea")
+                    })
+                    .padding()
+                    .padding(.horizontal, 20)
+                    .background {
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(.white)
+                            .stroke(.gray.opacity(0.4), lineWidth: 1)
+                            .frame(width: 290, height: 56)
                     }
-
+                    .overlay {
+                        if client.loading {
+                            HStack {
+                                Spacer()
+                                ProgressView().progressViewStyle(.circular)
+                                    .padding(.trailing, 25)
+                            }
+                        }
+                    }
+                    .padding(.leading, 20)
+                    .onSubmit {
+                        generate(prompt: prompt)
+                    }
+                    
+                    Button(action: {
+                        generate(prompt: prompt)
+                    }, label: {
+                        Image(systemName: "arrow.right")
+                            .font(.system(size: 40))
+                    })
+                    .tint(.white)
+                    .frame(width: 72, height: 72)
+                    .background(.blue)
+                    .clipShape(Circle())
+                    .shadow(color: .blue, radius: 10)
+                    .overlay {
+                        Circle().fill(.clear).stroke(.white, lineWidth: 2)
+                    }
+                    .padding()
+                    
+                    
                 }
-                .frame(width: 436, height: isLoggedin ? 106 : 206)
+                .frame(width: 436, height: 106)
                 .background {
                     RoundedRectangle(cornerRadius: 28)
                         .fill(.white)
@@ -249,58 +93,39 @@ struct StartView: View {
                             RoundedRectangle(cornerRadius: 25)
                                 .fill(.clear)
                                 .stroke(.purple, lineWidth: 1)
-                                .frame(width: 430, height: isLoggedin ? 100 : 200)
+                                .frame(width: 430, height: 100 )
                         }
                 }
                 
                 
                 HStack (spacing: 48) {
                     
-                    if isLoggedin {
-                        Button(action: {
-                            withAnimation {
-                                showMyPlots.toggle()
-                            }
-                        }, label : {
-                            Text("My plots")
-                        })
-                        
-                        
-                        Button(action: {
-                            self.prompt = ""
-                            randomGenerate()
-                        }, label : {
-                            
-                            Text("I' am feeling lucky")
-                        })
-                        
-                        
-                        Button(action: {
-                            createNewBlankProject()
-                        }, label: {
-                            Text("Blank plot")
-                        })
-                        .tint(.white)
-                    } else {
-                        if isShowRegister == false {
-                            Button(action: {
-                                withAnimation {
-                                    isShowRegister.toggle()
-                                }
-                            }, label : {
-                                Text("Register For Account")
-                            })
-                        } else {
-                            Button(action: {
-                                withAnimation {
-                                    isShowRegister.toggle()
-                                }
-                            }, label : {
-                                Text("Back to SignIn")
-                            })
+                    
+                    Button(action: {
+                        withAnimation {
+                            showMyPlots.toggle()
                         }
-
-                    }
+                    }, label : {
+                        Text("My plots")
+                    })
+                    
+                    
+                    Button(action: {
+                        self.prompt = ""
+                        randomGenerate()
+                    }, label : {
+                        
+                        Text("I' am feeling lucky")
+                    })
+                    
+                    
+                    Button(action: {
+                        createNewBlankProject()
+                    }, label: {
+                        Text("Blank plot")
+                    })
+                    .tint(.white)
+                    
                     
                 }
                 .bold()
@@ -308,12 +133,7 @@ struct StartView: View {
                 .padding(.vertical, 50)
                 .shadow(radius: 5)
                 
-                
-                
 
-
-
-                
                 if showMyPlots {
                     ScrollView {
                         VStack(alignment: .center, spacing: 20) {
@@ -359,22 +179,7 @@ struct StartView: View {
                     .scrollIndicators(.hidden)
                     .transition(.move(edge: .bottom))
                 }
-                else if isLoggedin {
-                    Button(action: {
-                        regEmail = ""
-                        regPassword = ""
-                        email = ""
-                        password = ""
-                        
-                        logout()
-                    }, label: {
-                        Image(systemName: "rectangle.portrait.and.arrow.forward.fill")
-                            .font(.system(size: 20))
-                            .bold()
-                    })
-                    .foregroundColor(.white)
 
-                }
             }
 
 
@@ -387,29 +192,9 @@ struct StartView: View {
         .onDisappear(perform: {
             
         })
-        .alert(isPresented: $showRegisterOK, content: {
-            Alert(title: Text("Register Success"), dismissButton: .default(Text("OK")))
-        })
     }
         
-    func register() {
-        Auth.auth().createUser(withEmail: regEmail, password: regPassword) { (authResult, error) in
-            if let error = error {
-                registerError = error.localizedDescription
-                return
-            }
-            
-            guard let user = authResult?.user else {
-                return
-            }
-            
-            withAnimation {
-                isShowRegister.toggle()
-            }
-            showRegisterOK = true
-        }
-    }
-    
+
     func generate(prompt : String) {
 
         guard client.loading == false else {
@@ -444,23 +229,7 @@ struct StartView: View {
     func randomGenerate() {
         self.generate(prompt: "隨便教我做點甚麼")
     }
-    
-    func login() {
-        Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
-            if let error = error {
-                loginError = error.localizedDescription
-            } else {
-                password = ""
-                uid = authResult?.user.uid ?? ""
-                
-                loadFolder(uid: uid)
-                
-                withAnimation {
-                    isLoggedin.toggle()
-                }
-            }
-        }
-    }
+
     
     func loadFolder(uid : String) {
         print("load folder for \(uid)")
@@ -470,13 +239,7 @@ struct StartView: View {
         })
     }
     
-    func logout() {
-        try? Auth.auth().signOut()
-        withAnimation {
-            isLoggedin.toggle()
-        }
-    }
-    
+
     func delete(at offsets: IndexSet) {
         for index in offsets {
             let url = fileURLs[index]

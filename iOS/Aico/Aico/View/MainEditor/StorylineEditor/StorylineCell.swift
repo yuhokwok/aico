@@ -65,9 +65,9 @@ struct StorylineCell: View {
         .padding(5)
         .background {
             RoundedRectangle(cornerRadius: 20)
-                .fill(.white)
+                .fill(Material.ultraThin)
                 .shadow(radius: 10)
-                .opacity(0.5)
+                //.opacity(0.5)
         }
     }
 }

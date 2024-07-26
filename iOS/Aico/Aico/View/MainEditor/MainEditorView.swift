@@ -8,7 +8,6 @@
 import SwiftUI
 import Observation
 import UIKit
-import FirebaseAuth
 
 @MainActor
 struct MainEditorView: View {
@@ -24,7 +23,20 @@ struct MainEditorView: View {
     
     @State var shouldExpand = false
     
+    
+    
+    ///Editor
+    @State private var scale: CGFloat = 1.0
+    @State private var lastScale: CGFloat = 1.0
+    @State private var offset: CGSize = .zero
+    @State private var lastOffset: CGSize = .zero
+    @State private var isScaling = false
+    @State private var isDragging = false
 
+    
+    @State var currentLine: (start: CGPoint, end: CGPoint)? = nil
+    
+    
     var editorState : EditorState {
         documentHandler.project.editorState
     }
@@ -52,76 +64,147 @@ struct MainEditorView: View {
             //.scaledToFill()
                 .opacity(0.5)
             
-            HStack {
+            AnimatedMeshView()
+                .scaleEffect(x: 1.2, y: 1.2)
+            
+            HStack (spacing: 0){
                 
                 //Main Editor
                 HStack (spacing: 0){
                     
+                    
                     //Main Editor
                     GeometryReader(content: { geometry in
                         
+                        
+                    
                         ZStack (alignment: .topTrailing) {
+                    
                             
-                            if editorState.mode.contains(.relationship) {
+                            ZStack (alignment: .topLeading)  {
                                 
-                                RelationshipGraphEditorContainer( mainEditorState: $documentHandler.project.editorState, documentHandler: documentHandler)
-                                    .offset(x: 0, y: -yOffSet(height: geometry.size.height))
-                                    .zIndex(1)
-                                    .shadow( color: Color.gray.opacity(0.7),
-                                             radius: 8,
-                                             x: 0,
-                                             y: 0
-                                    )
-                                    .background(.white.opacity(0.3))
-                                    .clipShape(RoundedRectangle(cornerRadius: 28))
-                                    .transition(.scale.combined(with: .opacity))
-                                
-                            } else if editorState.mode.contains(.project) &&  !editorState.mode.contains(.stage) {
-                                //MARK: - Stroyline Editor
-                                
-                                GeometryReader {
-                                    reader in
-                                    
-                                    StorylineEditorView(documentHandler: documentHandler,
-                                                        nodes: $documentHandler.project.projectGraph.nodes,
-                                                        baseWidth: reader.size.width,
-                                                        addAction: {
-                                                                self.addNode()
-                                                        })
+                                VStack {
+                                    Spacer()
+                                    HStack {
+                                        Spacer()
+                                        Text("center")
+                                        Spacer()
+                                    }
+                                    Spacer()
                                 }
+                                .coordinateSpace(name: "Editor")
                                 
                                 
-                            } else {
-                                
-                                
-                                MainEditorContainer(
-                                    mainEditorState: $documentHandler.project.editorState,
-                                    documentHandler: documentHandler)
-                                .coordinateSpace(name: "mainEditorContainer")
-                                .offset(x: 0, y: -yOffSet(height: geometry.size.height))
-                                .onAppear {
-                                    self.size = geometry.size
-                                }
-                                .onChange(of: geometry.size, {
-                                    value, inInitial in
-                                    print("size changed: \(value)")
-                                    self.size = value
-                                })
-                                .zIndex(0)
-                                .clipShape(RoundedRectangle(cornerRadius: 28))
-                                .background {
-                                    RoundedRectangle(cornerRadius: 28)
-                                        .fill(.white)
-                                        .shadow( color: Color.gray.opacity(1.0),
-                                                 radius: 15,
-                                                 x: 0,
-                                                 y: 0
+
+                                Group {
+                                    ForEach($documentHandler.project.relationshipGraph.nodes, id:\.identifier) {
+                                        $node in
+                                        
+                                        BlockView(colorSet: .blue,
+                                                  node: $node,
+                                                  selected: false,
+                                                  currentLine: $currentLine,
+                                                  screenSize: geometry.size
                                         )
-                                        .opacity(0.4)
+                                    }
+                                    
+                                    
+                                    ForEach(documentHandler.project.relationshipGraph.channels, id:\.identifier) {
+                                        channel in
+                                    }
+                                    
+                                    
+                                    if let line = self.currentLine {
+                                        
+                                        GeometryReader { geometry in
+                                            ZStack {
+                                                
+                                                Path { path in
+                                                    path.move(to: line.start)
+                                                    path.addLine(to: line.end)
+                                                }
+                                                .stroke(.white, lineWidth: 7)
+                                                
+                                                Path { path in
+                                                    path.move(to: line.start)
+                                                    path.addLine(to: line.end)
+                                                }
+                                                .stroke(LinearGradient(
+                                                    gradient: Gradient(colors: [.red, .red.opacity(0.2)]),
+                                                    startPoint: UnitPoint(x: line.start.x / geometry.size.width, y: line.start.y / geometry.size.height),
+                                                    endPoint: UnitPoint(x: line.end.x / geometry.size.width, y: line.end.y / geometry.size.height)),
+                                                        lineWidth: 5)
+                                                
+                                            }
+                                        }
+                                        
+                                    }
+                                                                        
                                 }
-                                .transition(.scale.combined(with: .opacity))
+                                .scaleEffect(scale)
+                                .offset(x: offset.width, y: offset.height)
+                                
+                                
+                                DottedGrid(rows: Int(geometry.size.width / 27), columns: Int(geometry.size.height / 27))
+                                    .allowsHitTesting(false)
+                                
                                 
                             }
+                            .clipShape(RoundedRectangle(cornerRadius: 28))
+                            .background(.ultraThinMaterial)
+                            .contentShape(Rectangle())
+                            .gesture(
+                                MagnificationGesture()
+                                    .onChanged { value in
+                                        if !isScaling {
+                                            isScaling = true
+                                            lastScale = scale
+                                        }
+                                        if !isDragging {
+                                            withAnimation(.easeInOut(duration: 0.1)){
+                                                scale = lastScale * value.magnitude
+                                            }
+                                        }
+                                    }
+                                    .onEnded { _ in
+                                        isDragging = false
+                                        isScaling = false
+                                    }
+                                    .simultaneously(with: DragGesture()
+                                        .onChanged { value in
+                                            if !isDragging {
+                                                isDragging = true
+                                                lastOffset = offset
+                                            }
+                                            if !isScaling {
+                                                offset = CGSize(width: lastOffset.width + value.translation.width, height: lastOffset.height + value.translation.height)
+                                            }
+                                        }
+                                        .onEnded { _ in
+                                            isDragging = false
+                                            isScaling = false
+                                        }
+                                    )
+                            )
+                            
+                            
+
+                                VStack {
+                                    
+                                    Spacer()
+
+                                    StorylineEditorView(documentHandler: documentHandler,
+                                                        nodes: $documentHandler.project.projectGraph.nodes,
+                                                        addAction: {
+                                        self.addNode()
+                                    })
+                                }
+                                .zIndex(2)
+
+ //                           }
+ 
+                            
+                            
                             
                             //MARK: - Tool Bar
                             HStack (alignment: .top) {
@@ -227,14 +310,13 @@ struct MainEditorView: View {
                                                      y: 0
                                             )
                                     }
-//                                    .onTapGesture {
-//                                        documentHandler.project.editorState.mode.insert(.relationship)
-//                                    }
+
                                 }
                                 
                                 
                             }
                             .padding(20)
+                            .zIndex(3)
                         }
                         
                     })
@@ -497,6 +579,7 @@ struct MainEditorView: View {
                     Spacer()
                 }
                 .padding(40)
+                
             }
             
         }
