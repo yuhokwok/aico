@@ -25,6 +25,7 @@ protocol Node: HasIdentifier, HasAttribute, HasProperty {
     var center : CGPoint { get set }
     var size : CGSize { get set }
     var frame : CGRect { get set }
+    var color : String { get set }
     
     var thumbnailPath : String? { get set }
     

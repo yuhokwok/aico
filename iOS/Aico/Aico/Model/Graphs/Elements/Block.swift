@@ -126,7 +126,7 @@ struct Block : Node, HasPort, Codable  {
             //let comPort = Port(kind: .comChannel, name: "com")
             //block.comChannels.append(comPort)
         }
-        
+        print("colorset: \(block.color)")
 
         
         return block

@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 struct PlayActor : Node, HasPort, Codable {
+    
+    
 
     var id: String {
         return identifier
@@ -18,6 +20,7 @@ struct PlayActor : Node, HasPort, Codable {
     var name : String
     var role : String
     var config : RoleConfig
+    var color : String = colors[Int.random(in: 0...999) % 6]
     
     //geometry
     var center: CGPoint
@@ -136,6 +139,9 @@ struct PlayActor : Node, HasPort, Codable {
         let identifier = UUID().uuidString
         
         let relationshipPort = Port(kind: .comChannel,  name: "relationship")
+        
+        let inPort = Port(kind: .inChannel, name: "inPort")
+        let outPort = Port(kind: .outChannel, name: "outPort")
        
         //two default  block, stage Input and stage Output
         var stageInput = Block.new(.stageInput, for: bounds)
@@ -159,9 +165,9 @@ struct PlayActor : Node, HasPort, Codable {
                         size: CGSize(width: 206, height: 217),
                         attribute: Attribute.new,
                         personality: Attribute.new, 
-                        inChannels: [],
-                        outChannels: [],
-                        comChannels: [relationshipPort])
+                             inChannels: [inPort],
+                             outChannels: [outPort],
+                             comChannels: [relationshipPort])
     
         return node
     }

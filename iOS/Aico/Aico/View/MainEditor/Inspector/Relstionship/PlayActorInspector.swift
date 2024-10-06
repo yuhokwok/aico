@@ -21,6 +21,8 @@ struct PlayActorInspector: View, BaseInspector {
     @FocusState private var focusState : Int?
     @Binding var editorState : EditorState
     
+    var selectedId : String?
+    
     //@Binding var stage : StageGraph
     
     @State var identifier : String = ""
@@ -40,7 +42,7 @@ struct PlayActorInspector: View, BaseInspector {
         ScrollView {
             VStack (alignment: .leading ) {
                 
-                //InspectorTitle("Playactor")
+                InspectorTitle("PlayActor")
                 
                 VStack {
                     HStack {
@@ -325,10 +327,21 @@ struct PlayActorInspector: View, BaseInspector {
                 //updateName()
                 
             })
+            .onChange(of: selectedId, initial: true, {
+                print("changed")
+                
+                if let id = selectedId, let role = handler.entity(for: id) as? PlayActor {
+                    self.identifier = role.identifier
+                    self.name = role.name
+                    self.description = role.description
+                    self.attribute = role.attribute
+                    self.personality = role.personality
+                }
+            })
             .onChange(of: editorState, initial: true, {
                 print("changed")
                 
-                if let id = editorState.selectedId, let role = handler.entity(for: id) as? PlayActor {
+                if let id = selectedId, let role = handler.entity(for: id) as? PlayActor {
                     self.identifier = role.identifier
                     self.name = role.name
                     self.description = role.description
@@ -402,7 +415,7 @@ struct PlayActorInspector: View, BaseInspector {
     
     @MainActor
     func commitChange(){
-        if let id = editorState.selectedId, var entity = handler.entity(for: id) as? PlayActor {
+        if let id = selectedId, var entity = handler.entity(for: id) as? PlayActor {
             entity.attribute = self.attribute
             entity.personality = self.personality
             entity.name = self.name

@@ -259,11 +259,20 @@ struct StartView: View {
         let url  = Bundle.main.url(forResource: "Blank", withExtension: "aicoproj")
         let docFolder = AppFolderManager.projectsFolder(uid: uid)
         
-        guard let url = url, let docFolder = docFolder else {
+        guard var url = url, let docFolder = docFolder,
+              var components = URLComponents(url: url, resolvingAgainstBaseURL: false)else {
             return
         }
         
-        
+        if components.path.hasSuffix("/") {
+            // Remove the trailing slash
+            components.path = String(components.path.dropLast())
+            
+            if let newURL = components.url {
+                url = newURL
+            }
+        }
+
         var templateFileName = url.lastPathComponent
         if templateFileName == "Blank.aicoproj" {
             let name = gp?.projectName ?? "My Project"

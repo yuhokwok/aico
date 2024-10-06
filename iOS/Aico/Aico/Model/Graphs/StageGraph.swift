@@ -41,7 +41,7 @@ struct StageGraph : Identifiable, Node, Graph, HasPort, Codable, Equatable {
                           height: size.height)
         }
     }
-    
+    var color : String = colors[Int.random(in: 0...999) % 6]
     var thumbnailPath: String?
     
     var attribute: Attribute

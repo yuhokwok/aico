@@ -17,90 +17,13 @@ enum BlockColor : String {
 }
 
 
-struct BlockPortView  : View {
-    
-    var colorSet : BlockColorSet
-
-    var centre : CGPoint = .zero
-
-    
-
-    
-    var isLeft : Bool = true
-    
-    @Binding var currentLine: (start: CGPoint, end: CGPoint)?
-    
-
-    var body: some View {
-        
-        RoundedRectangle(cornerRadius: 5)
-            .fill(gradient)
-            .frame(width: 30, height: 48)
-            .overlay {
-                HStack(spacing: 0) {
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(colorSet.handleColor)
-                        .frame(width: 10, height: 48)
-                    Spacer()
-                }
-            }
-            .highPriorityGesture (
-                DragGesture()
-                    .onChanged { value in
-                        print("changed")
-                        
-                        if isLeft == false {
-                            self.currentLine = (start: CGPoint(x: centre.x + 130, y: centre.y + 15),
-                                                end: CGPoint(x: centre.x + 130 + value.location.x - 40, y: centre.y + value.location.y))
-                        } else {
-                            self.currentLine = (start: CGPoint(x: centre.x - 100, y: centre.y + 15),
-                                                end: CGPoint(x: centre.x - 100 + value.location.x + 20, y: centre.y + value.location.y))
-                        }
-                        //manager.nodeViewModel.currentLine = (start: position(), end: value.location)
-                    }
-                    .onEnded { value in
-//                        let endPoint = value.location
-//                        let closeDistance: CGFloat = 30.0
-//                        var didConnect = false
-//                        
-//                        for targetNode in manager.nodeViewModel.nodeCreator.nodes {
-//                            let nodePositionAdjustment = port.portType == .input ? node.width / 2 : -node.width / 2
-//                            let targetPorts = port.portType == .input ? targetNode.outputPorts : targetNode.inputPorts
-//                            
-//                            if attemptToConnect(port: port, from: node, to: targetPorts, targetNode: targetNode, nodePositionAdjustment: nodePositionAdjustment, nodeViewModel: manager.nodeViewModel, endPoint: endPoint, closeDistance: closeDistance) {
-//                                didConnect = true
-//                                break
-//                            }
-//                        }
-//                        
-//                        if !didConnect {
-//                            manager.nodeViewModel.currentLine = nil
-//                        }
-                        self.currentLine = nil
-                    }
-            )
-        
-    }
-    
-    var gradient : LinearGradient {
-        if isLeft {
-            return LinearGradient(colors: [colorSet.handleColor, .white.opacity(0.0)], startPoint: UnitPoint(x: 0.0, y: 0.5), endPoint: UnitPoint(x: 1.0, y: 0.5))
-        }
-        return LinearGradient(colors: [.white.opacity(0.0), colorSet.handleColor], startPoint: UnitPoint(x: 0.0, y: 0.5), endPoint: UnitPoint(x: 1.0, y: 0.5))
-    }
-}
-
-
 struct BlockView: View {
-    
-    
+
     var colorSet = BlockColorSet.yellow
     
-
     @Binding var node : PlayActor
     
-    
-    @State var selected = true
+    var selected : Bool
     @Binding var currentLine : (start: CGPoint, end: CGPoint)?
     
     var name : String = "王詮勝"
@@ -111,9 +34,15 @@ struct BlockView: View {
     
     var screenSize : CGSize
     
+    @State private var location: CGPoint = CGPoint(x: 0, y: 0)
+    @GestureState private var startLocation: CGPoint? = nil // 1
+    
+    var selectionHandler : (() -> ())?
+    
+    var portConnectionHandler : (Port, CGPoint) -> ()?
+    
     var body: some View {
-        
-        
+
         GeometryReader {
             
             geometry in
@@ -121,9 +50,20 @@ struct BlockView: View {
             ZStack {
                 
                 HStack (spacing: 0) {
-                    BlockPortView(colorSet: colorSet, centre: .zero,  currentLine: $currentLine)
+                    BlockPortView(port: node.inChannels.first!,
+                                  colorSet: colorSet,
+                                  centre: .zero,
+                                  screenSize: screenSize, node: $node,
+                                  currentLine: $currentLine,
+                                  connectionHandler: portConnectionHandler)
                     Spacer()
-                    BlockPortView(colorSet: colorSet, centre: .zero, isLeft: false, currentLine: $currentLine)
+                    BlockPortView(port: node.outChannels.first!,
+                                  colorSet: colorSet,
+                                  centre: .zero,
+                                  isLeft: false,
+                                  screenSize: screenSize, node: $node,
+                                  currentLine: $currentLine,
+                                  connectionHandler: portConnectionHandler)
                 }
                 
                 VStack {
@@ -134,14 +74,14 @@ struct BlockView: View {
                         .frame(width: 96)
                         .overlay {
                             Circle()
-                                .fill(.blue)
+                                .fill(colorSet.outterBorderGradient)
                                 .frame(width: 81)
                         }
                     
-                    Text(name)
+                    Text(node.name)
                         .foregroundStyle(Color(hex: "#00296B"))
                         .font(.system(size: 17, weight: .semibold))
-                    Text(roleName)
+                    Text(node.role)
                         .foregroundStyle(Color(hex: "#1668AC"))
                         .font(.system(size: 13, weight: .semibold))
                 }
@@ -166,55 +106,55 @@ struct BlockView: View {
             }
             .frame(width: 204, height: 170)
             .overlay {
-                
-                if selected {
+                //if selected {
                     RoundedRectangle(cornerRadius: 28)
                         .fill(.clear)
                         .stroke(colorSet.outterBorderGradient, lineWidth: 10)
                         .frame(width: 194, height: 204)
                         .shadow(color: colorSet.shadowColor.opacity(0.5), radius: 8, y: 4)
                         .allowsHitTesting(false)
-                }
+                        .opacity(selected ? 1.0 : 0.0)
+                        .scaleEffect(selected ? 1.0 : 0.9)
+                        .animation(.easeInOut, value: selected)
+                //}
             }
+            .position(location)
             .gesture(
-                DragGesture(coordinateSpace: .named("Editor"))
-                    .onChanged { value in
-                        
-                        //print("\(geometry.size)")
-                        
-                        if offset == nil {
-                            
-                            
-                            //self.offset = CGSize(width: (self.center.x - value.startLocation.x), height: (self.center.y - value.startLocation.y))
-                            
-                            
-                            //offset = CGPoint( x: (value.startLocation.x - self.center.x) / 2 , y: (value.startLocation.y - self.center.y) / 2)
-//                            print(self.center)
-//                            print(value.startLocation)
-//                            print(offset)
-                        }
-                        
-                        print(value.translation)
-                        //self.translation = CGPoint(x: value.location.x, y: value.location.y)
-                        self.offset = CGSize(width: value.location.x, height: value.location.y)
-                    }
-                    .onEnded {
-                        value in
-                        
-                        node.center = CGPoint(x: (value.location.x ) - screenSize.width / 2, y: (value.location.y) - screenSize.height / 2)
-                        self.translation = nil
-                        self.offset = nil
-                    }
+                dragGesture.simultaneously(with: TapGesture().onEnded({selectionHandler?()}))
             )
-            .position(self.center)
-            .offset(offset ?? .zero)
+            .onChange(of: screenSize, initial: false, {
+                oldValue, newValue in
+                self.location = center
+            })
+            .onAppear {
+                self.location = center
+            }
         }
     }
     
     var center : CGPoint {
         return CGPoint(x: node.center.x + screenSize.width / 2, y: node.center.y + screenSize.height / 2)
     }
+    
+    var dragGesture: some Gesture {
+        DragGesture()
+            .onChanged { value in
+                selectionHandler?()
+                var newLocation = startLocation ?? location // 3
+                newLocation.x += value.translation.width
+                newLocation.y += value.translation.height
+                self.location = newLocation
+                self.node.center = CGPoint(x: location.x - screenSize.width / 2, y: location.y - screenSize.height / 2)
+            }.updating($startLocation) { (value, startLocation, transaction) in
+                startLocation = startLocation ?? location // 2
+            }.onEnded {
+                _ in
+                self.node.center = CGPoint(x: location.x - screenSize.width / 2, y: location.y - screenSize.height / 2)
+            }
+    }
+    
 }
+
 
 
 struct BlockColorSet {
@@ -222,6 +162,28 @@ struct BlockColorSet {
     var shadowColor : Color
     var innerBorderGradient : LinearGradient
     var outterBorderGradient : LinearGradient
+
+    static func get(_ string : String) -> BlockColorSet {
+        guard let blockColor = BlockColor(rawValue: string) else {
+            return .blue
+        }
+        
+        switch(blockColor){
+            
+        case .yellow:
+            return .yellow
+        case .green:
+            return .green
+        case .blue:
+            return .blue
+        case .purple:
+            return .purple
+        case .red:
+            return .red
+        case .gray:
+            return .gray
+        }
+    }
 
     
     static var yellow : BlockColorSet {

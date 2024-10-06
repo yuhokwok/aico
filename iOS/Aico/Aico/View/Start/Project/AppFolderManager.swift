@@ -72,13 +72,19 @@ class AppFolderManager {
         guard let documentsFolder =
                 try? FileManager.default.url(for: .documentDirectory,
                                              in: .userDomainMask,
-                                             appropriateFor: nil, create: false) else {
+                                             appropriateFor: nil, create: true) else {
             return nil
         }
         
         if uid == "" {
+            let newURL = documentsFolder.appendingPathComponent("projects/", isDirectory: true)
+            try? FileManager.default.createDirectory(at: newURL, withIntermediateDirectories: true)
+            
             return documentsFolder.appendingPathComponent("projects/", isDirectory: true)
         } else {
+            let newURL = documentsFolder.appendingPathComponent("\(uid)/projects/", isDirectory: true)
+            try? FileManager.default.createDirectory(at: newURL, withIntermediateDirectories: true)
+            
             return documentsFolder.appendingPathComponent("\(uid)/projects/", isDirectory: true)
         }
         

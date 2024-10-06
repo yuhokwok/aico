@@ -4,7 +4,7 @@ struct DottedGrid: View {
     let rows: Int
     let columns: Int
     let dotSize: CGFloat = 3
-    let spacing: CGFloat = 27
+    let spacing: CGFloat = 50
     
     var body: some View {
         VStack(spacing: spacing) {
@@ -18,18 +18,5 @@ struct DottedGrid: View {
                 }
             }
         }
-    }
-}
-
-struct ContentView: View {
-    var body: some View {
-        DottedGrid(rows: 10, columns: 10)
-            .padding()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }

@@ -16,6 +16,8 @@
 		ED175E222BE6AA1300B887DE /* ReplicateClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED175E212BE6AA1300B887DE /* ReplicateClient.swift */; };
 		ED1C73272BED089200EA9325 /* APIClient2.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1C73262BED089200EA9325 /* APIClient2.swift */; };
 		ED20F44B2C288C400032D7CB /* Transformers in Frameworks */ = {isa = PBXBuildFile; productRef = ED20F44A2C288C400032D7CB /* Transformers */; };
+		ED28494D2CB05DEE002A92F6 /* BlockPortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28494C2CB05DEB002A92F6 /* BlockPortView.swift */; };
+		ED28494F2CB06619002A92F6 /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28494E2CB06619002A92F6 /* ConnectionView.swift */; };
 		ED2CD2222B23585E00594DC6 /* BaseInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2212B23585E00594DC6 /* BaseInspector.swift */; };
 		ED2CD2262B235AF700594DC6 /* ChannelInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2252B235AF700594DC6 /* ChannelInspector.swift */; };
 		ED2CD2282B235CF300594DC6 /* ProjectInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2272B235CF300594DC6 /* ProjectInspector.swift */; };
@@ -95,6 +97,8 @@
 		ED175E152BE61D1300B887DE /* StorylineEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorylineEditorView.swift; sourceTree = "<group>"; };
 		ED175E212BE6AA1300B887DE /* ReplicateClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplicateClient.swift; sourceTree = "<group>"; };
 		ED1C73262BED089200EA9325 /* APIClient2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient2.swift; sourceTree = "<group>"; };
+		ED28494C2CB05DEB002A92F6 /* BlockPortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockPortView.swift; sourceTree = "<group>"; };
+		ED28494E2CB06619002A92F6 /* ConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionView.swift; sourceTree = "<group>"; };
 		ED2CD2212B23585E00594DC6 /* BaseInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInspector.swift; sourceTree = "<group>"; };
 		ED2CD2252B235AF700594DC6 /* ChannelInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelInspector.swift; sourceTree = "<group>"; };
 		ED2CD2272B235CF300594DC6 /* ProjectInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInspector.swift; sourceTree = "<group>"; };
@@ -388,6 +392,8 @@
 				ED175E102BE60BBA00B887DE /* StorylineEditor */,
 				ED5F230E2AD2F4B100BFE800 /* MainEditorHostingController.swift */,
 				ED39764D2AD81C920014AE03 /* MainEditorCoorindtor.swift */,
+				ED28494E2CB06619002A92F6 /* ConnectionView.swift */,
+				ED28494C2CB05DEB002A92F6 /* BlockPortView.swift */,
 				ED511B072C4D63840047D264 /* BlockView.swift */,
 			);
 			path = MainEditor;
@@ -614,6 +620,7 @@
 				ED175E142BE618CE00B887DE /* StorylineCell.swift in Sources */,
 				ED3976492AD79C2E0014AE03 /* PortView.swift in Sources */,
 				ED175E222BE6AA1300B887DE /* ReplicateClient.swift in Sources */,
+				ED28494D2CB05DEE002A92F6 /* BlockPortView.swift in Sources */,
 				ED3976472AD79B0B0014AE03 /* NodeEditorState.swift in Sources */,
 				ED4A435F2B1B9C1800C30731 /* PlayActorInspector.swift in Sources */,
 				ED175E162BE61D1400B887DE /* StorylineEditorView.swift in Sources */,
@@ -654,6 +661,7 @@
 				ED5F231A2AD30F5100BFE800 /* PlayActor.swift in Sources */,
 				ED4A43612B1C682100C30731 /* BigBangInspector.swift in Sources */,
 				ED4F1F592ADFB4700094AB75 /* AicoProject.swift in Sources */,
+				ED28494F2CB06619002A92F6 /* ConnectionView.swift in Sources */,
 				EDD657702BE23B1100D85E93 /* HListEx.swift in Sources */,
 				EDA28E512C4D7A0D001E4F8B /* DottedView.swift in Sources */,
 				ED2CD2282B235CF300594DC6 /* ProjectInspector.swift in Sources */,
