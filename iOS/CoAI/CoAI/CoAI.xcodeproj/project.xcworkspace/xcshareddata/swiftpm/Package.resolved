@@ -1,0 +1,33 @@
+{
+  "originHash" : "e996587370a412ebae0edb83478acf8057458c6a12a6c98431508c6eb8612fe6",
+  "pins" : [
+    {
+      "identity" : "generative-ai-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google-gemini/generative-ai-swift",
+      "state" : {
+        "revision" : "44b8ce120425f9cf53ca756f3434ca2c2696f8bd",
+        "version" : "0.5.6"
+      }
+    },
+    {
+      "identity" : "replicate-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/replicate/replicate-swift",
+      "state" : {
+        "revision" : "efd033f4e421112b70e82221c813417e164aab7a",
+        "version" : "0.24.0"
+      }
+    },
+    {
+      "identity" : "wrappinghstack",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ksemianov/WrappingHStack",
+      "state" : {
+        "revision" : "3300f68b6bf5f8a75ee7ca8a40f136a558053d10",
+        "version" : "0.2.0"
+      }
+    }
+  ],
+  "version" : 3
+}
