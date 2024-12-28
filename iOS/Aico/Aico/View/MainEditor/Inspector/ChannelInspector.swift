@@ -13,6 +13,8 @@ struct ChannelInspector: View {
     
     @Binding var editorState : EditorState
     
+    var selectedId : String? = ""
+    
     //@Binding var stage : StageGraph
     
     @State var identifier : String = ""
@@ -107,7 +109,7 @@ struct ChannelInspector: View {
             .onChange(of: editorState, initial: true, {
                 print("changed")
                 
-                if let id = editorState.selectedId, let channel = handler.entity(for: id) as? Channel {
+                if let id = selectedId, let channel = handler.entity(for: id) as? Channel {
                     self.identifier = channel.identifier
                     self.name = channel.name
                     self.description = channel.description
@@ -128,7 +130,7 @@ struct ChannelInspector: View {
             return
         }
         
-        guard let id = editorState.selectedId, let entity = handler.entity(for: id) as? Channel, entity.name != self.name else {
+        guard let id = selectedId, let entity = handler.entity(for: id) as? Channel, entity.name != self.name else {
             return
         }
         commitChange()
@@ -139,7 +141,7 @@ struct ChannelInspector: View {
             return
         }
         
-        guard let id = editorState.selectedId, let entity = handler.entity(for: id) as? Channel, entity.description != self.description else {
+        guard let id = selectedId, let entity = handler.entity(for: id) as? Channel, entity.description != self.description else {
             return
         }
         commitChange()
@@ -169,7 +171,7 @@ struct ChannelInspector: View {
     
     @MainActor
     func commitChange(){
-        if let id = editorState.selectedId, var entity = handler.entity(for: id) as? Channel {
+        if let id = selectedId, var entity = handler.entity(for: id) as? Channel {
             entity.attribute = self.attribute
             entity.name = self.name
             entity.description = self.description

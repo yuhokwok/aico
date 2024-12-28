@@ -18,23 +18,24 @@ struct MainEditorView: View {
     @StateObject var documentHandler : DocumentHandler
     
     @State var isShowRuntime = false
-    
-    @State var size : CGSize = .zero
-    
+
     @State var shouldExpand = false
     
-    @State var selectedId: String? = nil
+    
+
     
     
     ///Editor
+    ///
+    ///
+    @State var size : CGSize = .zero
+    @State var selectedId: String? = nil///
     @State private var scale: CGFloat = 1.0
     @State private var lastScale: CGFloat = 1.0
     @State private var offset: CGSize = .zero
     @State private var lastOffset: CGSize = .zero
     @State private var isScaling = false
     @State private var isDragging = false
-    
-    
     @State var currentLine: (start: CGPoint, end: CGPoint)? = nil
     
     var editorState : EditorState {
@@ -73,20 +74,16 @@ struct MainEditorView: View {
                         
                         ZStack (alignment: .topTrailing) {
                             
+                            
+                            RoundedRectangle(cornerRadius: 28)
+                                .strokeBorder(.white.opacity(0.7), lineWidth: 5)
+                                //.fill(Color.white.opacity(0.5))
+                            
                             //Main Editor
                             ZStack (alignment: .topLeading)  {
                                 
-                                VStack {
-                                    Spacer()
-                                    HStack {
-                                        Spacer()
-                                        Text("")
-                                        Spacer()
-                                    }
-                                    Spacer()
-                                }
-                                .coordinateSpace(name: "Editor")
-                                
+                                PlaceHolderView()
+                            
                                 Group {
                                     ForEach($documentHandler.project.relationshipGraph.nodes, id:\.identifier) {
                                         $node in
@@ -128,7 +125,7 @@ struct MainEditorView: View {
                                                     path.move(to: line.start)
                                                     path.addLine(to: line.end)
                                                 }
-                                                .stroke(.black, lineWidth: 1)
+                                                .stroke(.black, lineWidth: 2)
                                             }
                                         }
                                         
@@ -144,24 +141,26 @@ struct MainEditorView: View {
                                 .offset(x: offset.width, y: offset.height)
                                 
                                 
-                                //                                ScrollView {
-                                //                                    DottedGrid(rows: Int(geometry.size.width / 5), columns: Int(geometry.size.height / 27))
-                                //                                        .allowsHitTesting(false)
-                                //
-                                //                                }
-                                //                                .disabled(true)
-                                //                                .allowsHitTesting(false)
                             }
                             .background(.regularMaterial)
-                            .clipShape(RoundedRectangle(cornerRadius: 28))
+                            .overlay {
+                                ScrollView {
+                                    DottedGrid(rows: Int(geometry.size.width / 27), columns: Int(geometry.size.height / 27))
+                                        .allowsHitTesting(false)
+
+                                }
+                                .disabled(true)
+                                .allowsHitTesting(false)
+                            }
+                            .clipShape(RoundedRectangle(cornerRadius: 22))
                             .contentShape(Rectangle())
                             .overlay {
-                                RoundedRectangle(cornerRadius: 26)
+                                RoundedRectangle(cornerRadius: 22)
                                     .fill(.clear)
-                                    .stroke(.blue, lineWidth: 1)
-                                    .frame(width: geometry.size.width - 15, height: geometry.size.height - 15)
-                                
+                                    .strokeBorder(Color(hex: "#A8CBE7"), lineWidth: 1)
                             }
+                            
+                            .padding(5)
                             .gesture(
                                 MagnificationGesture()
                                     .onChanged { value in
@@ -205,12 +204,25 @@ struct MainEditorView: View {
                                 
                                 Spacer()
                                 
-                                StorylineEditorView(documentHandler: documentHandler,
-                                                    nodes: $documentHandler.project.projectGraph.nodes,
-                                                    addAction: {
-                                    self.addNode()
-                                })
+                                VStack {
+                                    StorylineEditorView(documentHandler: documentHandler,
+                                                        nodes: $documentHandler.project.projectGraph.nodes,
+                                                        addAction: {
+                                        self.addNode()
+                                    })
+                                }
+                                .padding(.vertical, 10)
+                                .background(.ultraThinMaterial)
+                                .clipShape(RoundedRectangle(cornerRadius: 26))
+                                .overlay{
+                                    RoundedRectangle(cornerRadius: 26)
+                                        .fill(.clear)
+                                        .stroke(.gray.opacity(0.2), lineWidth: 1)
+                                }
+                                .padding(10)
+                                
                             }
+                            .padding(15)
                             .zIndex(2)
                             
                                                         
@@ -275,7 +287,6 @@ struct MainEditorView: View {
                                             .frame(height: 111)
                                         }
                                         .scrollDisabled(true)
-                                        
                                     }
                                     .frame(height: shouldExpand ? 169 : 68)
                                     .animation(.easeInOut, value: shouldExpand)
@@ -345,25 +356,25 @@ struct MainEditorView: View {
                                     .clipShape(RoundedRectangle(cornerRadius: 18))
                                     .shadow(color: .gray.opacity(0.3), radius: 5)
                                     
-                                    Button(action: {
-                                        withAnimation {
-                                            if UIDevice.current.userInterfaceIdiom == .pad {
-                                                isShowInspector.toggle()
-                                            } else {
-                                                isShowInspectorPhone.toggle()
-                                            }
-                                            
-                                        }
-                                    }, label: {
-                                        Image(systemName: UIDevice.current.userInterfaceIdiom == .pad ? "sidebar.right" : "rectangle.portrait.bottomhalf.inset.filled" )
-                                            .frame(width: buttonSize, height: buttonSize)
-                                            .foregroundStyle(Color(hex: "#008CFF"))
-                                            .font(.system(size: 18).weight(.semibold))
-                                    })
-                                    .frame(width: buttonSize, height: buttonSize)
-                                    .background(.regularMaterial)
-                                    .clipShape(RoundedRectangle(cornerRadius: 18))
-                                    .shadow(color: .gray.opacity(0.3), radius: 5)
+//                                    Button(action: {
+//                                        withAnimation {
+//                                            if UIDevice.current.userInterfaceIdiom == .pad {
+//                                                isShowInspector.toggle()
+//                                            } else {
+//                                                isShowInspectorPhone.toggle()
+//                                            }
+//                                            
+//                                        }
+//                                    }, label: {
+//                                        Image(systemName: UIDevice.current.userInterfaceIdiom == .pad ? "sidebar.right" : "rectangle.portrait.bottomhalf.inset.filled" )
+//                                            .frame(width: buttonSize, height: buttonSize)
+//                                            .foregroundStyle(Color(hex: "#008CFF"))
+//                                            .font(.system(size: 18).weight(.semibold))
+//                                    })
+//                                    .frame(width: buttonSize, height: buttonSize)
+//                                    .background(.regularMaterial)
+//                                    .clipShape(RoundedRectangle(cornerRadius: 18))
+//                                    .shadow(color: .gray.opacity(0.3), radius: 5)
                                     
                                 }
 
@@ -381,113 +392,226 @@ struct MainEditorView: View {
                     Spacer().frame(width: 5)
                     
 
-                        VStack{
-                            
-                            //Inspector
-                            if let id = selectedId, let entity = documentHandler.entity(for: id) {
-                                //HStack {
-                                
-                                ZStack {
-                                    
-                                    VStack {
+                        VStack (spacing: 0) {
+                            VStack(spacing : 0) {
+
+                                //Inspector
+                                if let id = selectedId, let entity = documentHandler.entity(for: id) {
+
+                                    ZStack {
                                         
                                         VStack {
-                                            if let entity = entity as? Block {
-                                                BlockInspector(editorState: $documentHandler.project.editorState,
-                                                               name: entity.name,
-                                                               attribute: entity.attribute,
-                                                               handler: documentHandler,
-                                                               showDelete: !(entity.name == "stageInput" || entity.name == "stageOutput"))
-                                                .padding()
-                                                
-                                            } else if entity is Channel {
-                                                if let entity = entity as? Channel {
-                                                    ChannelInspector(editorState: $documentHandler.project.editorState, name: entity.name, attribute: entity.attribute, handler: documentHandler)
-                                                        .padding()
-                                                }
-                                            } else if let graph = entity as? StageGraph {
-                                                if graph.name == "bigbang" {
-                                                    
-                                                    BigBangInspector(editorState: $documentHandler.project.editorState,
-                                                                     description: graph.description,
-                                                                     handler: documentHandler)
-                                                    .padding()
-                                                    
-                                                } else {
-                                                    StageGraphInspector(editorState: $documentHandler.project.editorState,
-                                                                        name: graph.name,
-                                                                        attribute: graph.attribute,
-                                                                        handler: documentHandler,
-                                                                        showDelete: !documentHandler.project.editorState.mode.contains(.stage))
-                                                    .padding()
-                                                }
-                                                
-                                            } else if entity is ProjectGraph{
-                                                
-                                                ProjectInspector(editorState: $documentHandler.project.editorState, selectedMode: .preset, description: "", handler: documentHandler)
-                                                    .padding()
-                                                
-                                            } else if entity is RelationshipGraph{
-                                                RelationshipGraphInspector()
-                                                    .padding()
-                                            } else if entity is PlayActor {
-                                                if let entity = entity as? PlayActor {
-                                                    PlayActorInspector(editorState: $documentHandler.project.editorState,
-                                                                       selectedId: selectedId,
-                                                                       name: entity.name,
-                                                                       attribute: entity.attribute, personality: entity.personality,
-                                                                       handler: documentHandler)
-                                                    .padding()
-                                                }
-                                            }
-                                        } .background {
-                                            RoundedRectangle(cornerRadius: 16)
-                                                .fill(.white)
-                                                .stroke(.gray, lineWidth: 1)
-                                        }
-                                    }
-                                    .padding()
-                                    .transition(.move(edge: .trailing))
-                                    .scaleEffect(x: isShowRuntime ? 0.95 : 1.0,
-                                                 y: isShowRuntime ? 0.95 : 1.0,
-                                                 anchor: .top)
-                                    .offset(y: isShowRuntime ? -10 : 0)
-                                    .opacity(isShowRuntime ? 0.7 : 1.0)
-                                    .zIndex(11)
-                                    
-                                    if isShowRuntime {
-                                        VStack {
                                             
-                                            Spacer().frame(height: 120)
                                             VStack {
-                                                ExecuteView(runtime: Runtime(project: documentHandler.project))
-                                            }
-                                            
-                                            .background {
-                                                RoundedRectangle(cornerRadius: 16)
+                                                if let entity = entity as? Block {
+                                                    BlockInspector(editorState: $documentHandler.project.editorState,
+                                                                   name: entity.name,
+                                                                   attribute: entity.attribute,
+                                                                   handler: documentHandler,
+                                                                   showDelete: !(entity.name == "stageInput" || entity.name == "stageOutput"))
+                                                    .padding()
+                                                    
+                                                } else if entity is Channel {
+                                                    if let entity = entity as? Channel {
+                                                        ChannelInspector(editorState: $documentHandler.project.editorState,
+                                                                         selectedId: selectedId,
+                                                                         name: entity.name, attribute: entity.attribute, handler: documentHandler)
+                                                            .padding(10)
+                                                    }
+                                                } else if let graph = entity as? StageGraph {
+                                                    if graph.name == "bigbang" {
+                                                        
+                                                        BigBangInspector(editorState: $documentHandler.project.editorState,
+                                                                         description: graph.description,
+                                                                         handler: documentHandler)
+                                                        .padding(10)
+                                                        
+                                                    } else {
+                                                        StageGraphInspector(editorState: $documentHandler.project.editorState,
+                                                                            name: graph.name,
+                                                                            attribute: graph.attribute,
+                                                                            handler: documentHandler,
+                                                                            showDelete: !documentHandler.project.editorState.mode.contains(.stage))
+                                                        .padding(10)
+                                                    }
+                                                    
+                                                } else if entity is ProjectGraph{
+                                                    
+                                                    ProjectInspector(editorState: $documentHandler.project.editorState, selectedMode: .preset, description: "", handler: documentHandler)
+                                                        .padding(10)
+                                                    
+                                                } else if entity is RelationshipGraph{
+                                                    RelationshipGraphInspector()
+                                                        .padding(10)
+                                                } else if entity is PlayActor {
+                                                    if let entity = entity as? PlayActor {
+                                                        PlayActorInspector(editorState: $documentHandler.project.editorState,
+                                                                           selectedId: selectedId,
+                                                                           colorSet: BlockColorSet.get(entity.color),
+                                                                           name: entity.name,
+                                                                           attribute: entity.attribute, personality: entity.personality,
+                                                                           handler: documentHandler, deleteHandler : {
+                                                            if let selecteId = self.selectedId {
+                                                                documentHandler.deleteEntity(with: selecteId)
+                                                                self.selectedId = nil
+                                                            }
+                                                        })
+                                                        .padding(10)
+                                                    }
+                                                }
+                                            } .background {
+                                                RoundedRectangle(cornerRadius: 18)
                                                     .fill(.white)
-                                                    .stroke(.gray, lineWidth: 1)
+                                                    .stroke(.gray.opacity(0.2), lineWidth: 1)
                                             }
-                                            
                                         }
                                         .padding()
-                                        .zIndex(12)
-                                        .transition(.move(edge: .bottom))
+                                        .transition(.move(edge: .trailing))
+                                        .scaleEffect(x: isShowRuntime ? 0.95 : 1.0,
+                                                     y: isShowRuntime ? 0.95 : 1.0,
+                                                     anchor: .top)
+                                        .offset(y: isShowRuntime ? -10 : 0)
+                                        .opacity(isShowRuntime ? 0.7 : 1.0)
+                                        .zIndex(11)
+                                        
+                                        if isShowRuntime {
+                                            VStack {
+                                                
+                                                Spacer().frame(height: 120)
+                                                VStack {
+                                                    ExecuteView(runtime: Runtime(project: documentHandler.project))
+                                                }
+                                                
+                                                .background {
+                                                    RoundedRectangle(cornerRadius: 26)
+                                                        .fill(.white)
+                                                        .stroke(.gray.opacity(0.2), lineWidth: 1)
+                                                }
+                                                
+                                            }
+                                            .padding()
+                                            .zIndex(12)
+                                            .transition(.move(edge: .bottom))
+                                        }
+                                        
+                                    }
+
+                                } else  if let id = documentHandler.project.editorState.selectedStageId, let entity = documentHandler.entity(for: id) {
+                                    
+                                    ZStack {
+                                        
+                                        VStack {
+                                            
+                                            VStack {
+                                                if let graph = entity as? StageGraph {
+                                                    if graph.name == "bigbang" {
+                                                        
+                                                        BigBangInspector(editorState: $documentHandler.project.editorState,
+                                                                         description: graph.description,
+                                                                         handler: documentHandler)
+                                                        .padding(10)
+                                                        
+                                                    } else {
+                                                        StageGraphInspector(editorState: $documentHandler.project.editorState,
+                                                                            name: graph.name,
+                                                                            attribute: graph.attribute,
+                                                                            handler: documentHandler,
+                                                                            showDelete: !documentHandler.project.editorState.mode.contains(.stage))
+                                                        .padding(10)
+                                                    }
+                                                    
+                                                } else if entity is ProjectGraph{
+                                                    
+                                                    ProjectInspector(editorState: $documentHandler.project.editorState, selectedMode: .preset, description: "", handler: documentHandler)
+                                                        .padding(10)
+                                                    
+                                                } else if entity is RelationshipGraph{
+                                                    RelationshipGraphInspector()
+                                                        .padding(10)
+                                                }
+                                            } .background {
+                                                RoundedRectangle(cornerRadius: 18)
+                                                    .fill(.white)
+                                                    .stroke(.gray.opacity(0.2), lineWidth: 1)
+                                            }
+                                        }
+                                        .padding()
+                                        .transition(.move(edge: .trailing))
+                                        .scaleEffect(x: isShowRuntime ? 0.95 : 1.0,
+                                                     y: isShowRuntime ? 0.95 : 1.0,
+                                                     anchor: .top)
+                                        .offset(y: isShowRuntime ? -10 : 0)
+                                        .opacity(isShowRuntime ? 0.7 : 1.0)
+                                        .zIndex(11)
+                                        
+                                        if isShowRuntime {
+                                            VStack {
+                                                
+                                                Spacer().frame(height: 120)
+                                                VStack {
+                                                    ExecuteView(runtime: Runtime(project: documentHandler.project))
+                                                }
+                                                
+                                                .background {
+                                                    RoundedRectangle(cornerRadius: 26)
+                                                        .fill(.white)
+                                                        .stroke(.gray.opacity(0.2), lineWidth: 1)
+                                                }
+                                                
+                                            }
+                                            .padding()
+                                            .zIndex(12)
+                                            .transition(.move(edge: .bottom))
+                                        }
+                                        
                                     }
                                     
+                                    
+                                } else {
+                                    VStack {
+                                        Spacer()
+                                        
+                                        HStack {
+                                            Spacer()
+                                            Text("No Inspection")
+                                            Spacer()
+                                        }
+                                        
+                                        Spacer()
+                                    }
                                 }
-
-                            } else {
-                                Text("No Inspection")
-                                    .transition(.move(edge: .trailing))
+                                
                             }
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 22)
+                                    .fill(.clear)
+                                    .strokeBorder(LinearGradient(colors: [Color(hex: "#8EB6FF"), Color(hex: "#787EFF"),
+                                                                    Color(hex: "#FF89D7"), Color(hex: "#FFD589")],
+                                                           startPoint: UnitPoint(x: -0.2, y: -0.2),
+                                                           endPoint: UnitPoint(x: 1.2, y: 1.2)), lineWidth: 1)
+                            }
+                            .background {
+                                RoundedRectangle(cornerRadius: 22)
+                                    .fill(Material.regularMaterial)
+                                    .strokeBorder(LinearGradient(colors: [Color(hex: "#8EB6FF"), Color(hex: "#787EFF"),
+                                                                    Color(hex: "#FF89D7"), Color(hex: "#FFD589")],
+                                                           startPoint: UnitPoint(x: -0.2, y: -0.2),
+                                                           endPoint: UnitPoint(x: 1.2, y: 1.2)), lineWidth: 1)
+                            }
+                            .padding(5)
+                            .background() {
+                                RoundedRectangle(cornerRadius: 28)
+                                    .fill(.clear)
+                                    .strokeBorder(.white.opacity(0.7), lineWidth: 5)
+                            }
+
                         }
                         .zIndex(0)
                         .clipShape(RoundedRectangle(cornerRadius: 28))
                         .background {
                             RoundedRectangle(cornerRadius: 28)
-                                .fill(Material.regular)
-                                .shadow( color: Color.gray.opacity(0.3),
+                                .fill(.clear)
+                                .shadow( color: Color(hex:"#FDFDFD").opacity(0.6),
                                          radius: 15,
                                          x: 0,
                                          y: 0
@@ -496,7 +620,7 @@ struct MainEditorView: View {
                                 .opacity(0.5)
                         }
                         
-                        .frame(width: 300)
+                        .frame(width: 350)
                         .transition(.move(edge: .trailing))
                     
                 }
@@ -551,7 +675,7 @@ struct MainEditorView: View {
                             .stroke(Color(hex: "#E8E8E8"), lineWidth: 1)
                     }
                     .shadow(color: .gray.opacity(0.3), radius: 5)
-                    .offset(x: -40)
+                    .offset(x: -45)
                     
                     
                     
@@ -565,68 +689,6 @@ struct MainEditorView: View {
             
             
         }
-        .sheet(isPresented: $isShowInspectorPhone, content: {
-            if let id = editorState.selectedId, let entity = documentHandler.entity(for: id) {
-                
-                
-                //HStack {
-                VStack {
-                    
-                    Spacer().frame(height: 20)
-                    
-                    if let entity = entity as? Block {
-                        BlockInspector(editorState: $documentHandler.project.editorState,
-                                       name: entity.name,
-                                       attribute: entity.attribute,
-                                       handler: documentHandler,
-                                       showDelete: !(entity.name == "stageInput" || entity.name == "stageOutput"))
-                        
-                    } else if entity is Channel {
-                        if let entity = entity as? Channel {
-                            ChannelInspector(editorState: $documentHandler.project.editorState, name: entity.name, attribute: entity.attribute, handler: documentHandler)
-                        }
-                    } else if let graph = entity as? StageGraph {
-                        if graph.name == "bigbang" {
-                            
-                            BigBangInspector(editorState: $documentHandler.project.editorState,
-                                             description: graph.description,
-                                             handler: documentHandler)
-                            
-                        } else {
-                            StageGraphInspector(editorState: $documentHandler.project.editorState,
-                                                name: graph.name,
-                                                attribute: graph.attribute,
-                                                handler: documentHandler,
-                                                showDelete: !documentHandler.project.editorState.mode.contains(.stage))
-                        }
-                        
-                    } else if entity is ProjectGraph{
-                        
-                        ProjectInspector(editorState: $documentHandler.project.editorState, selectedMode: .preset, description: "", handler: documentHandler)
-                        
-                    } else if entity is RelationshipGraph{
-                        RelationshipGraphInspector()
-                    } else if entity is PlayActor {
-                        if let entity = entity as? PlayActor {
-                            PlayActorInspector(editorState: $documentHandler.project.editorState, name: entity.name,
-                                               attribute: entity.attribute, personality: entity.personality,
-                                               handler: documentHandler)
-                        }
-                    }
-                }
-                .padding()
-                .background(.gray.opacity(0.05))
-                .transition(.move(edge: .trailing))
-                .presentationDetents([.fraction(0.5)])
-                .presentationBackgroundInteraction(.enabled(upThrough: .fraction(0.5)))
-                .presentationCornerRadius(30)
-                
-            } else {
-                Text("No Inspection")
-                    .frame(width: 300)
-                    .transition(.move(edge: .trailing))
-            }
-        })
         .ignoresSafeArea()
     }
     
@@ -729,8 +791,6 @@ struct MainEditorView: View {
         }
         
         //add at pooint
-        
-        
     }
     
     func addNode() {
@@ -757,8 +817,6 @@ struct MainEditorView: View {
             documentHandler.addNodeForGraph(with: id, for: bounds)
             
         }
-        
-        
     }
     
     @Environment(\.horizontalSizeClass) var horitzontalSizeClass

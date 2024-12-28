@@ -18,11 +18,11 @@
 		ED20F44B2C288C400032D7CB /* Transformers in Frameworks */ = {isa = PBXBuildFile; productRef = ED20F44A2C288C400032D7CB /* Transformers */; };
 		ED28494D2CB05DEE002A92F6 /* BlockPortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28494C2CB05DEB002A92F6 /* BlockPortView.swift */; };
 		ED28494F2CB06619002A92F6 /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28494E2CB06619002A92F6 /* ConnectionView.swift */; };
+		ED2849802CB2F9DB002A92F6 /* PlaceHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28497F2CB2F9D2002A92F6 /* PlaceHolderView.swift */; };
+		ED2849832CB3D9E7002A92F6 /* BlockColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2849822CB3D9E5002A92F6 /* BlockColor.swift */; };
 		ED2CD2222B23585E00594DC6 /* BaseInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2212B23585E00594DC6 /* BaseInspector.swift */; };
 		ED2CD2262B235AF700594DC6 /* ChannelInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2252B235AF700594DC6 /* ChannelInspector.swift */; };
 		ED2CD2282B235CF300594DC6 /* ProjectInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2272B235CF300594DC6 /* ProjectInspector.swift */; };
-		ED2CD22B2B23800700594DC6 /* RelationshipGraphEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD22A2B23800700594DC6 /* RelationshipGraphEditorViewController.swift */; };
-		ED2CD22D2B2385F500594DC6 /* RelationshipGraphEditorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD22C2B2385F500594DC6 /* RelationshipGraphEditorContainer.swift */; };
 		ED2CD2322B2407AC00594DC6 /* RelationshipGraphInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2312B2407AC00594DC6 /* RelationshipGraphInspector.swift */; };
 		ED2CD2352B244AA000594DC6 /* ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2342B244AA000594DC6 /* ToolBar.swift */; };
 		ED2CD2372B244FEC00594DC6 /* InspectorElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2CD2362B244FEC00594DC6 /* InspectorElement.swift */; };
@@ -31,8 +31,6 @@
 		ED3976412AD712560014AE03 /* Port.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3976402AD712560014AE03 /* Port.swift */; };
 		ED3976432AD71DAA0014AE03 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3976422AD71DAA0014AE03 /* Protocol.swift */; };
 		ED3976472AD79B0B0014AE03 /* NodeEditorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3976462AD79B0B0014AE03 /* NodeEditorState.swift */; };
-		ED3976492AD79C2E0014AE03 /* PortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3976482AD79C2E0014AE03 /* PortView.swift */; };
-		ED39764B2AD79CFD0014AE03 /* BaseEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED39764A2AD79CFD0014AE03 /* BaseEditorViewController.swift */; };
 		ED39764E2AD81C920014AE03 /* MainEditorCoorindtor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED39764D2AD81C920014AE03 /* MainEditorCoorindtor.swift */; };
 		ED4A435F2B1B9C1800C30731 /* PlayActorInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4A435E2B1B9C1800C30731 /* PlayActorInspector.swift */; };
 		ED4A43612B1C682100C30731 /* BigBangInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4A43602B1C682100C30731 /* BigBangInspector.swift */; };
@@ -60,8 +58,6 @@
 		ED5F23182AD30F0B00BFE800 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F23172AD30F0B00BFE800 /* Channel.swift */; };
 		ED5F231A2AD30F5100BFE800 /* PlayActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F23192AD30F5100BFE800 /* PlayActor.swift */; };
 		ED5F231C2AD312C000BFE800 /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F231B2AD312C000BFE800 /* Attribute.swift */; };
-		ED5F231E2AD3A7A800BFE800 /* MainEditorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F231D2AD3A7A800BFE800 /* MainEditorContainer.swift */; };
-		ED5F23202AD3A7CF00BFE800 /* MainEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F231F2AD3A7CF00BFE800 /* MainEditorViewController.swift */; };
 		ED670B3D2ADBF0BD00DE1AA5 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED670B3C2ADBF0BD00DE1AA5 /* JSON.swift */; };
 		ED733D8D2ACDDA7D00A2F3B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED733D8C2ACDDA7D00A2F3B9 /* AppDelegate.swift */; };
 		ED733D8F2ACDDA7D00A2F3B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED733D8E2ACDDA7D00A2F3B9 /* SceneDelegate.swift */; };
@@ -76,12 +72,8 @@
 		ED99C7542AE012D30022A1AE /* AppFolderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED99C7532AE012D30022A1AE /* AppFolderManager.swift */; };
 		ED99C7562AE03FBC0022A1AE /* DocumentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED99C7552AE03FBC0022A1AE /* DocumentHandler.swift */; };
 		EDA28E512C4D7A0D001E4F8B /* DottedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA28E502C4D7A0D001E4F8B /* DottedView.swift */; };
-		EDC7F22B2ACF146700714779 /* NodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7F22A2ACF146700714779 /* NodeView.swift */; };
-		EDC7F22D2ACF317E00714779 /* StageGraphEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7F22C2ACF317E00714779 /* StageGraphEditorViewController.swift */; };
 		EDC7F2302AD07F5B00714779 /* CGPoint+Addon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7F22F2AD07F5B00714779 /* CGPoint+Addon.swift */; };
 		EDC7F2322AD1113D00714779 /* CGRect+Addon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7F2312AD1113D00714779 /* CGRect+Addon.swift */; };
-		EDC7F2342AD11DA300714779 /* NodeEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7F2332AD11DA300714779 /* NodeEditorView.swift */; };
-		EDCC7D302AD5C6840023A7E0 /* ProjectGraphEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCC7D2F2AD5C6840023A7E0 /* ProjectGraphEditorViewController.swift */; };
 		EDD6576A2BE161F500D85E93 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD657692BE161F500D85E93 /* Item.swift */; };
 		EDD6576C2BE1620D00D85E93 /* DraggableHorizontalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD6576B2BE1620D00D85E93 /* DraggableHorizontalList.swift */; };
 		EDD657702BE23B1100D85E93 /* HListEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD6576F2BE23B1100D85E93 /* HListEx.swift */; };
@@ -99,11 +91,11 @@
 		ED1C73262BED089200EA9325 /* APIClient2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient2.swift; sourceTree = "<group>"; };
 		ED28494C2CB05DEB002A92F6 /* BlockPortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockPortView.swift; sourceTree = "<group>"; };
 		ED28494E2CB06619002A92F6 /* ConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionView.swift; sourceTree = "<group>"; };
+		ED28497F2CB2F9D2002A92F6 /* PlaceHolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderView.swift; sourceTree = "<group>"; };
+		ED2849822CB3D9E5002A92F6 /* BlockColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockColor.swift; sourceTree = "<group>"; };
 		ED2CD2212B23585E00594DC6 /* BaseInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInspector.swift; sourceTree = "<group>"; };
 		ED2CD2252B235AF700594DC6 /* ChannelInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelInspector.swift; sourceTree = "<group>"; };
 		ED2CD2272B235CF300594DC6 /* ProjectInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInspector.swift; sourceTree = "<group>"; };
-		ED2CD22A2B23800700594DC6 /* RelationshipGraphEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationshipGraphEditorViewController.swift; sourceTree = "<group>"; };
-		ED2CD22C2B2385F500594DC6 /* RelationshipGraphEditorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationshipGraphEditorContainer.swift; sourceTree = "<group>"; };
 		ED2CD2312B2407AC00594DC6 /* RelationshipGraphInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationshipGraphInspector.swift; sourceTree = "<group>"; };
 		ED2CD2342B244AA000594DC6 /* ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBar.swift; sourceTree = "<group>"; };
 		ED2CD2362B244FEC00594DC6 /* InspectorElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorElement.swift; sourceTree = "<group>"; };
@@ -112,8 +104,6 @@
 		ED3976402AD712560014AE03 /* Port.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Port.swift; sourceTree = "<group>"; };
 		ED3976422AD71DAA0014AE03 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		ED3976462AD79B0B0014AE03 /* NodeEditorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeEditorState.swift; sourceTree = "<group>"; };
-		ED3976482AD79C2E0014AE03 /* PortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortView.swift; sourceTree = "<group>"; };
-		ED39764A2AD79CFD0014AE03 /* BaseEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEditorViewController.swift; sourceTree = "<group>"; };
 		ED39764D2AD81C920014AE03 /* MainEditorCoorindtor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEditorCoorindtor.swift; sourceTree = "<group>"; };
 		ED4A435E2B1B9C1800C30731 /* PlayActorInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayActorInspector.swift; sourceTree = "<group>"; };
 		ED4A43602B1C682100C30731 /* BigBangInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigBangInspector.swift; sourceTree = "<group>"; };
@@ -140,8 +130,6 @@
 		ED5F23172AD30F0B00BFE800 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		ED5F23192AD30F5100BFE800 /* PlayActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayActor.swift; sourceTree = "<group>"; };
 		ED5F231B2AD312C000BFE800 /* Attribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attribute.swift; sourceTree = "<group>"; };
-		ED5F231D2AD3A7A800BFE800 /* MainEditorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEditorContainer.swift; sourceTree = "<group>"; };
-		ED5F231F2AD3A7CF00BFE800 /* MainEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEditorViewController.swift; sourceTree = "<group>"; };
 		ED670B3C2ADBF0BD00DE1AA5 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		ED733D892ACDDA7D00A2F3B9 /* Aico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED733D8C2ACDDA7D00A2F3B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -158,12 +146,8 @@
 		ED99C7532AE012D30022A1AE /* AppFolderManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFolderManager.swift; sourceTree = "<group>"; };
 		ED99C7552AE03FBC0022A1AE /* DocumentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentHandler.swift; sourceTree = "<group>"; };
 		EDA28E502C4D7A0D001E4F8B /* DottedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DottedView.swift; sourceTree = "<group>"; };
-		EDC7F22A2ACF146700714779 /* NodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeView.swift; sourceTree = "<group>"; };
-		EDC7F22C2ACF317E00714779 /* StageGraphEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageGraphEditorViewController.swift; sourceTree = "<group>"; };
 		EDC7F22F2AD07F5B00714779 /* CGPoint+Addon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Addon.swift"; sourceTree = "<group>"; };
 		EDC7F2312AD1113D00714779 /* CGRect+Addon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Addon.swift"; sourceTree = "<group>"; };
-		EDC7F2332AD11DA300714779 /* NodeEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeEditorView.swift; sourceTree = "<group>"; };
-		EDCC7D2F2AD5C6840023A7E0 /* ProjectGraphEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectGraphEditorViewController.swift; sourceTree = "<group>"; };
 		EDD657692BE161F500D85E93 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		EDD6576B2BE1620D00D85E93 /* DraggableHorizontalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableHorizontalList.swift; sourceTree = "<group>"; };
 		EDD6576F2BE23B1100D85E93 /* HListEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HListEx.swift; sourceTree = "<group>"; };
@@ -241,13 +225,12 @@
 			path = ChatGPT;
 			sourceTree = "<group>";
 		};
-		ED2CD2292B237FD700594DC6 /* RelationshipGraphEditor */ = {
+		ED2849812CB3D9D8002A92F6 /* BlockColor */ = {
 			isa = PBXGroup;
 			children = (
-				ED2CD22C2B2385F500594DC6 /* RelationshipGraphEditorContainer.swift */,
-				ED2CD22A2B23800700594DC6 /* RelationshipGraphEditorViewController.swift */,
+				ED2849822CB3D9E5002A92F6 /* BlockColor.swift */,
 			);
-			path = RelationshipGraphEditor;
+			path = BlockColor;
 			sourceTree = "<group>";
 		};
 		ED2CD22E2B24074E00594DC6 /* Stage */ = {
@@ -268,13 +251,13 @@
 			path = Project;
 			sourceTree = "<group>";
 		};
-		ED2CD2302B24075E00594DC6 /* Relstionship */ = {
+		ED2CD2302B24075E00594DC6 /* Relationship */ = {
 			isa = PBXGroup;
 			children = (
 				ED4A435E2B1B9C1800C30731 /* PlayActorInspector.swift */,
 				ED2CD2312B2407AC00594DC6 /* RelationshipGraphInspector.swift */,
 			);
-			path = Relstionship;
+			path = Relationship;
 			sourceTree = "<group>";
 		};
 		ED2CD2332B244A8F00594DC6 /* ToolBar */ = {
@@ -310,26 +293,6 @@
 				ED5F23192AD30F5100BFE800 /* PlayActor.swift */,
 			);
 			path = Elements;
-			sourceTree = "<group>";
-		};
-		ED39764C2AD7BB730014AE03 /* Editor */ = {
-			isa = PBXGroup;
-			children = (
-				EDC7F2332AD11DA300714779 /* NodeEditorView.swift */,
-				ED2CD2292B237FD700594DC6 /* RelationshipGraphEditor */,
-				ED5F23212AD3A93B00BFE800 /* ProjectGraphEditor */,
-				ED5F23102AD2F9D200BFE800 /* StageGraphEditor */,
-				ED39764A2AD79CFD0014AE03 /* BaseEditorViewController.swift */,
-				ED5F231F2AD3A7CF00BFE800 /* MainEditorViewController.swift */,
-			);
-			path = Editor;
-			sourceTree = "<group>";
-		};
-		ED39764F2AD82E6E0014AE03 /* Runtime */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Runtime;
 			sourceTree = "<group>";
 		};
 		ED4A43622B1CD41500C30731 /* EditorState */ = {
@@ -383,36 +346,18 @@
 				ED576A302BE7A63D00411092 /* Execute */,
 				ED99C74E2ADFCCDC0022A1AE /* Inspector */,
 				ED3976462AD79B0B0014AE03 /* NodeEditorState.swift */,
-				ED3976482AD79C2E0014AE03 /* PortView.swift */,
-				EDC7F22A2ACF146700714779 /* NodeView.swift */,
-				ED39764C2AD7BB730014AE03 /* Editor */,
-				ED5F231D2AD3A7A800BFE800 /* MainEditorContainer.swift */,
 				ED2CD2332B244A8F00594DC6 /* ToolBar */,
 				ED5F23042AD2E28B00BFE800 /* MainEditorView.swift */,
 				ED175E102BE60BBA00B887DE /* StorylineEditor */,
 				ED5F230E2AD2F4B100BFE800 /* MainEditorHostingController.swift */,
 				ED39764D2AD81C920014AE03 /* MainEditorCoorindtor.swift */,
+				ED28497F2CB2F9D2002A92F6 /* PlaceHolderView.swift */,
 				ED28494E2CB06619002A92F6 /* ConnectionView.swift */,
+				ED2849812CB3D9D8002A92F6 /* BlockColor */,
 				ED28494C2CB05DEB002A92F6 /* BlockPortView.swift */,
 				ED511B072C4D63840047D264 /* BlockView.swift */,
 			);
 			path = MainEditor;
-			sourceTree = "<group>";
-		};
-		ED5F23102AD2F9D200BFE800 /* StageGraphEditor */ = {
-			isa = PBXGroup;
-			children = (
-				EDC7F22C2ACF317E00714779 /* StageGraphEditorViewController.swift */,
-			);
-			path = StageGraphEditor;
-			sourceTree = "<group>";
-		};
-		ED5F23212AD3A93B00BFE800 /* ProjectGraphEditor */ = {
-			isa = PBXGroup;
-			children = (
-				EDCC7D2F2AD5C6840023A7E0 /* ProjectGraphEditorViewController.swift */,
-			);
-			path = ProjectGraphEditor;
 			sourceTree = "<group>";
 		};
 		ED733D802ACDDA7D00A2F3B9 = {
@@ -462,7 +407,6 @@
 				ED576A2E2BE7905900411092 /* Runtime.swift */,
 				ED175E1D2BE6A9BF00B887DE /* Client */,
 				ED4F1F572ADFB10B0094AB75 /* Document */,
-				ED39764F2AD82E6E0014AE03 /* Runtime */,
 				ED3976442AD798D80014AE03 /* Graphs */,
 				ED5F23112AD2FACE00BFE800 /* Project.swift */,
 			);
@@ -473,7 +417,7 @@
 			isa = PBXGroup;
 			children = (
 				ED2CD2252B235AF700594DC6 /* ChannelInspector.swift */,
-				ED2CD2302B24075E00594DC6 /* Relstionship */,
+				ED2CD2302B24075E00594DC6 /* Relationship */,
 				ED2CD22F2B24075800594DC6 /* Project */,
 				ED2CD22E2B24074E00594DC6 /* Stage */,
 				ED2CD2212B23585E00594DC6 /* BaseInspector.swift */,
@@ -600,29 +544,27 @@
 				EDD657962BE279E600D85E93 /* StartView.swift in Sources */,
 				ED511B0A2C4D66760047D264 /* Color+Hex.swift in Sources */,
 				ED3976432AD71DAA0014AE03 /* Protocol.swift in Sources */,
-				ED39764B2AD79CFD0014AE03 /* BaseEditorViewController.swift in Sources */,
 				ED5F23052AD2E28B00BFE800 /* MainEditorView.swift in Sources */,
 				ED175E0B2BE40BFF00B887DE /* StartHostingController.swift in Sources */,
 				ED2CD2352B244AA000594DC6 /* ToolBar.swift in Sources */,
+				ED2849802CB2F9DB002A92F6 /* PlaceHolderView.swift in Sources */,
 				ED5F23182AD30F0B00BFE800 /* Channel.swift in Sources */,
 				ED99C7562AE03FBC0022A1AE /* DocumentHandler.swift in Sources */,
 				ED733D912ACDDA7D00A2F3B9 /* ViewController.swift in Sources */,
-				EDC7F22B2ACF146700714779 /* NodeView.swift in Sources */,
 				ED733DA22ACDDA9D00A2F3B9 /* Block.swift in Sources */,
 				ED670B3D2ADBF0BD00DE1AA5 /* JSON.swift in Sources */,
 				EDD6576C2BE1620D00D85E93 /* DraggableHorizontalList.swift in Sources */,
 				ED576A2F2BE7905900411092 /* Runtime.swift in Sources */,
-				EDC7F2342AD11DA300714779 /* NodeEditorView.swift in Sources */,
 				ED576A2D2BE78E0800411092 /* ChatSonicClient.swift in Sources */,
 				ED533F162B288E7500DB4D79 /* AIExpView.swift in Sources */,
 				ED5F23162AD30C3F00BFE800 /* ProjectGraph.swift in Sources */,
 				ED4A43642B1CD42400C30731 /* EditorState.swift in Sources */,
 				ED175E142BE618CE00B887DE /* StorylineCell.swift in Sources */,
-				ED3976492AD79C2E0014AE03 /* PortView.swift in Sources */,
 				ED175E222BE6AA1300B887DE /* ReplicateClient.swift in Sources */,
 				ED28494D2CB05DEE002A92F6 /* BlockPortView.swift in Sources */,
 				ED3976472AD79B0B0014AE03 /* NodeEditorState.swift in Sources */,
 				ED4A435F2B1B9C1800C30731 /* PlayActorInspector.swift in Sources */,
+				ED2849832CB3D9E7002A92F6 /* BlockColor.swift in Sources */,
 				ED175E162BE61D1400B887DE /* StorylineEditorView.swift in Sources */,
 				ED5F23142AD30BB400BFE800 /* RelationshipGraph.swift in Sources */,
 				EDD6576A2BE161F500D85E93 /* Item.swift in Sources */,
@@ -630,12 +572,10 @@
 				ED3976412AD712560014AE03 /* Port.swift in Sources */,
 				ED2CD2372B244FEC00594DC6 /* InspectorElement.swift in Sources */,
 				ED576A3E2BE9CA2000411092 /* ActivityView.swift in Sources */,
-				ED2CD22B2B23800700594DC6 /* RelationshipGraphEditorViewController.swift in Sources */,
 				ED33981C2B69340800758EB5 /* APIService.swift in Sources */,
 				ED1C73272BED089200EA9325 /* APIClient2.swift in Sources */,
 				ED5F23032AD174F100BFE800 /* StageGraph.swift in Sources */,
 				ED733D8D2ACDDA7D00A2F3B9 /* AppDelegate.swift in Sources */,
-				EDCC7D302AD5C6840023A7E0 /* ProjectGraphEditorViewController.swift in Sources */,
 				ED5F230F2AD2F4B100BFE800 /* MainEditorHostingController.swift in Sources */,
 				ED733D8F2ACDDA7D00A2F3B9 /* SceneDelegate.swift in Sources */,
 				EDC7F2302AD07F5B00714779 /* CGPoint+Addon.swift in Sources */,
@@ -645,19 +585,15 @@
 				ED2CD2262B235AF700594DC6 /* ChannelInspector.swift in Sources */,
 				ED511B082C4D63840047D264 /* BlockView.swift in Sources */,
 				EDC7F2322AD1113D00714779 /* CGRect+Addon.swift in Sources */,
-				EDC7F22D2ACF317E00714779 /* StageGraphEditorViewController.swift in Sources */,
 				ED39764E2AD81C920014AE03 /* MainEditorCoorindtor.swift in Sources */,
-				ED5F23202AD3A7CF00BFE800 /* MainEditorViewController.swift in Sources */,
 				ED511B062C4D30850047D264 /* AnimatedMeshView.swift in Sources */,
 				ED2CD2322B2407AC00594DC6 /* RelationshipGraphInspector.swift in Sources */,
 				ED5F230C2AD2EBB400BFE800 /* ProjectHostingController.swift in Sources */,
-				ED5F231E2AD3A7A800BFE800 /* MainEditorContainer.swift in Sources */,
 				ED5F23092AD2EB7F00BFE800 /* ProjectView.swift in Sources */,
 				ED99C7522ADFD2A70022A1AE /* StageGraphInspector.swift in Sources */,
 				ED33981E2B69546200758EB5 /* ExecuteView.swift in Sources */,
 				ED5F231C2AD312C000BFE800 /* Attribute.swift in Sources */,
 				ED5F23122AD2FACE00BFE800 /* Project.swift in Sources */,
-				ED2CD22D2B2385F500594DC6 /* RelationshipGraphEditorContainer.swift in Sources */,
 				ED5F231A2AD30F5100BFE800 /* PlayActor.swift in Sources */,
 				ED4A43612B1C682100C30731 /* BigBangInspector.swift in Sources */,
 				ED4F1F592ADFB4700094AB75 /* AicoProject.swift in Sources */,

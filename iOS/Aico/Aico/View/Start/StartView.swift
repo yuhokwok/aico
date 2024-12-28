@@ -10,14 +10,13 @@ import SwiftUI
 struct StartView: View {
     
     @State var showMyPlots = false
-    
     @State var fileURLs : [URL] = []
+    
+    
     var coordinator = ProjectHostingCoorindator()
         
     @State var prompt : String = ""
-    
     @StateObject var client = GenerativeClient()
-
     @State var uid : String = ""
 
     var body: some View {
@@ -186,8 +185,7 @@ struct StartView: View {
         }
         .ignoresSafeArea()
         .onAppear(perform: {
-            
-            
+            self.loadFolder(uid: "")
         })
         .onDisappear(perform: {
             

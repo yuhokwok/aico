@@ -20,10 +20,8 @@ struct ChannelView: View {
         
         return ZStack {
             
-            //            if selected {
             Circle()
                 .frame(width: 16, height: 16)
-            //                .foregroundColor(.red)
                 .foregroundColor(.yellow)
                 .position(startPoint)
                 .opacity(selected ? 1.0 : 0.0)
@@ -31,56 +29,50 @@ struct ChannelView: View {
             
             Circle()
                 .frame(width: 16, height: 16)
-            //.foregroundColor(.green)
                 .foregroundColor(.yellow)
                 .position(endPoint)
                 .opacity(selected ? 1.0 : 0.0)
                 .animation(.easeInOut, value: selected)
             
-            
-            GeometryReader { geometry in
-                GradientLine(startPoint: startPoint, endPoint: endPoint)
-                    .stroke(.yellow,
-                            lineWidth: 8)
-                    .opacity(selected ? 1.0 : 0.0)
-                    .animation(.easeInOut, value: selected)
-                
-                //                LinearGradient(
-                //                    gradient: Gradient(colors: [.red, .green]),
-                //                    startPoint: UnitPoint(x: startPoint.x / geometry.size.width, y: startPoint.y / geometry.size.height),
-                //                    endPoint: UnitPoint(x: endPoint.x / geometry.size.width, y: endPoint.y / geometry.size.height))
-            }
-//            }
-            
+            GradientLine(startPoint: startPoint, endPoint: endPoint)
+                .stroke(.yellow,
+                        lineWidth: 8)
+                .opacity(selected ? 1.0 : 0.0)
+                .animation(.easeInOut, value: selected)
+
 
 
             
             Circle()
                 .frame(width: 10, height: 10)
-//                .foregroundColor(.red)
                 .foregroundColor(.black)
                 .position(startPoint)
             
             Circle()
                 .frame(width: 10, height: 10)
-                //.foregroundColor(.green)
                 .foregroundColor(.black)
                 .position(endPoint)
             
-            GeometryReader { geometry in
-                GradientLine(startPoint: startPoint, endPoint: endPoint)
-                    .stroke(.black,
+            GradientLine(startPoint: startPoint, endPoint: endPoint)
+                .stroke(.black,
                         lineWidth: 2)
+            
+            
+            if channel.name.count > 0 {
                 
-//                LinearGradient(
-//                    gradient: Gradient(colors: [.red, .green]),
-//                    startPoint: UnitPoint(x: startPoint.x / geometry.size.width, y: startPoint.y / geometry.size.height),
-//                    endPoint: UnitPoint(x: endPoint.x / geometry.size.width, y: endPoint.y / geometry.size.height))
+                
+                Text("\(channel.name)")
+                    .foregroundStyle(.white)
+                    .padding()
+                    .background(.black)
+                    .clipShape(RoundedRectangle(cornerRadius: 18))
+                    .position( CGPoint(x: (startPoint.x + endPoint.x) / 2, y: (startPoint.y + endPoint.y) / 2))
+                
+                
             }
 
         }
         .onTapGesture {
-            //manager.selectedID = (manager.selectedID == connection.id) ? "" : connection.id
             selectHandler?()
         }
     }
@@ -108,15 +100,23 @@ struct GradientLine: Shape {
     var endPoint: CGPoint
     
     func path(in rect: CGRect) -> Path {
-//        
-//        var midX = (startPoint.x + endPoint.x) / 2
-//        var midY = (startPoint.y + endPoint.y) / 2
-//        
+
+        let halfDist = abs(startPoint.x - endPoint.x) / 2
+        let cPt1 : CGPoint
+        let cPt2 : CGPoint
+        if startPoint.x < endPoint.x {
+            cPt1 =  startPoint + CGPoint(x: halfDist, y: 0)
+            cPt2 =  endPoint - CGPoint(x: halfDist, y: 0)
+        } else {
+            cPt1 =  startPoint - CGPoint(x: halfDist, y: 0)
+            cPt2 =  endPoint + CGPoint(x: halfDist, y: 0)
+        }
         
         
         var path = Path()
         path.move(to: startPoint)
-        path.addLine(to: endPoint)
+        //path.addLine(to: endPoint)
+        path.addCurve(to: endPoint, control1: cPt1, control2: cPt2)
         return path
     }
 }

@@ -22,11 +22,13 @@ struct PlayActorInspector: View, BaseInspector {
     @Binding var editorState : EditorState
     
     var selectedId : String?
+    var colorSet : BlockColorSet? 
     
     //@Binding var stage : StageGraph
     
     @State var identifier : String = ""
     @State var name : String
+    @State var role : String = ""
     @State var description : String = ""
     @State var attrStr : String = ""
     @State var attribute : Attribute
@@ -35,6 +37,8 @@ struct PlayActorInspector: View, BaseInspector {
     
     @ObservedObject var handler : DocumentHandler
     
+    var deleteHandler : (() -> ())?
+    
     //undo redo
     var isUndoEnabled: Bool = false
     
@@ -42,8 +46,53 @@ struct PlayActorInspector: View, BaseInspector {
         ScrollView {
             VStack (alignment: .leading ) {
                 
-                InspectorTitle("PlayActor")
-                
+                HStack {
+                    InspectorTitle("Actor")
+                    
+                    Spacer()
+                    
+                    HStack {
+                        Button(action: {
+                            updateDescription()
+                        }, label: {
+                            HStack {
+                                Image(systemName: "checkmark")
+                                    .font(.system(size: 14).weight(.semibold))
+                            }
+                        })
+                        .tint(.gray)
+                        .frame(width: 32, height: 32)
+                        .background {
+                            Circle()
+                                .fill(.gray.opacity(0.1))
+                        }
+                        .overlay {
+                            Circle().fill(.clear).stroke(.gray.opacity(0.5), lineWidth: 1)
+                        }
+                        .padding(2)
+                        
+                        Button(action: {
+                            deleteHandler?()
+                        }, label: {
+                            HStack {
+                                Image(systemName: "xmark")
+                                    .font(.system(size: 14).weight(.semibold))
+                            }
+                        })
+                        .tint(.gray)
+                        .frame(width: 32, height: 32)
+                        .background {
+                            Circle()
+                                .fill(.gray.opacity(0.1))
+                        }
+                        .overlay {
+                            Circle().fill(.clear).stroke(.gray.opacity(0.5), lineWidth: 1)
+                        }
+                        .padding(2)
+                    }
+                    
+                }
+                    
                 VStack {
                     HStack {
                         Spacer()
@@ -64,6 +113,48 @@ struct PlayActorInspector: View, BaseInspector {
                                     .shadow(radius: 5)
                                     .padding(10)
                             }, placeholder: {
+                                if let colorSet = self.colorSet {
+                                    
+                                    Circle()
+                                        .fill(Color(hex:"#F4F4F4"))
+                                        .shadow(radius: 10, y: 2)
+                                        .frame(width: 96)
+                                        .overlay {
+                                            Circle()
+                                                .fill(colorSet.outterBorderGradient)
+                                                .frame(width: 81)
+                                        }
+                                    
+                                } else {
+                                    Image("actress")
+                                        .resizable()
+                                        .frame(width:81, height: 81)
+                                        .clipShape(Circle())
+                                        .overlay {
+                                            Circle()
+                                                .fill(.clear)
+                                                .stroke(.white, lineWidth: 5)
+                                            
+                                        }
+                                        .shadow(radius: 5)
+                                        .padding(10)
+                                }
+                            })
+
+                        } else {
+                            if let colorSet = self.colorSet {
+                                
+                                Circle()
+                                    .fill(Color(hex:"#F4F4F4"))
+                                    .shadow(radius: 10, y: 2)
+                                    .frame(width: 96)
+                                    .overlay {
+                                        Circle()
+                                            .fill(colorSet.outterBorderGradient)
+                                            .frame(width: 81)
+                                    }
+                                
+                            } else {
                                 Image("actress")
                                     .resizable()
                                     .frame(width:81, height: 81)
@@ -76,43 +167,11 @@ struct PlayActorInspector: View, BaseInspector {
                                     }
                                     .shadow(radius: 5)
                                     .padding(10)
-                            })
-
-                        } else {
-                            Image("actress")
-                                .resizable()
-                                .frame(width:81, height: 81)
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle()
-                                        .fill(.clear)
-                                        .stroke(.white, lineWidth: 5)
-                                    
-                                }
-                                .shadow(radius: 5)
-                                .padding(10)
+                            }
                         }
 
                         Spacer()
                         
-                    }
-                    Button(action: {
-                        client.genThumbnail(prompt: "a thumbnail", completion: {
-                            url in
-                            if url != "error" && url.isEmpty == false {
-                                self.url = url
-                            }
-                            
-                        })
-                    }, label: {
-                        Text("Generate")
-                            .font(.footnote)
-                    })
-                    .buttonStyle(.bordered)
-                    .tint(.black)
-                    
-                    if client.loading {
-                        ProgressView().progressViewStyle(.circular)
                     }
                 }
                 
@@ -126,80 +185,84 @@ struct PlayActorInspector: View, BaseInspector {
                             updateName()
                         }
                         .focused($focusState, equals: 1)
-                    Button {
-                        updateName()
-                    } label: {
-                        Image(systemName: "checkmark")
-                    }.buttonStyle(.bordered)
                 }
                 
-                InspectorSectionTitle("Occupation")
-                
-                ZStack(alignment: .top) {
-                    if attribute.contents.count == 0  {
-                        HStack {
-                            Spacer()
-                            Text("This playactor has no occupation")
-                                .font(.system(size: 12))
-                                .foregroundStyle(.gray)
-                            Spacer()
-                        }
-                        .frame(minHeight: 60)
-                        .zIndex(0)
-                    } else {
-                        
-                        WrappingHStack (alignment: .leading) {
-                            ForEach(0..<attribute.contents.count, id:\.self) {
-                                i in
-                                
-                                HStack {
-                                    Text(attribute.contents[i].content)
-                                        .lineLimit(10)
-                                        .padding([.leading, .trailing], 8)
-                                        .font(.footnote)
-                                    Button(action: {
-                                        
-                                        deleteTag(i)
-                                        
-                                    }, label: {
-                                        Image(systemName: "xmark")
-                                            .font(.footnote)
-                                    })
-                                    .padding(2)
-                                    .background {
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .fill(.white.opacity(0.2))
-                                    }
-                                    .padding([.leading, .trailing], 2)
-                                }
-                                .background {
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .fill(UIColor.generateColor(from: attribute.contents[i].content).color)
-                                }
-                                .transition(.scale)
-                            }
-                        }
-                        .zIndex(1)
-                    }
-                }
-                .background {
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(.gray.opacity(0.1))
-                }
-                
+                InspectorSectionTitle("Role")
                 HStack {
-                    TextField("Attribute", text: $attrStr)
+                    TextField("", text: $role, prompt: Text("Role of the Actor"))
                         .textFieldStyle(.roundedBorder)
-                        .font(.system(size: 12))
+                        .font(.system(size: 12, weight: .bold))
                         .onSubmit(of: .text) {
-                            self.addTag()
+                            updateRole()
                         }
-                    Button(action: {
-                        self.addTag()
-                    }, label: {
-                        Image(systemName: "plus")
-                    }).buttonStyle(.bordered)
+                        .focused($focusState, equals: 1)
                 }
+                
+//                ZStack(alignment: .top) {
+//                    if attribute.contents.count == 0  {
+//                        HStack {
+//                            Spacer()
+//                            Text("This playactor has no occupation")
+//                                .font(.system(size: 12))
+//                                .foregroundStyle(.gray)
+//                            Spacer()
+//                        }
+//                        .frame(minHeight: 60)
+//                        .zIndex(0)
+//                    } else {
+//                        
+//                        WrappingHStack (alignment: .leading) {
+//                            ForEach(0..<attribute.contents.count, id:\.self) {
+//                                i in
+//                                
+//                                HStack {
+//                                    Text(attribute.contents[i].content)
+//                                        .lineLimit(10)
+//                                        .padding([.leading, .trailing], 8)
+//                                        .font(.footnote)
+//                                    Button(action: {
+//                                        
+//                                        deleteTag(i)
+//                                        
+//                                    }, label: {
+//                                        Image(systemName: "xmark")
+//                                            .font(.footnote)
+//                                    })
+//                                    .padding(2)
+//                                    .background {
+//                                        RoundedRectangle(cornerRadius: 10)
+//                                            .fill(.white.opacity(0.2))
+//                                    }
+//                                    .padding([.leading, .trailing], 2)
+//                                }
+//                                .background {
+//                                    RoundedRectangle(cornerRadius: 10)
+//                                        .fill(UIColor.generateColor(from: attribute.contents[i].content).color)
+//                                }
+//                                .transition(.scale)
+//                            }
+//                        }
+//                        .zIndex(1)
+//                    }
+//                }
+//                .background {
+//                    RoundedRectangle(cornerRadius: 12)
+//                        .fill(.gray.opacity(0.1))
+//                }
+//                
+//                HStack {
+//                    TextField("Attribute", text: $attrStr)
+//                        .textFieldStyle(.roundedBorder)
+//                        .font(.system(size: 12))
+//                        .onSubmit(of: .text) {
+//                            self.addTag()
+//                        }
+//                    Button(action: {
+//                        self.addTag()
+//                    }, label: {
+//                        Image(systemName: "plus")
+//                    }).buttonStyle(.bordered)
+//                }
                 
                 InspectorSectionTitle("Personality")
                 
@@ -284,40 +347,26 @@ struct PlayActorInspector: View, BaseInspector {
                     }
                     .padding(1)
                 
+                
                 Button(action: {
-                    updateDescription()
+                    client.genThumbnail(prompt: "a thumbnail", completion: {
+                        url in
+                        if url != "error" && url.isEmpty == false {
+                            self.url = url
+                        }
+                        
+                    })
                 }, label: {
-                    HStack {
-                        Spacer()
-                        Text("Set")
-                        Spacer()
-                    }
-                }).buttonStyle(.borderedProminent)
+                    Text("Generate")
+                        .font(.footnote)
+                })
+                .buttonStyle(.bordered)
+                .tint(.black)
                 
-                
-//                HStack {
-//                    
-//                    Button(action: {}, label: {
-//                        HStack {
-//                            Spacer()
-//                            Image(systemName: "doc.on.doc")
-//                            Spacer()
-//                        }
-//                        
-//                    })
-//                    .buttonStyle(.bordered)
-//                    
-//                    Button(action: {
-//                        delete()
-//                    }, label: {
-//                        Spacer()
-//                        Image(systemName: "trash")
-//                        Spacer()
-//                    })
-//                    .buttonStyle(.bordered)
-//                    
-//                }
-                
+                if client.loading {
+                    ProgressView().progressViewStyle(.circular)
+                }
+                                
                 Text("\(identifier)")
                     .font(.system(size: 6))
             }
@@ -333,6 +382,7 @@ struct PlayActorInspector: View, BaseInspector {
                 if let id = selectedId, let role = handler.entity(for: id) as? PlayActor {
                     self.identifier = role.identifier
                     self.name = role.name
+                    self.role = role.role
                     self.description = role.description
                     self.attribute = role.attribute
                     self.personality = role.personality
@@ -344,6 +394,7 @@ struct PlayActorInspector: View, BaseInspector {
                 if let id = selectedId, let role = handler.entity(for: id) as? PlayActor {
                     self.identifier = role.identifier
                     self.name = role.name
+                    self.role = role.role
                     self.description = role.description
                     self.attribute = role.attribute
                     self.personality = role.personality
@@ -356,6 +407,13 @@ struct PlayActorInspector: View, BaseInspector {
     
     func updateName() {
         guard name.count > 0 else {
+            return
+        }
+        commitChange()
+    }
+    
+    func updateRole() {
+        guard role.count > 0 else {
             return
         }
         commitChange()
@@ -419,6 +477,7 @@ struct PlayActorInspector: View, BaseInspector {
             entity.attribute = self.attribute
             entity.personality = self.personality
             entity.name = self.name
+            entity.role  = self.role
             entity.description = self.description
 
             if var graph = handler.graph(contains: id) as? RelationshipGraph {

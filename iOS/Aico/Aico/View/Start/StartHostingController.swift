@@ -63,6 +63,8 @@ class StartHostingController: UIHostingController<StartView>, ProjectHostingDele
                     }
                 }
                 
+                
+                handler.project.editorState.selectedId = handler.project.projectGraph.nodes.first?.id ?? ""
                 let hostVC = MainEditorHostingController(rootView: MainEditorView(documentHandler: handler))
                 
                 hostVC.documentHandler = handler

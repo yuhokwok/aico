@@ -10,8 +10,6 @@ import UIKit
 
 struct PlayActor : Node, HasPort, Codable {
     
-    
-
     var id: String {
         return identifier
     }

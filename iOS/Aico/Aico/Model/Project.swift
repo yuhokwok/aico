@@ -50,6 +50,7 @@ struct Project : Codable {
                               attribute: Attribute.new,
                               relationshipGraph: RelationshipGraph.new(for: UIView().bounds),
                               projectGraph: projectGraph, editorState: editorState)
+        
         return project
     }
 }

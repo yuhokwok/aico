@@ -4,7 +4,7 @@ struct DottedGrid: View {
     let rows: Int
     let columns: Int
     let dotSize: CGFloat = 3
-    let spacing: CGFloat = 50
+    let spacing: CGFloat = 27
     
     var body: some View {
         VStack(spacing: spacing) {

@@ -46,7 +46,7 @@ class ProjectHostingController: UIHostingController<ProjectView>, ProjectHosting
             
             if isReady {
                 let handler = DocumentHandler(document: doc)
-                
+                handler.project.editorState.selectedId = handler.project.projectGraph.nodes.first?.id ?? ""
                 
                 let hostVC = MainEditorHostingController(rootView: MainEditorView(documentHandler: handler))
                 
