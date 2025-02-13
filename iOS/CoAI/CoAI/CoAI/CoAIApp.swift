@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OllamaKit
 
 @main
 struct CoAIApp: App {

@@ -10,6 +10,7 @@
 		ED3473342CB4D9CF0062F817 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = ED3473332CB4D9CF0062F817 /* GoogleGenerativeAI */; };
 		ED3473372CB4D9F50062F817 /* Replicate in Frameworks */ = {isa = PBXBuildFile; productRef = ED3473362CB4D9F50062F817 /* Replicate */; };
 		ED9CAD182CB6625900516F5C /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = ED9CAD172CB6625900516F5C /* WrappingHStack */; };
+		EDA2060A2D5CFF6100EEA45C /* OllamaKit in Frameworks */ = {isa = PBXBuildFile; productRef = EDA206092D5CFF6100EEA45C /* OllamaKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 				ED3473372CB4D9F50062F817 /* Replicate in Frameworks */,
 				ED9CAD182CB6625900516F5C /* WrappingHStack in Frameworks */,
 				ED3473342CB4D9CF0062F817 /* GoogleGenerativeAI in Frameworks */,
+				EDA2060A2D5CFF6100EEA45C /* OllamaKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +147,7 @@
 				ED3473332CB4D9CF0062F817 /* GoogleGenerativeAI */,
 				ED3473362CB4D9F50062F817 /* Replicate */,
 				ED9CAD172CB6625900516F5C /* WrappingHStack */,
+				EDA206092D5CFF6100EEA45C /* OllamaKit */,
 			);
 			productName = CoAI;
 			productReference = ED28498D2CB4CF74002A92F6 /* CoAI.app */;
@@ -232,6 +235,7 @@
 				ED3473312CB4D9C80062F817 /* XCRemoteSwiftPackageReference "generative-ai-swift" */,
 				ED3473352CB4D9F50062F817 /* XCRemoteSwiftPackageReference "replicate-swift" */,
 				ED9CAD162CB6625900516F5C /* XCRemoteSwiftPackageReference "WrappingHStack" */,
+				EDA206052D5C93FD00EEA45C /* XCRemoteSwiftPackageReference "OllamaKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = ED28498E2CB4CF74002A92F6 /* Products */;
@@ -630,6 +634,14 @@
 				minimumVersion = 0.2.0;
 			};
 		};
+		EDA206052D5C93FD00EEA45C /* XCRemoteSwiftPackageReference "OllamaKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kevinhermawan/OllamaKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.7;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -647,6 +659,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = ED9CAD162CB6625900516F5C /* XCRemoteSwiftPackageReference "WrappingHStack" */;
 			productName = WrappingHStack;
+		};
+		EDA206092D5CFF6100EEA45C /* OllamaKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EDA206052D5C93FD00EEA45C /* XCRemoteSwiftPackageReference "OllamaKit" */;
+			productName = OllamaKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -27,6 +27,8 @@ struct ContentView: View {
     @State private var isPressing = false
     
     @State private var speechText = ""
+    
+    @State var client = OllamaClient()
 
     var body: some View {
         ZStack {
@@ -58,6 +60,17 @@ struct ContentView: View {
                     }
                 }
 
+                
+                if client.isReachable {
+                    VStack {
+                        Text("reachable")
+                        ForEach(client.models, id:\.self){
+                            model in
+                            Text("\(model)")
+                        }
+                    }
+                }
+                
             }
             
             VStack {
@@ -148,6 +161,10 @@ struct ContentView: View {
         .ignoresSafeArea()
         .onAppear {
             requestSpeechAuthorization()
+            Task {
+                await client.reachable()
+                await client.fetchModels()
+            }
         }
     }
     
