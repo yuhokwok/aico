@@ -16,7 +16,7 @@ struct StartView: View {
     var coordinator = ProjectHostingCoorindator()
         
     @State var prompt : String = ""
-    @StateObject var client = GenerativeClient()
+    @StateObject var client = DeepSeekAPI()
     @State var uid : String = ""
 
     var body: some View {

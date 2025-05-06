@@ -8,6 +8,28 @@
 import Foundation
 import UIKit
 
+extension UIImage {
+    /// Convert UIImage to a Base64 encoded string.
+    func toBase64() -> String? {
+        // Option 1: Using PNG representation (lossless)
+        if let imageData = self.pngData() {
+            return imageData.base64EncodedString(options: .lineLength64Characters)
+        }
+
+        return nil
+    }
+    
+    /// Create a UIImage from a Base64 encoded string.
+    static func fromBase64(_ base64String: String) -> UIImage? {
+        // Decode the Base64 string to Data.
+        guard let imageData = Data(base64Encoded: base64String, options: .ignoreUnknownCharacters) else {
+            return nil
+        }
+        // Create and return a UIImage from the Data.
+        return UIImage(data: imageData)
+    }
+}
+
 struct PlayActor : Node, HasPort, Codable {
     
     var id: String {
@@ -16,6 +38,7 @@ struct PlayActor : Node, HasPort, Codable {
     
     var identifier : String = UUID().uuidString
     var name : String
+    var thumbnailData : String?
     var role : String
     var config : RoleConfig
     var color : String = colors[Int.random(in: 0...999) % 6]
@@ -96,6 +119,24 @@ struct PlayActor : Node, HasPort, Codable {
     
     func talk() {
         
+    }
+    
+    
+    var thumbnail : UIImage? {
+        set {
+            if let v = newValue {
+                thumbnailData = v.toBase64()
+            } else {
+                thumbnailData = nil
+            }
+        }
+        
+        get {
+            if let data = thumbnailData {
+                return UIImage.fromBase64(data)
+            }
+            return nil
+        }
     }
     
     static func defaultActor(for bounds : CGRect) -> PlayActor {

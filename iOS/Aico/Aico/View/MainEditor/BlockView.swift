@@ -67,6 +67,14 @@ struct BlockView: View {
                             Circle()
                                 .fill(colorSet.outterBorderGradient)
                                 .frame(width: 81)
+                                .overlay {
+                                    if let image = node.thumbnail {
+                                        Image(uiImage: image)
+                                            .resizable()
+                                            .frame(width: 81, height: 81)
+                                            .clipShape(Circle())
+                                    }
+                                }
                         }
                     
                     Text(node.name)

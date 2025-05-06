@@ -19,6 +19,7 @@ struct MainEditorView: View {
     
     @State var isShowRuntime = false
 
+    @State var isShowRuntimePrompt = false
     @State var shouldExpand = false
     
     
@@ -342,7 +343,7 @@ struct MainEditorView: View {
                                 HStack  {
                                     Button(action: {
                                         withAnimation {
-                                            isShowRuntime.toggle()
+                                            isShowRuntimePrompt.toggle()
                                         }
                                     }, label: {
                                         Image(systemName: "play.fill")
@@ -690,6 +691,15 @@ struct MainEditorView: View {
             
         }
         .ignoresSafeArea()
+        .sheet(isPresented: $isShowRuntimePrompt, content: {
+            VStack {
+
+                    ExecuteView(runtime: Runtime(project: documentHandler.project))
+                
+            }
+            .presentationCornerRadius(26)
+        })
+        
     }
     
     func connectionHandler(port : Port, endPt : CGPoint, screenSize : CGSize) {

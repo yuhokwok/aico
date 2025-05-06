@@ -9,39 +9,70 @@ import SwiftUI
 
 struct ExecuteRecordCell: View {
     var record : Record
+    var thumbnail : UIImage?
     var formatter = DateFormatter()
     var body: some View {
         HStack {
             VStack (alignment: .leading) {
-                VStack {
-                    HStack {
-                        Text("\(record.speaker)")
-                            .bold()
-                            .foregroundStyle(.white)
-                        Spacer()
+                HStack(alignment: .top) {
+                    
+                    if record.type != "system"
+                    {
+                        if let thumbnail = thumbnail {
+                            Image(uiImage: thumbnail)
+                                .resizable()
+                                .frame(width: 60, height: 60)
+                                .clipShape(Circle())
+                                .overlay {
+                                    Circle()
+                                        .stroke(.white, lineWidth: 5)
+                                }
+                                .padding(.horizontal, 5)
+                                .padding(.trailing, 10)
+                        } else {
+                            Circle()
+                                .fill(.gray)
+                                .frame(width: 60, height: 60)
+                                .overlay {
+                                    Circle()
+                                        .stroke(.white, lineWidth: 5)
+                                }
+                                .padding(.horizontal, 5)
+                                .padding(.trailing, 10)
+                                
+                        }
                     }
                     
-                    Spacer().frame(height: 5)
-                    
-                    HStack {
-                        Text("\(record.content)")
-                            .font(.system(size: 12))
-                            .foregroundStyle(.white)
-                            .multilineTextAlignment(.leading)
-                            .lineLimit(20)
+                    VStack {
+                        HStack {
+                            Text("\(record.speaker)")
+                                .bold()
+                                .foregroundStyle(.white)
+                            Spacer()
+                        }
                         
-                        Spacer()
-                    }
-                    
-                    HStack {
-                        Spacer()
-                        Text("\n\(getDateString(date: record.date))")
-                            .foregroundStyle(.white)
-                            .font(.footnote)
+                        Spacer().frame(height: 5)
+                        
+                        HStack {
+                            Text("\(record.content)")
+                                .font(.system(size: 16))
+                                .foregroundStyle(.white)
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(20)
+                            
+                            Spacer()
+                        }
+                        
+                        HStack {
+                            Spacer()
+                            Text("\n\(getDateString(date: record.date))")
+                                .foregroundStyle(.white)
+                                .font(.footnote)
+                        }
                     }
                 }
                 .padding()
-                .frame(maxWidth: 280)
+                .frame(maxWidth: 680)
                 .background {
                     if record.type == "system"
                     {
@@ -70,5 +101,5 @@ struct ExecuteRecordCell: View {
 }
 
 #Preview {
-    ExecuteRecordCell(record: Record(id: "1", speaker: "Yoyo", date: Date(), content: "我和你是好朋友"))
+    ExecuteRecordCell(record: Record(id: "1", speaker: "Yoyo", date: Date(), content: "我和你是好朋友", type: "user"))
 }

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED0893B82DC906AC00458EB9 /* DeepSeekAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0893B72DC906AC00458EB9 /* DeepSeekAPI.swift */; };
+		ED0893B92DC906AC00458EB9 /* ChatResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0893B62DC906AC00458EB9 /* ChatResponse.swift */; };
+		ED0893BC2DC9092000458EB9 /* ImagePlaygroundAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0893BB2DC9091600458EB9 /* ImagePlaygroundAPI.swift */; };
 		ED16D7E72B25A9BB001E52D1 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D7E62B25A9BB001E52D1 /* Property.swift */; };
 		ED175E0B2BE40BFF00B887DE /* StartHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED175E0A2BE40BFF00B887DE /* StartHostingController.swift */; };
 		ED175E0F2BE5FA5000B887DE /* Replicate in Frameworks */ = {isa = PBXBuildFile; productRef = ED175E0E2BE5FA5000B887DE /* Replicate */; };
@@ -82,6 +85,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ED0893B62DC906AC00458EB9 /* ChatResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatResponse.swift; sourceTree = "<group>"; };
+		ED0893B72DC906AC00458EB9 /* DeepSeekAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepSeekAPI.swift; sourceTree = "<group>"; };
+		ED0893BB2DC9091600458EB9 /* ImagePlaygroundAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePlaygroundAPI.swift; sourceTree = "<group>"; };
 		ED16D7E62B25A9BB001E52D1 /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
 		ED175E0A2BE40BFF00B887DE /* StartHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartHostingController.swift; sourceTree = "<group>"; };
 		ED175E112BE6119B00B887DE /* DropStageGraphCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropStageGraphCellDelegate.swift; sourceTree = "<group>"; };
@@ -169,6 +175,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED0893B52DC906A400458EB9 /* DeepSeekAPI */ = {
+			isa = PBXGroup;
+			children = (
+				ED0893B62DC906AC00458EB9 /* ChatResponse.swift */,
+				ED0893B72DC906AC00458EB9 /* DeepSeekAPI.swift */,
+			);
+			path = DeepSeekAPI;
+			sourceTree = "<group>";
+		};
+		ED0893BA2DC9090D00458EB9 /* ImagePlayground */ = {
+			isa = PBXGroup;
+			children = (
+				ED0893BB2DC9091600458EB9 /* ImagePlaygroundAPI.swift */,
+			);
+			path = ImagePlayground;
+			sourceTree = "<group>";
+		};
 		ED175E092BE40BCE00B887DE /* Start */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,7 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				ED175E202BE6A9D400B887DE /* ChatGPT */,
-				ED175E1F2BE6A9CF00B887DE /* Gemini */,
 				ED175E1E2BE6A9C800B887DE /* Replicate */,
 			);
 			path = Client;
@@ -207,13 +229,6 @@
 				ED175E212BE6AA1300B887DE /* ReplicateClient.swift */,
 			);
 			path = Replicate;
-			sourceTree = "<group>";
-		};
-		ED175E1F2BE6A9CF00B887DE /* Gemini */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Gemini;
 			sourceTree = "<group>";
 		};
 		ED175E202BE6A9D400B887DE /* ChatGPT */ = {
@@ -380,6 +395,8 @@
 		ED733D8B2ACDDA7D00A2F3B9 /* Aico */ = {
 			isa = PBXGroup;
 			children = (
+				ED0893BA2DC9090D00458EB9 /* ImagePlayground */,
+				ED0893B52DC906A400458EB9 /* DeepSeekAPI */,
 				ED511B092C4D66760047D264 /* Color+Hex.swift */,
 				ED1C73262BED089200EA9325 /* APIClient2.swift */,
 				ED576A3D2BE9CA2000411092 /* ActivityView.swift */,
@@ -563,8 +580,11 @@
 				ED175E222BE6AA1300B887DE /* ReplicateClient.swift in Sources */,
 				ED28494D2CB05DEE002A92F6 /* BlockPortView.swift in Sources */,
 				ED3976472AD79B0B0014AE03 /* NodeEditorState.swift in Sources */,
+				ED0893BC2DC9092000458EB9 /* ImagePlaygroundAPI.swift in Sources */,
 				ED4A435F2B1B9C1800C30731 /* PlayActorInspector.swift in Sources */,
 				ED2849832CB3D9E7002A92F6 /* BlockColor.swift in Sources */,
+				ED0893B82DC906AC00458EB9 /* DeepSeekAPI.swift in Sources */,
+				ED0893B92DC906AC00458EB9 /* ChatResponse.swift in Sources */,
 				ED175E162BE61D1400B887DE /* StorylineEditorView.swift in Sources */,
 				ED5F23142AD30BB400BFE800 /* RelationshipGraph.swift in Sources */,
 				EDD6576A2BE161F500D85E93 /* Item.swift in Sources */,
@@ -761,7 +781,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -791,7 +811,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

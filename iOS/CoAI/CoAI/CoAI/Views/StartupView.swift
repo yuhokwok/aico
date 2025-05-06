@@ -15,7 +15,8 @@ struct StartupView: View {
     @State var fileURLs : [(URL, Date)] = []
     
     @State var prompt : String = ""
-    @StateObject var client = GenerativeClient()
+    //@StateObject var client = GenerativeClient()
+    @StateObject var client = DeepSeekAPI()
     @State var uid : String = ""
     
     @Binding var isExpanded : Bool

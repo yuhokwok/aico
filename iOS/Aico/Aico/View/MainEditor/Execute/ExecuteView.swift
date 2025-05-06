@@ -19,6 +19,7 @@ struct ExecuteView: View {
     @State var allString = "Roy: 我哋今日去邊度玩好？好悶啊。"
     @State var queryString : String = "我哋今日去邊度玩好？好悶啊。"
     @State var saveMessage : String = ""
+
     var body: some View {
         
         HStack {
@@ -34,12 +35,17 @@ struct ExecuteView: View {
         
         HStack {
             Button(action: {
-                saveMessage = ""
-                runtime.execute()
+                if runtime.isExecuting  {
+                    saveMessage = ""
+                    runtime.cancel()
+                } else {
+                    saveMessage = ""
+                    runtime.execute()
+                }
             }, label: {
                 HStack {
                     Spacer()
-                    Image(systemName: "play.fill")
+                    Image(systemName: runtime.isExecuting ? "stop.fill" : "play.fill")
                     Spacer()
                 }
                 
@@ -74,16 +80,34 @@ struct ExecuteView: View {
                 .progressViewStyle(.circular)
         }
         
-        ScrollView {
-            
-            VStack (alignment: .leading) {
-                ForEach(runtime.records) {
-                    record in
-                    
-                    ExecuteRecordCell(record: record)
+        ScrollViewReader { scrollProxy in
+            ScrollView {
+                
+                VStack (alignment: .leading) {
+                    ForEach(runtime.records) {
+                        record in
+                        
+                        ExecuteRecordCell(record: record, thumbnail: runtime.image(for: record.speakerId))
+                            .id(record.id)
+                    }
                 }
             }
-            
+            .onChange(of: runtime.records) { _, _ in
+                
+                if let lastIndex = runtime.records.last {
+                    withAnimation {
+                        scrollProxy.scrollTo(lastIndex.id, anchor: .bottom)
+                        //DispatchQueue.main.async {
+                        //    position = ScrollPosition(id: lastIndex, anchor: .bottom)
+                        //}
+                        //                    print("callcallcall")
+                        //                    withAnimation {
+                        //                        scrollProxy.scrollTo(lastIndex, anchor: .bottom)
+                        //                        //scrollProxy.scrollTo(lastIndex, anchor: .bottom)
+                        //                    }
+                    }
+                }
+            }
         }
         .onAppear {
             let pjData = UserDefaults.standard.string(forKey: runtime.project.identifier)
@@ -166,5 +190,5 @@ struct ExecuteView: View {
 
 #Preview {
     ExecuteView(runtime: Runtime(project: Project.new()))
-        .frame(width: 250)
+        .frame(width: 450)
 }

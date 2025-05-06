@@ -16,7 +16,7 @@ struct PlayActorInspector: View, BaseInspector {
     
     @State var url : String? = nil
     
-    @StateObject var client = GenerativeClient()
+    @StateObject var client = ImagePlaygroundAPI()
     
     @FocusState private var focusState : Int?
     @Binding var editorState : EditorState
@@ -28,6 +28,7 @@ struct PlayActorInspector: View, BaseInspector {
     
     @State var identifier : String = ""
     @State var name : String
+    @State var thumbnail : UIImage? = nil
     @State var role : String = ""
     @State var description : String = ""
     @State var attrStr : String = ""
@@ -97,11 +98,10 @@ struct PlayActorInspector: View, BaseInspector {
                     HStack {
                         Spacer()
                         
-                        if let url = url {
+                        if let thumbnail = thumbnail {
                             
-                            AsyncImage(url: URL(string: url), content: {
-                                image in
-                                image                                .resizable()
+                            Image(uiImage: thumbnail)
+                                .resizable()
                                     .frame(width:81, height: 81)
                                     .clipShape(Circle())
                                     .overlay {
@@ -112,34 +112,7 @@ struct PlayActorInspector: View, BaseInspector {
                                     }
                                     .shadow(radius: 5)
                                     .padding(10)
-                            }, placeholder: {
-                                if let colorSet = self.colorSet {
-                                    
-                                    Circle()
-                                        .fill(Color(hex:"#F4F4F4"))
-                                        .shadow(radius: 10, y: 2)
-                                        .frame(width: 96)
-                                        .overlay {
-                                            Circle()
-                                                .fill(colorSet.outterBorderGradient)
-                                                .frame(width: 81)
-                                        }
-                                    
-                                } else {
-                                    Image("actress")
-                                        .resizable()
-                                        .frame(width:81, height: 81)
-                                        .clipShape(Circle())
-                                        .overlay {
-                                            Circle()
-                                                .fill(.clear)
-                                                .stroke(.white, lineWidth: 5)
-                                            
-                                        }
-                                        .shadow(radius: 5)
-                                        .padding(10)
-                                }
-                            })
+
 
                         } else {
                             if let colorSet = self.colorSet {
@@ -349,13 +322,14 @@ struct PlayActorInspector: View, BaseInspector {
                 
                 
                 Button(action: {
-                    client.genThumbnail(prompt: "a thumbnail", completion: {
-                        url in
-                        if url != "error" && url.isEmpty == false {
-                            self.url = url
-                        }
-                        
+                    
+                    
+                    client.genThumbnail(prompt: "a thumbnail of \(self.role)", completion: {
+                        image in
+                        self.thumbnail = image
+                        self.commitChange()
                     })
+                    
                 }, label: {
                     Text("Generate")
                         .font(.footnote)
@@ -381,6 +355,7 @@ struct PlayActorInspector: View, BaseInspector {
                 
                 if let id = selectedId, let role = handler.entity(for: id) as? PlayActor {
                     self.identifier = role.identifier
+                    self.thumbnail = role.thumbnail
                     self.name = role.name
                     self.role = role.role
                     self.description = role.description
@@ -393,6 +368,7 @@ struct PlayActorInspector: View, BaseInspector {
                 
                 if let id = selectedId, let role = handler.entity(for: id) as? PlayActor {
                     self.identifier = role.identifier
+                    self.thumbnail = role.thumbnail
                     self.name = role.name
                     self.role = role.role
                     self.description = role.description
@@ -479,6 +455,7 @@ struct PlayActorInspector: View, BaseInspector {
             entity.name = self.name
             entity.role  = self.role
             entity.description = self.description
+            entity.thumbnail = self.thumbnail
 
             if var graph = handler.graph(contains: id) as? RelationshipGraph {
                 for (index, role) in graph.nodes.enumerated() {
