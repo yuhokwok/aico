@@ -22,7 +22,7 @@ class DeepSeekAPI : ObservableObject {
     func genProject(prompt:  String, completion : ((String) -> (Void))?) {
         loading = true
         Task {
-            let finalPrompt = "我想進行 \(prompt). 請建議到發佈前需要做的步驟，請以 json 格式介紹 { \"projectName\", \"steps\":[{\"stepName\", \"description\"}]，只需傳回 JSON，不要傳回 JSON 以外的文字"
+            let finalPrompt = "我想進行 \(prompt). 請建議所需的步驟，請以 json 格式介紹 { \"projectName\", \"steps\":[{\"stepName\", \"description\"}]，只需傳回 JSON，不要傳回 JSON 以外的文字"
             
             
             let result = await self.chat(with: finalPrompt)
@@ -168,7 +168,7 @@ class DeepSeekAPI : ObservableObject {
         //let allrole = stage.nodes.count > 0 ? stage.nodes.reduce("", { "\($0), \($1.name) the \($1.role)"}) : "作者, 編輯"
 
         
-        let finalPrompt = last.isEmpty ? "你要完成工作: \(stage.name), 因為你是第一個發言人，你亦要負責開啟對話， 內容如下: \(stage.description)，，請模擬角色\(name)的對話，角色的崗位是\(role)，如果你覺得討論夠充份，請輸出\"[完成]\"。請每個回應都限制於 10至300 字內，請專業地以中文發言，每次只能有一段發言，其餘留給後續對話。請只以 {\"speaker:\" : \"角色名\",  \"content\" : \"對話內容\" } 格式 json 輸出，不要其他內容" : "你要完成工作: \(stage.name)，內容如下: \(stage.description)，請模擬角色\(name)的對話，角色的崗位是\(role)，請專業地以中文發言，每次只能有一段發言，其餘留給後續對話。如果你覺得討論夠充份，請輸出\"[完成]\"。請每個回應都限制於 10至300 字內。上一句對白是: \(last)，請只以 {\"speaker:\" : \"角色名\",  \"content\" : \"對話內容\" } 格式 json 輸出，不要其他內容"
+        let finalPrompt = last.isEmpty ? "你要完成工作: \(stage.name), 因為你是第一個發言人，你亦要負責開啟對話， 內容如下: \(stage.description)，，請模擬角色\(name)的對話，角色的崗位是\(role)，如果你覺得討論夠充份，請輸出\"[完成]\"。不要空想數據及假事實，請每個回應都限制於 10至300 字內，請專業地以中文發言，每次只能有一段發言，其餘留給後續對話。請只以 {\"speaker:\" : \"角色名\",  \"content\" : \"對話內容\" } 格式 json 輸出，不要其他內容" : "你要完成工作: \(stage.name)，內容如下: \(stage.description)，請模擬角色\(name)的對話，角色的崗位是\(role)，請專業地以中文發言，每次只能有一段發言，其餘留給後續對話。如果你覺得討論夠充份，請輸出\"[完成]\"。不要空想數據及假事實，請每個回應都限制於 10至300 字內。上一句對白是: \(last)，請只以 {\"speaker:\" : \"角色名\",  \"content\" : \"對話內容\" } 格式 json 輸出，不要其他內容"
         
         print("\(finalPrompt)")
         
